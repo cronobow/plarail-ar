@@ -1,0 +1,1389 @@
+{
+  "source": "actionstation 1.3 / level4 / ar-routes.json",
+  "note": "Unity local transforms. Marker conversion is an uncalibrated hypothesis, not physical units.",
+  "transforms": [
+    {
+      "transform_id": 103,
+      "gameobject_id": 10,
+      "name": "plakids12_move00",
+      "parent_transform_id": 130,
+      "position": {
+        "x": -16.0,
+        "y": 8.0,
+        "z": -8.199999809265137
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 104,
+      "gameobject_id": 11,
+      "name": "plakids16_move00",
+      "parent_transform_id": 109,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 8.600000381469727
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 105,
+      "gameobject_id": 13,
+      "name": "plakids06_move01",
+      "parent_transform_id": 156,
+      "position": {
+        "x": 6.300000190734863,
+        "y": 2.0,
+        "z": 5.100000381469727
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 106,
+      "gameobject_id": 14,
+      "name": "plakids09_move02",
+      "parent_transform_id": 112,
+      "position": {
+        "x": -16.5,
+        "y": 0.0,
+        "z": 11.979999542236328
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 107,
+      "gameobject_id": 15,
+      "name": "plakids08",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 108,
+      "gameobject_id": 16,
+      "name": "plakids03_move01",
+      "parent_transform_id": 170,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 9.720000267028809
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 109,
+      "gameobject_id": 17,
+      "name": "plakids16",
+      "parent_transform_id": 134,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 110,
+      "gameobject_id": 18,
+      "name": "plakids05",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 112,
+      "gameobject_id": 20,
+      "name": "plakids09",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 113,
+      "gameobject_id": 22,
+      "name": "plakids02",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 114,
+      "gameobject_id": 23,
+      "name": "plakids13_move00",
+      "parent_transform_id": 136,
+      "position": {
+        "x": -10.0,
+        "y": 0.0,
+        "z": -31.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 115,
+      "gameobject_id": 25,
+      "name": "Trackable",
+      "parent_transform_id": 116,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 17.5,
+        "y": 17.5,
+        "z": 17.5
+      }
+    },
+    {
+      "transform_id": 116,
+      "gameobject_id": 24,
+      "name": "ImageTracker",
+      "parent_transform_id": 0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 117,
+      "gameobject_id": 26,
+      "name": "plakids01",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 118,
+      "gameobject_id": 27,
+      "name": "plakids15",
+      "parent_transform_id": 134,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 119,
+      "gameobject_id": 28,
+      "name": "plakids05_move02",
+      "parent_transform_id": 110,
+      "position": {
+        "x": 9.369999885559082,
+        "y": 2.0,
+        "z": 10.100000381469727
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 120,
+      "gameobject_id": 29,
+      "name": "plakids07",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 121,
+      "gameobject_id": 30,
+      "name": "plakids03_move03",
+      "parent_transform_id": 170,
+      "position": {
+        "x": 22.8799991607666,
+        "y": 2.0,
+        "z": 8.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 122,
+      "gameobject_id": 31,
+      "name": "plakids15_move00",
+      "parent_transform_id": 118,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 6.800000190734863
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 123,
+      "gameobject_id": 32,
+      "name": "plakids03_move04",
+      "parent_transform_id": 170,
+      "position": {
+        "x": 24.700000762939453,
+        "y": 0.0,
+        "z": 8.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 124,
+      "gameobject_id": 33,
+      "name": "plakids04_move00",
+      "parent_transform_id": 148,
+      "position": {
+        "x": 11.229999542236328,
+        "y": 2.0,
+        "z": 5.090000152587891
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 125,
+      "gameobject_id": 34,
+      "name": "plakids18",
+      "parent_transform_id": 134,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 126,
+      "gameobject_id": 35,
+      "name": "plakids05_move00",
+      "parent_transform_id": 110,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 5.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 127,
+      "gameobject_id": 36,
+      "name": "plakids18_move00",
+      "parent_transform_id": 125,
+      "position": {
+        "x": -2.5,
+        "y": 2.0,
+        "z": 6.800000190734863
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 129,
+      "gameobject_id": 38,
+      "name": "plakids01_move00",
+      "parent_transform_id": 117,
+      "position": {
+        "x": 27.0,
+        "y": 0.0,
+        "z": 3.4700000286102295
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 130,
+      "gameobject_id": 39,
+      "name": "plakids12",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 131,
+      "gameobject_id": 41,
+      "name": "plakids14",
+      "parent_transform_id": 134,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 134,
+      "gameobject_id": 44,
+      "name": "station00",
+      "parent_transform_id": 169,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 136,
+      "gameobject_id": 46,
+      "name": "plakids13",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 138,
+      "gameobject_id": 49,
+      "name": "plakids09_move01",
+      "parent_transform_id": 112,
+      "position": {
+        "x": -16.5,
+        "y": 2.0,
+        "z": 9.670000076293945
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 141,
+      "gameobject_id": 52,
+      "name": "ARTarget",
+      "parent_transform_id": 115,
+      "position": {
+        "x": -0.3199999928474426,
+        "y": -0.05000000074505806,
+        "z": 0.029999999329447746
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 0.05714000016450882,
+        "y": 0.05714000016450882,
+        "z": 0.05714000016450882
+      }
+    },
+    {
+      "transform_id": 142,
+      "gameobject_id": 53,
+      "name": "plakids00_move00",
+      "parent_transform_id": 158,
+      "position": {
+        "x": 27.0,
+        "y": 0.0,
+        "z": -12.770000457763672
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 144,
+      "gameobject_id": 55,
+      "name": "plakids17",
+      "parent_transform_id": 134,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 146,
+      "gameobject_id": 57,
+      "name": "plakids03_move02",
+      "parent_transform_id": 170,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 8.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 147,
+      "gameobject_id": 58,
+      "name": "plakids09_move00",
+      "parent_transform_id": 112,
+      "position": {
+        "x": -16.5,
+        "y": 2.0,
+        "z": 6.199999809265137
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 148,
+      "gameobject_id": 59,
+      "name": "plakids04",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 149,
+      "gameobject_id": 62,
+      "name": "plakids12_move01",
+      "parent_transform_id": 130,
+      "position": {
+        "x": -16.0,
+        "y": 8.0,
+        "z": -13.100000381469727
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 150,
+      "gameobject_id": 63,
+      "name": "plakids10_move01",
+      "parent_transform_id": 167,
+      "position": {
+        "x": -10.0,
+        "y": 8.0,
+        "z": -2.716207504272461
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 151,
+      "gameobject_id": 64,
+      "name": "plakids02_move01",
+      "parent_transform_id": 113,
+      "position": {
+        "x": -14.0,
+        "y": 0.0,
+        "z": 17.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 152,
+      "gameobject_id": 65,
+      "name": "plakids02_move00",
+      "parent_transform_id": 113,
+      "position": {
+        "x": 20.0,
+        "y": 0.0,
+        "z": 17.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 153,
+      "gameobject_id": 66,
+      "name": "plakids17_move00",
+      "parent_transform_id": 144,
+      "position": {
+        "x": 6.300000190734863,
+        "y": 2.0,
+        "z": 6.800000190734863
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 155,
+      "gameobject_id": 70,
+      "name": "plakids11_move00",
+      "parent_transform_id": 161,
+      "position": {
+        "x": -11.100000381469727,
+        "y": 8.0,
+        "z": -11.40999984741211
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 156,
+      "gameobject_id": 71,
+      "name": "plakids06",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 157,
+      "gameobject_id": 72,
+      "name": "plakids05_move01",
+      "parent_transform_id": 110,
+      "position": {
+        "x": 15.0,
+        "y": 2.0,
+        "z": 7.199999809265137
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 158,
+      "gameobject_id": 73,
+      "name": "plakids00",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 159,
+      "gameobject_id": 74,
+      "name": "plakids07_move01",
+      "parent_transform_id": 120,
+      "position": {
+        "x": -2.5,
+        "y": 2.0,
+        "z": 5.100000381469727
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 160,
+      "gameobject_id": 75,
+      "name": "plakids07_move00",
+      "parent_transform_id": 120,
+      "position": {
+        "x": -2.5,
+        "y": 2.0,
+        "z": 4.619999885559082
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 161,
+      "gameobject_id": 77,
+      "name": "plakids11",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 162,
+      "gameobject_id": 78,
+      "name": "plakids14_move00",
+      "parent_transform_id": 131,
+      "position": {
+        "x": -5.599999904632568,
+        "y": 0.0,
+        "z": -31.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 163,
+      "gameobject_id": 79,
+      "name": "plakids03_move00",
+      "parent_transform_id": 170,
+      "position": {
+        "x": 10.1899995803833,
+        "y": 2.0,
+        "z": 9.720000267028809
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 166,
+      "gameobject_id": 84,
+      "name": "plakids08_move00",
+      "parent_transform_id": 107,
+      "position": {
+        "x": -6.800000190734863,
+        "y": 2.0,
+        "z": 5.400000095367432
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 167,
+      "gameobject_id": 85,
+      "name": "plakids10",
+      "parent_transform_id": 134,
+      "position": {
+        "x": -0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 168,
+      "gameobject_id": 86,
+      "name": "root",
+      "parent_transform_id": 141,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 169,
+      "gameobject_id": 21,
+      "name": "station",
+      "parent_transform_id": 168,
+      "position": {
+        "x": 4.0,
+        "y": -0.5,
+        "z": 14.800000190734863
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "scale": {
+        "x": 1.0800000429153442,
+        "y": 1.0800000429153442,
+        "z": 1.0800000429153442
+      }
+    },
+    {
+      "transform_id": 170,
+      "gameobject_id": 88,
+      "name": "plakids03",
+      "parent_transform_id": 134,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": -0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 171,
+      "gameobject_id": 89,
+      "name": "plakids06_move00",
+      "parent_transform_id": 156,
+      "position": {
+        "x": 6.300000190734863,
+        "y": 2.0,
+        "z": 4.769999980926514
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    {
+      "transform_id": 172,
+      "gameobject_id": 91,
+      "name": "plakids10_move00",
+      "parent_transform_id": 167,
+      "position": {
+        "x": -10.0,
+        "y": 8.0,
+        "z": -7.769999980926514
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.0,
+        "w": 1.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    }
+  ],
+  "routes": [
+    {
+      "generator": 0,
+      "points": [
+        142
+      ]
+    },
+    {
+      "generator": 1,
+      "points": [
+        129
+      ]
+    },
+    {
+      "generator": 2,
+      "points": [
+        152,
+        151
+      ]
+    },
+    {
+      "generator": 3,
+      "points": [
+        163,
+        108,
+        146,
+        121,
+        123
+      ]
+    },
+    {
+      "generator": 4,
+      "points": [
+        124
+      ]
+    },
+    {
+      "generator": 5,
+      "points": [
+        126,
+        157,
+        119
+      ]
+    },
+    {
+      "generator": 6,
+      "points": [
+        171,
+        105
+      ]
+    },
+    {
+      "generator": 7,
+      "points": [
+        160,
+        159
+      ]
+    },
+    {
+      "generator": 8,
+      "points": [
+        166
+      ]
+    },
+    {
+      "generator": 9,
+      "points": [
+        147,
+        138,
+        106
+      ]
+    },
+    {
+      "generator": 10,
+      "points": [
+        172,
+        150
+      ]
+    },
+    {
+      "generator": 11,
+      "points": [
+        155
+      ]
+    },
+    {
+      "generator": 12,
+      "points": [
+        103,
+        149
+      ]
+    },
+    {
+      "generator": 13,
+      "points": [
+        114
+      ]
+    },
+    {
+      "generator": 14,
+      "points": [
+        162
+      ]
+    },
+    {
+      "generator": 15,
+      "points": [
+        122
+      ]
+    },
+    {
+      "generator": 16,
+      "points": [
+        104
+      ]
+    },
+    {
+      "generator": 17,
+      "points": [
+        153
+      ]
+    },
+    {
+      "generator": 18,
+      "points": [
+        127
+      ]
+    }
+  ]
+}

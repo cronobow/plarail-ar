@@ -1,12 +1,12 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>原版角色動畫測試</title>
-<link rel="stylesheet" href="style.css?v=0.2.1"><style>#view{height:55vh;min-height:280px}#view canvas{display:block;width:100%;height:100%}#welcome{margin:16px auto}label{display:inline-block;margin:8px}#welcome a{margin:0}</style>
+<link rel="stylesheet" href="style.css?v=0.3.0"><style>#view{height:55vh;min-height:280px}#view canvas{display:block;width:100%;height:100%}#welcome{margin:16px auto}label{display:inline-block;margin:8px}#welcome a{margin:0}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script></head><body>
-<main id="welcome"><a href="./?v=0.2.1">← 回到 AR 測試</a><h1>原版角色動畫</h1><p>測試版 0.2.1</p><p>APK 原始曲線 · 走路為原地循環、張望播放一次。尚未還原 Animator 轉場、移動路徑及換臉。</p>
+<main id="welcome"><a href="./?v=0.3.0">← 回到 AR 測試</a><h1>原版角色動畫</h1><p>測試版 0.3.0</p><p>APK 原始曲線 · 走路為原地循環、張望播放一次。尚未還原 Animator 轉場、移動路徑及換臉。</p>
 <label>角色 <select id="character"></select></label><div class="actions" role="group" aria-label="角色動作"><button data-action="REST" aria-pressed="false">靜止</button><button data-action="WALK" aria-pressed="true">走路（原地）</button><button data-action="LOOKING" aria-pressed="false">張望／重播</button></div><p id="motion">角色載入中…</p><div id="view"></div><p id="error" role="alert"></p></main>
 <script type="module">
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {CharacterAnimation,loadAnimations} from './animation.mjs?v=0.2.1';
+import {CharacterAnimation,loadAnimations} from './animation.mjs?v=0.3.0';
 const $=id=>document.getElementById(id), view=$('view');
 window.animationTest={ready:false};
 try {

@@ -1,26 +1,39 @@
-# iPad AR 追蹤與動畫測試 0.2.1
+# Action Station 原 APK 復刻第一版 1.0.0
 
-以 HTTPS 部署此資料夾；在 iPad Safari 點選「啟動 AR 相機」。相機影像只在瀏覽器處理，沒有上傳端點。
+主入口 `index.html` 現在是完整玩法第一版；原本的單角色測試保留在 `diagnostic.html`，動畫檢視在 `animation.html`。以原始 `actionstation-1.3.apk` 的素材、UI 配置、動畫曲線及反編譯參數為依據，保留日文原畫面與音效。這是網頁移植，並非重新打包 Android APK。
 
-這是實機追蹤實驗，不是完成的 APK 復刻：使用 MindAR 1.2.5 辨識 `marker.png`，顯示 15 種原版角色之一。角色統一正面、按高度正規化，位置及大小為測試值。已加入 APK 原始 WALK／LOOKING 曲線播放；沒有還原 Animator 轉場、車站座標、原版 UI、排隊、上車、音效、遮擋及 Wikitude 延伸追蹤。遺失標記時角色隱藏。
+## 已接上的主流程
 
-## 測試錄影
+- 原版主選單、選單動畫、五頁玩法說明與設定入口。
+- 四種原版可換臉角色：拍照、切換相機、確認、儲存、返回；另提供照片匯入與刪除本機臉孔。依原版 256×256 裁切、亮度 +100、遮罩與膚色處理。
+- AR 車站：15 種角色、原版站位與移動路徑、生成、走路／張望、點擊台詞、排隊、上車、補充乘客。
+- 原版 286 句台詞依角色、時段與候車狀態選取；原版背景音樂、月台語音和三組車站廣播。
+- 原版站體深度遮擋模型；辨識遺失暫停、恢復、返回與相機重新啟動。
+- 辨識圖下載；原外部消息／支援入口顯示說明，沒有重建外部伺服器。
 
-請依序錄下正面辨識、左右移動、拉近拉遠、遮住標記、移開再回來。畫面包含版本、FPS、辨識／遺失次數。記錄 Safari/iPadOS 版本、標記圖案寬度及發生問題的秒數；比較原版行為需要原 APK 錄影。
+參數保留：走路 2／上車 1 世界單位每秒、上車終點 Z=13、生成計時 10 秒、待機 1～8 秒、排隊完成等候 1 秒，以及 APK 的角色分組與站位配置。`scripts/export-replica.py` 匯出原版 UI、音效、曲線與站體，`scripts/export-station.py` 匯出站位。
 
-## 本機驗證
-
-從私人研究 repository `cronobow/plarail` 的根目錄（公開網站 repository 不包含分析工具）：
+## 本機執行與驗證
 
 ```sh
-npm ci --prefix research/plarail-ar/tools/preview
+python3 -m http.server 8771 --bind 127.0.0.1 --directory web
+# http://127.0.0.1:8771/
+node scripts/check-passengers.mjs
+node scripts/check-station.mjs
 node scripts/check-animation.mjs
+node scripts/check-replica.mjs
+node scripts/check-replica.mjs --webkit
 node scripts/check-web.mjs
-# 重新編譯原版 marker.png（會改寫 marker.mind）
-node scripts/check-web.mjs --compile
+node scripts/check-web.mjs --webkit --animation-only
 ```
 
-目前腳本使用 macOS 的 Google Chrome 路徑，驗證合成相機啟動／停止／重啟、合成標記辨識／遺失／重新辨識與 15 個模型載入。桌面測試不能證明 iPad 真實相機的辨識或追蹤品質。
+2026-10-31 本機：乘客狀態／來源座標／15 種角色動畫測試通過；Chrome 第一版端對端流程（含實際角色點擊）與舊診斷頁回歸通過；WebKit 主選單／五頁教學／設定／四種換臉入口／照片匯入儲存，以及非相機動畫測試通過；相機拒絕由 stub 模擬，AR 追蹤未驗證。Chrome 整合驗證使用合成相機；WebKit 分開驗證 UI 與照片匯入，不能當作 iPad 真實相機通過。實機需要 HTTPS；本機 localhost 可用相機。相機影像不會上傳，臉孔只儲存在此瀏覽器。
+
+## 尚待實機比對的差異
+
+第一版主流程已整合，但沒有宣稱與 APK 逐幀一致。MindAR 取代原 Wikitude；標記單位／方向、第二次錄影的倒置、追蹤穩定度與延伸追蹤尚未解決。鄰近乘客交談判定、部分狀態轉場、對話泡泡與拍照確認視窗仍是網頁實作，未全部完成原生行為比對；啟動直接進主選單，未播放原版開場／條款流程。第三方服務未復建。這些與後續優化分開記錄，不以合成測試宣稱已驗證真實車站定位。
+
+1.0.0 於 2026-10-31 準備發布至既有 GitHub Pages 測試網站，公開內容僅限 web/。以下 0.1～0.3 是歷史診斷紀錄，不代表第一版目前功能範圍。
 
 ## 素材與依賴
 
@@ -86,3 +99,32 @@ node scripts/check-web.mjs --webkit --animation-only
 發布後可用 `node scripts/check-web.mjs --live` 驗證正式站的合成相機／動畫；不使用真實相機、不傳送使用者影像。公開 Pages 與研究 repo 的歷史分開；若 subtree push 因網域設定提交而分歧，須在只含 web subtree 的獨立 checkout 合併遠端歷史、確認最終 tree 與待發布 web 一致再推送，不 force push，也不得推送研究根目錄。
 
 0.2.1 驗證紀錄：Chrome 完整網頁測試（合成相機、標記、AR 動作與獨立動畫頁）通過；桌面 WebKit 的合成串流可播放，但 60 秒內未辨識標記，該項為失敗／待調查，不代表真實 Safari 相機已測試。WebKit 的不開相機動畫範圍以 `--animation-only` 另行驗證，不將它當成完整 AR 通過。
+
+## 第二次測試影片與 0.3.0（本機，尚未發布）
+
+`第2次測試.MP4` 長 65.73 秒，1126×2436、60 fps；錄下 0.2.1 直向 Safari。以每 4 秒縮圖檢視全段，另對 7～10 秒與 49～56 秒密集擷取影格：
+
+- A1 的走路／張望姿態及動作計時有變化；約 52 秒重播張望，約 54 秒顯示播完。此證據只涵蓋錄到的角色與操作。
+- 約 7～10 秒人物倒置，HUD 仍顯示已辨識，期間辨識 1 次、遺失 0 次；因此不能只歸因於重新辨識瞬間。影片本身無 pose matrix，尚無法區分追蹤姿態、平面方向歧義與座標轉換原因。
+- 遮住標記時角色消失，恢復後重現；結尾為辨識 16 次、遺失 15 次。取樣可見約 29～48 FPS，不是完整效能統計。
+- 不以此錄影推定裝置型號、OS 版本、原版 APK 一致性或延伸追蹤成功。
+
+0.3.0 接續還原站位資料，尚未解決倒置或完成車站玩法：
+
+- `station.json` 由 `python3 scripts/export-station.py` 產生，只包含 19 組站位、32 個節點與必要 Transform 父子鏈；未攜帶 SDK 設定或授權字串。
+- 「車站站位校正（實驗）」→「原版站位」可選站位／節點。黃點與青色連線只供校對，連線順序不代表已驗證的乘客移動邏輯；15～18 排隊站位保留。
+- 原始 Unity 座標先完整合成，沿 X 鏡射，再轉入標記平面。初始假設為 Trackable 17.5 單位對應一個標記寬度，**不是已確認的 Wikitude → MindAR 單位換算**。比例、左右及前後滑桿只作用於獨立校正層，不改寫來源。
+- 角色大小仍為診斷用正規化高度，沒有還原原版生成時的縮放與所有朝向。校正值僅留在本次頁面，重新整理即重設。
+- 展開面板可切換，收合後保留選擇；原本標記中央模式、走路／張望／靜止均保留。
+
+驗證命令：
+
+```sh
+python3 scripts/export-station.py
+node scripts/check-station.mjs
+node scripts/check-animation.mjs
+node scripts/check-web.mjs
+node scripts/check-web.mjs --webkit --animation-only
+```
+
+本機驗證涵蓋來源座標一致、32 節點的獨立矩陣換算、排隊站位、站位與角色同步校正、角色切換保留站位、回到標記中央、375×610 可捲動版面，以及既有合成相機／動畫回歸。Chrome 全項通過；桌面 WebKit 非相機動畫通過，WebKit AR 本次未執行（既有合成標記辨識失敗仍待調查）。實體車站校正、iPad 相機、遮擋模型、原版狀態機、排隊／上車與延伸追蹤仍 pending。此次未 commit、push 或部署。
