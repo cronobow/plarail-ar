@@ -1,6 +1,27 @@
-# 動感車站・繁體中文版 1.1.6
+# 動感車站・繁體中文版 1.2.0
 
 主入口 `index.html` 現在是完整玩法第一版；原本的單角色測試保留在 `diagnostic.html`，動畫檢視在 `animation.html`。以原始 `actionstation-1.3.apk` 的素材、UI 配置、動畫曲線及反編譯參數為依據，介面改為繁體中文，保留原版音效並加上中文字幕。這是網頁移植，並非重新打包 Android APK。
+
+## 1.2.0 圖樣離鏡後的空間追蹤（2026-10-31）
+
+- 原 APK 的 Wikitude ImageTrackable 啟用 `_extendedTracking=1`，追蹤目標 `*`；ImageTracker 使用內建 marker.wtc，並非僅在圖樣可見時顯示人物。官方[產品介紹](https://www.takaratomy.co.jp/products/plarail/tettei/set/action/)與[發表資料](https://www.takaratomy.co.jp/product_release/pdf/p170626.pdf)也描述角色在實體車站各區域活動，以及以內建車站 3D 模型限制位置。
+- 主入口改用 8th Wall distributed engine 1.0.0 的圖樣辨識與 SLAM。首次掃到原辨識圖後，車站放在世界座標；離鏡後，相機繼續依周遭特徵更新，人物動畫、點擊對話、排隊與上車持續。再次辨識會更新車站位置；返回選單或切到背景會結束場次並清除定位。
+- 請使用手機／平板的 Safari 或 Android Chrome，允許相機與動作／方向存取。先完整掃到辨識圖，再緩慢移動鏡頭，讓周遭有紋理的物體進入畫面。定位不穩時提示重新對準；遊戲狀態仍繼續，但缺乏視覺特徵時不能保證車站不漂移。
+- 引擎與 target 在網站自行供應，進入 AR 才載入；不需要 API key。原始 binary、LICENSE 與雜湊見 [vendor/xr8](vendor/xr8/README.md)。新引擎 binary 使用其專用授權，並非 MIT；舊 MindAR 僅供歷史診斷頁使用。
+- 本機 Chrome 真實 XR8 binary + 合成相機測試通過：標記辨識、移除標記後的世界錨點不變、周遭視差造成相機座標與畫面投影改變、SLAM NORMAL、遊戲時間前進、實際骨架動作、點擊人物、排隊／上車、重新辨識及新場次清除定位。Chrome／WebKit 的選單、換臉與啟動失敗／重試／逾時測試另行驗證。
+- 合成相機含固定 IMU，不能當作手機實測。真實 iPhone／iPad 的權限流程、車站尺度／方向、長時間漂移、效能與原 Wikitude 品質仍待實機驗證；WebKit AR 未列為通過。以下舊版段落是歷史紀錄，不代表主入口目前仍只保留最後姿態。
+
+來源建置與驗證（在私人 source repository 執行）：
+
+```sh
+node scripts/prepare-world-tracking.mjs
+sh scripts/build-browser.sh
+node scripts/check-world-tracking.mjs
+node scripts/check-replica.mjs
+node scripts/check-replica.mjs --webkit
+node scripts/check-startup.mjs
+node scripts/check-startup.mjs --webkit
+```
 
 ## 1.1.6 原版臉孔恢復操作（2026-10-31）
 
