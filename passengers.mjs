@@ -15,7 +15,8 @@ export class Passengers {
  create(character,slot,permanent=false){
   if(!character||slot===undefined||this.people.some(p=>p.slot===slot||p.character===character))return null;
   const path=this.routes[slot];if(!path?.length)return null;
-  const p={id:++this.serial,character,slot,path,position:[...path[0]],state:'Neutral',time:0,wait:this.range(RULES.neutral),alpha:0,permanent,point:0,target:0,angle:0,dialog:null,talkCooldown:0};
+  const point=Math.floor(this.random()*path.length);
+  const p={id:++this.serial,character,slot,path,position:[...path[point]],state:'Neutral',time:0,wait:this.range(RULES.neutral),alpha:0,permanent,point,target:point,angle:0,dialog:null,talkCooldown:0};
   this.people.push(p);this.events.push({type:'create',person:p});return p;
  }
  initialize(){
@@ -35,11 +36,11 @@ export class Passengers {
  state(p,state){p.state=state;p.time=0;p.dialog=null;if(state==='Neutral')p.wait=this.range(RULES.neutral);if(state==='Looking')p.wait=1.9666667+this.range([0,2]);this.events.push({type:'state',person:p});}
  setTracking(value){
   this.tracking=value;
-  if(!value){for(const p of this.people){p.dialog=null;if(['Attention','Guide','Talk','Spoken'].includes(p.state))this.state(p,'Neutral');}this.events.push({type:'lost'});}
+  if(!value){for(const p of this.people){p.dialog=null;}this.events.push({type:'lost'});}
  }
  action(p){
   const n=Math.floor(this.random()*100);
-  if(n<50){p.target=Math.floor(this.random()*p.path.length);this.state(p,'Walk');}
+  if(n<50){p.point=this.nearest(p);p.target=Math.floor(this.random()*p.path.length);this.state(p,'Walk');}
   else if(n<95)this.state(p,'Looking');
   else if(!p.permanent)this.state(p,'Exit');
   else this.state(p,'Neutral');
@@ -56,13 +57,26 @@ export class Passengers {
  lineUp(){
   if(!this.tracking||this.mode!=='Normal')return false;
   this.mode='PreRide';
-  for(const slot of RULES.riding){
-   let p=this.people.find(p=>p.slot===slot);
-   if(!p)p=this.create(this.pick(this.availableCharacters().filter(c=>CHARACTERS.indexOf(c)<10)),slot);
-   if(!p)continue;
+  // 0x9787cc: 先對現有乘客執行 PreRideInit，不能在按鈕當下補人。
+  for(const p of this.people.filter(p=>RULES.riding.includes(p.slot))){
    p.target=0;p.point=this.nearest(p);p.ready=false;this.state(p,'PreRide');
   }
+  if(!this.people.some(p=>RULES.riding.includes(p.slot)))this.finishLineUp();
   this.events.push({type:'lineup'});return true;
+ }
+ finishLineUp(){
+  // 0x9786d8 → 0x977a80：現有乘客完成後，按原版三列順序填入空位。
+  for(const row of RULES.queue){
+   for(const slot of row){
+    if(this.people.some(p=>p.slot===slot))continue;
+    const p=this.create(this.pick(this.availableCharacters().filter(c=>CHARACTERS.indexOf(c)<10)),slot);
+    if(!p)continue;
+    // PreRideEnd 0x99f5ec 只有第 5 站位強制回到第 0 節點。
+    if(slot===5){p.point=0;p.position=[...p.path[0]];}
+    p.ready=true;p.permanent=true;p.angle=0;this.state(p,'PreRide');
+   }
+  }
+  this.mode='Ready';this.events.push({type:'ready'});
  }
  board(){
   if(!this.tracking||this.mode!=='Ready')return false;
@@ -95,7 +109,7 @@ export class Passengers {
     case 'Exit':p.alpha=Math.max(0,1-p.time/RULES.fadeSeconds);if(p.alpha===0)this.remove(p);break;
    }
   }
-  if(this.mode==='PreRide'&&this.people.filter(p=>RULES.riding.includes(p.slot)).every(p=>p.ready&&p.time>=RULES.preRideWait)){this.mode='Ready';this.events.push({type:'ready'});}
+  if(this.mode==='PreRide'&&this.people.filter(p=>RULES.riding.includes(p.slot)).every(p=>p.ready&&p.time>=RULES.preRideWait))this.finishLineUp();
   if(this.mode==='Ride'&&!this.people.some(p=>RULES.riding.includes(p.slot))){this.mode='Normal';this.spawnClock=0;this.events.push({type:'departed'});}
   if(this.mode==='Normal'){
    this.spawnClock+=dt;
