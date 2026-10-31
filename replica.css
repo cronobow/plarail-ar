@@ -61,3 +61,7 @@ body:has(.ar-ui) #ar-messages>*{position:static;transform:none;margin:0;max-widt
 .ar-scan-image{flex:1;min-width:0}
 body:has(.ar-ui) #ar-messages #audio-caption{align-self:center;text-align:center}
 body:has(.ar-ui) #ar-messages{top:calc(var(--ar-top) + 60px)}
+
+/* 常駐版本靠安全區下緣，不攔截操作；AR 按鈕留出版本文字高度。 */
+#app-version{position:fixed;right:calc(env(safe-area-inset-right,0px) + 4px);bottom:calc(env(safe-area-inset-bottom,0px) + 2px);z-index:11;font:10px/12px sans-serif;color:#fff;text-shadow:0 1px 2px #000,0 0 2px #000;pointer-events:none;user-select:none}
+body:has(.ar-ui){--ar-bottom:calc(env(safe-area-inset-bottom,0px) + 18px)}
