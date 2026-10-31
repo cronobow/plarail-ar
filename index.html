@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>動感車站 · 繁體中文版</title><link rel="stylesheet" href="replica.css?v=1.2.5"><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script></head><body>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>動感車站 · 繁體中文版</title><link rel="stylesheet" href="replica.css?v=1.2.6"><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script></head><body>
 <div id="camera"></div><video id="portrait-camera" playsinline muted autoplay hidden></video><div id="original-ui"></div><div id="bubbles"></div>
 <section id="safety-screen" aria-labelledby="safety-title" hidden>
  <div class="safety-card">
@@ -9,7 +9,7 @@
 </section>
 <div id="ar-messages"><div id="tracking-note" role="status" hidden>定位不穩，請緩慢移動鏡頭並重新對準辨識圖</div>
 <div id="audio-caption" role="status" aria-live="polite" hidden></div></div>
-<div id="loading" role="status">正在載入車站素材…（1.2.5）</div><div id="orientation">請橫放裝置，使用原版橫向畫面</div>
+<div id="loading" role="status">正在載入車站素材…（1.2.6）</div><div id="orientation">請橫放裝置，使用原版橫向畫面</div>
 <dialog id="dialog"><h2 id="dialog-title"></h2><div id="dialog-body"></div><div id="dialog-buttons"></div></dialog>
 <input id="face-file" type="file" accept="image/*" hidden><script>
 // Keep startup failure handling outside the module graph so import failures are visible.
@@ -17,7 +17,7 @@
  const loading = document.getElementById('loading');
  let timer;
  const pending = new Set(['啟動程式']);
- function progress(){loading.textContent='正在載入車站素材…（1.2.5） '+Array.from(pending).join('、');}
+ function progress(){loading.textContent='正在載入車站素材…（1.2.6） '+Array.from(pending).join('、');}
  function fail(error) {
   clearTimeout(timer);
   loading.hidden = false;
@@ -44,7 +44,7 @@
  timer = setTimeout(function () {
   fail(new Error('載入超過 30 秒。尚未完成：'+Array.from(pending).join('、')+'。請重新載入。'));
  }, 30000);
- import('./replica.bundle.mjs?v=1.2.5').catch(function (error) {
+ import('./replica.bundle.mjs?v=1.2.6').catch(function (error) {
   fail(new Error('程式載入失敗：' + (error.message || String(error))));
  });
 })();

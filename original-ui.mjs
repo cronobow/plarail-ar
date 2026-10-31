@@ -70,7 +70,9 @@ export class OriginalUI {
    Object.assign(img.style,{width:iw/cw*100+'%',height:ih/ch*100+'%',left:-x/cw*100+'%',top:-y/ch*100+'%'});el.append(img);
   };
   add(96,top).classList.add('ar-back');imageHint(83,83,top,'ar-caution-image');
-  imageHint(9,67,this.host,'ar-scan-image');add(61,hints);add(3,hints);
+  const scan=region('ar-scan-group');scan.dataset.go='9';scan.hidden=true;this.elements.set(9,scan);
+  const stationmaster=new Image();stationmaster.className='ar-stationmaster';stationmaster.src=nodes.find(n=>n.id===92).image.url;stationmaster.alt='站長';stationmaster.draggable=false;scan.append(stationmaster);
+  imageHint(67,67,scan,'ar-scan-image');add(61,hints);add(3,hints);
   const boarding=document.createElement('div');boarding.className='ar-boarding';bottom.append(boarding);
   add(82,boarding);add(40,boarding);add(48,bottom);add(69,bottom);
  }
