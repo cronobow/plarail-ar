@@ -10,7 +10,7 @@
 
 ## 本機驗證
 
-從 repository 根目錄：
+從私人研究 repository `cronobow/plarail` 的根目錄（公開網站 repository 不包含分析工具）：
 
 ```sh
 npm ci --prefix research/plarail-ar/tools/preview
@@ -19,7 +19,7 @@ node scripts/check-web.mjs
 node scripts/check-web.mjs --compile
 ```
 
-目前腳本使用 macOS 的 Google Chrome 路徑，驗證合成相機啟動／停止／重啟與 15 個模型載入。桌面測試不能證明 iPad 真實相機的辨識或追蹤品質。
+目前腳本使用 macOS 的 Google Chrome 路徑，驗證合成相機啟動／停止／重啟、合成標記辨識／遺失／重新辨識與 15 個模型載入。桌面測試不能證明 iPad 真實相機的辨識或追蹤品質。
 
 ## 素材與依賴
 
@@ -30,3 +30,7 @@ node scripts/check-web.mjs --compile
 - `compile.html` 僅供本機編譯 target；不會讀取相機。
 
 GitHub Pages 只發布 web/；APK、SDK 授權字串、原生 binary、完整研究輸出與舊 DrYellow 專案不會進入網站。
+
+## 發布
+
+完整研究 source 保留在私人 `cronobow/plarail`；公開 `cronobow/plarail-ar` 只接收 `web/` subtree，Pages 使用 `main` 根目錄。從私人 repo 執行 `git subtree push --prefix web pages main` 更新網站；不得改成發布整個研究根目錄。
