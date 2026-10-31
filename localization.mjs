@@ -48,3 +48,33 @@ export const AUDIO_CAPTIONS={
  'audio/voice/no25':'上下車時，請留意腳步。'
 };
 export function audioCaption(key){return AUDIO_CAPTIONS[key.toLowerCase().replace(/^clip\//,'audio/voice/')]||'';}
+
+// 以 Enpedia 列出的日文廣播原句及其餘台詞的核心詞比對，不要求辨識逐字一致。
+const SPEECH_PHRASES={
+ 'no14':['駆け込み乗車はおやめください','駆け込み乗車は危険です','駆け込み乗車はご遠慮ください'],
+ 'no15':['ドア閉まりますご注意ください','ドアが閉まりますご注意ください'],
+ 'no16':['出発進行'],
+ 'no17':['3番線から新幹線が発車します閉まるドアにご注意ください','三番線から新幹線が発車します閉まるドアにご注意ください'],
+ 'no18':['まもなく3番線に新幹線がまいりますホームドアから離れてお待ちください','まもなく三番線に新幹線がまいりますホームドアから離れてお待ちください'],
+ 'no19':['3番線に停車中の列車は東京行きです','三番線に停車中の列車は東京行きです'],
+ 'no2-2':['まもなく1番線に電車が参りますホームドアから離れてお待ちください','まもなく一番線に電車が参りますホームドアから離れてお待ちください'],
+ 'no20-1':['3番線の新幹線は当駅止まりです','三番線の新幹線は当駅止まりです'],
+ 'no20-2':['ご乗車になれませんのでご注意ください'],
+ 'no21':['新幹線をご利用の方は2階の3番線ホームへお乗り換えください','新幹線をご利用の方は2階の三番線ホームへお乗り換えください'],
+ 'no22':['在来線をご利用の方は1・2番線ホームへお乗り換えください','在来線をご利用の方は1番2番線ホームへお乗り換えください','在来線をご利用の方は1番線2番線ホームへお乗り換えください','在来線をご利用の方は1番線と2番線ホームへお乗り換えください','在来線をご利用の方は一番二番線ホームへお乗り換えください','在来線をご利用の方は一番線と二番線ホームへお乗り換えください'],
+ 'no23':['1番線の電車は当駅止まりです','一番線の電車は当駅止まりです'],
+ 'no24':['当駅は終日禁煙です','駅構内は終日禁煙です','構内では終日禁煙です','終日禁煙'],
+ 'no25':['乗り降りの際は足元にご注意ください','お乗り降りの際は足元にご注意ください','足元にご注意ください']
+};
+function normalizeJapaneseSpeech(value){
+ return String(value).normalize('NFKC').replace(/[、。，．！？!?・「」『』（）()\s]/g,'').replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));
+}
+const NORMALIZED_SPEECH_PHRASES=Object.entries(SPEECH_PHRASES).flatMap(([key,phrases])=>phrases.map(phrase=>({key,phrase:normalizeJapaneseSpeech(phrase)}))).sort((a,b)=>b.phrase.length-a.phrase.length);
+export function matchSpeechCaptions(transcripts){
+ const hits=new Map();
+ for(const transcript of transcripts||[]){
+  const text=normalizeJapaneseSpeech(transcript);
+  for(const {key,phrase} of NORMALIZED_SPEECH_PHRASES){const index=text.indexOf(phrase);if(index>=0&&(!hits.has(key)||index<hits.get(key)))hits.set(key,index);}
+ }
+ return [...hits].sort((a,b)=>a[1]-b[1]).map(([key])=>AUDIO_CAPTIONS[`audio/voice/${key}`]).filter(Boolean);
+}

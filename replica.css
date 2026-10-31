@@ -34,6 +34,9 @@ body:has(#safety-screen:not([hidden])) #orientation{display:none}
 body:has(.ar-ui){--ar-top:max(8px,env(safe-area-inset-top));--ar-right:max(12px,env(safe-area-inset-right));--ar-bottom:max(10px,env(safe-area-inset-bottom));--ar-left:max(12px,env(safe-area-inset-left));--ar-control-height:clamp(48px,10vh,76px)}
 #original-ui.ar-ui{inset:0;transform:none;display:flex;flex-direction:column;justify-content:space-between;padding:var(--ar-top) var(--ar-right) var(--ar-bottom) var(--ar-left)}
 .ar-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.ar-controls{display:flex;align-items:flex-start;gap:8px;flex:0 0 auto}
+.ar-speech-toggle{min-height:48px;padding:0 10px;border:2px solid #fff;border-radius:12px;background:#16365be6;color:#fff;font-size:14px;font-weight:700;white-space:nowrap;pointer-events:auto}
+.ar-speech-toggle[aria-pressed="true"]{background:#a32135ed}
 .ar-hint{width:fit-content;max-width:100%;padding:6px 10px;border-radius:10px;background:#16365be6;color:white;font-size:clamp(14px,2vw,18px);line-height:1.4;overflow-wrap:anywhere}
 .ar-top .ar-hint{margin-left:auto;text-align:right}
 .ar-button{position:relative;display:block;overflow:hidden;padding:0;border:0;background:transparent;pointer-events:auto;height:var(--ar-control-height);width:100%;max-width:181px;min-height:44px}
@@ -55,7 +58,7 @@ body:has(.ar-ui) #ar-messages>*{position:static;transform:none;margin:0;max-widt
 /* 保留原本的繁中大字圖片；辨識提示置中，移動提醒靠右上。 */
 .ar-image-hint{position:relative;overflow:hidden;pointer-events:none}
 .ar-image-hint img{position:absolute;max-width:none;pointer-events:none}
-.ar-caution-image{width:min(260px,calc(100% - 64px));margin-left:auto;flex-shrink:0}
+.ar-caution-image{width:min(240px,calc(100% - 154px));margin-left:auto;flex-shrink:0}
 .ar-scan-group{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:12px;width:min(742px,calc(100% - var(--ar-left) - var(--ar-right)))}
 .ar-stationmaster{width:clamp(64px,14vw,140px);height:auto;flex-shrink:0;pointer-events:none}
 .ar-scan-image{flex:1;min-width:0}
