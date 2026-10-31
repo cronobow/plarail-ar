@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MindARThree} from './vendor/mindar-image-three.prod.js';
-import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.0.1';
-import {OriginalUI} from './original-ui.mjs?v=1.0.1';
-import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.0.1';
+import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.0.2';
+import {OriginalUI} from './original-ui.mjs?v=1.0.2';
+import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.0.2';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,engine:null,error:null,version:'1.0.1'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.0.2'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null;
@@ -28,7 +28,7 @@ function play(key,loop=false){
 function stopAudio(){for(const a of audioPlayers){a.pause();a.src='';}audioPlayers.clear();}
 function readFace(name){try{return localStorage.getItem('plarail-face-'+name);}catch{return null;}}
 function stopCamera(){
- run++;state.tracking=false;engine?.setTracking(false);
+ run++;state.tracking=false;state.placed=false;$('tracking-note').hidden=true;engine?.setTracking(false);
  if(ar){ar.renderer.setAnimationLoop(null);ar.controller?.stopProcessVideo();ar.video?.srcObject?.getTracks().forEach(t=>t.stop());ar.video?.remove();window.removeEventListener('resize',ar.resizeHandler);ar.renderer.dispose();ar.renderer.forceContextLoss();ar=null;}
  state.occluder?.traverse(o=>{if(o.isMesh)o.material.dispose();});state.occluder=null;
  for(const v of views.values())disposeView(v);views.clear();world=null;engine=null;state.engine=null;state.render=null;
@@ -106,16 +106,17 @@ function updateViews(dt,camera){
   v.animation.update(dt);
   if(v.from&&v.blend<v.blendDuration){v.blend+=dt;const t=Math.min(1,v.blend/v.blendDuration);[...v.animation.nodes.values()].forEach(({node},i)=>{const target={position:node.position.clone(),quaternion:node.quaternion.clone(),scale:node.scale.clone()};node.position.copy(v.from[i].position).lerp(target.position,t);node.quaternion.copy(v.from[i].quaternion).slerp(target.quaternion,t);node.scale.copy(v.from[i].scale).lerp(target.scale,t);});}
   for(const m of v.materials)m.opacity=p.alpha;
-  v.bubble.hidden=!state.tracking||!p.dialog;
-  if(p.dialog){v.bubble.textContent=p.dialog;v.holder.updateWorldMatrix(true,true);const pos=new THREE.Vector3(0,4,0);v.holder.localToWorld(pos);pos.project(camera);v.bubble.hidden=pos.z>1||pos.z< -1||!state.tracking;v.bubble.style.left=(pos.x*.5+.5)*innerWidth+'px';v.bubble.style.top=(-pos.y*.5+.5)*innerHeight+'px';}
+  v.bubble.hidden=!state.placed||!p.dialog;
+  if(p.dialog){v.bubble.textContent=p.dialog;v.holder.updateWorldMatrix(true,true);const pos=new THREE.Vector3(0,4,0);v.holder.localToWorld(pos);pos.project(camera);v.bubble.hidden=pos.z>1||pos.z< -1||!state.placed;v.bubble.style.left=(pos.x*.5+.5)*innerWidth+'px';v.bubble.style.top=(-pos.y*.5+.5)*innerHeight+'px';}
  }
  for(const [id,v]of views)if(!engine.people.some(p=>p.id===id)){disposeView(v);views.delete(id);}
 }
 function refreshARUI(){
  if(state.scene!=='4'||!engine)return;
- ui.visible(9,!state.tracking);ui.visible(61,state.tracking&&!clickedCharacter);
- ui.visible(82,state.tracking&&engine.mode==='Normal');ui.visible(40,state.tracking&&engine.mode==='Ready');
- ui.visible(3,state.tracking&&engine.mode==='PreRide');const speech=ui.elements.get(3);if(speech)speech.style.transform='scale(1)';
+ ui.visible(9,!state.placed);ui.visible(61,state.placed&&!clickedCharacter);
+ $('tracking-note').hidden=!state.placed||state.tracking;
+ ui.visible(82,state.placed&&engine.mode==='Normal');ui.visible(40,state.placed&&engine.mode==='Ready');
+ ui.visible(3,state.placed&&engine.mode==='PreRide');const speech=ui.elements.get(3);if(speech)speech.style.transform='scale(1)';
 }
 async function startAR(){
  show(4);state.scene='4';voiceIndex=broadcastIndex=0;$('loading').hidden=false;$('loading').textContent='正在啟動相機…';const token=run;
@@ -123,24 +124,34 @@ async function startAR(){
   const current=new MindARThree({container:$('camera'),imageTargetSrc:'./marker.mind',maxTrack:1,uiLoading:'no',uiScanning:'no',uiError:'no'});ar=current;
   current.cssRenderer.domElement.style.pointerEvents='none';
   current.renderer.setPixelRatio(Math.min(devicePixelRatio,2));const anchor=current.addAnchor(0);
-  world=new THREE.Group();world.rotation.x=Math.PI/2;world.scale.setScalar(1/17.5);anchor.group.add(world);
+  // MindAR 遺失時會隱藏 anchor 並清空矩陣；另存最後的有效姿態，保留玩法。
+  const placement=new THREE.Group();placement.matrixAutoUpdate=false;placement.visible=false;current.scene.add(placement);
+  world=new THREE.Group();world.rotation.x=Math.PI/2;world.scale.setScalar(1/17.5);placement.add(world);
   const transforms=originalTransforms();
   const station=occluder.scene.clone(true),stationParent=new THREE.Group();stationParent.matrix.copy(transforms.get(168).matrixWorld);stationParent.matrixAutoUpdate=false;stationParent.add(station);world.add(stationParent);
   station.traverse(o=>{if(o.isMesh){o.material=new THREE.MeshBasicMaterial({colorWrite:false,depthWrite:true,depthTest:true});o.renderOrder=-1;}});
   state.occluder=station;
   const routes=data.routes.routes.map(r=>r.points.map(id=>transforms.get(id).getWorldPosition(new THREE.Vector3()).toArray()));
-  engine=new Passengers(routes,data.dialogs,{faces:CHARACTERS.filter(c=>readFace(c))});engine.initialize();state.engine=engine;state.render={camera:current.camera,world,views};clickedCharacter=false;
-  anchor.onTargetFound=()=>{state.tracking=true;engine?.setTracking(true);refreshARUI();};anchor.onTargetLost=()=>{state.tracking=false;engine?.setTracking(false);refreshARUI();};refreshARUI();
+  engine=new Passengers(routes,data.dialogs,{faces:CHARACTERS.filter(c=>readFace(c))});engine.initialize();state.engine=engine;state.render={camera:current.camera,world,views,placement};clickedCharacter=false;
+  anchor.onTargetUpdate=()=>{
+   if(token!==run)return;
+   state.tracking=anchor.visible;
+   if(anchor.visible){
+    placement.matrix.copy(anchor.group.matrix);placement.matrixWorldNeedsUpdate=true;placement.visible=true;
+    if(!state.placed){state.placed=true;engine.setTracking(true);}
+   }
+   refreshARUI();
+  };refreshARUI();
   await current.start();if(token!==run){current.controller?.stopProcessVideo();current.video?.srcObject?.getTracks().forEach(t=>t.stop());current.video?.remove();return;}
   play('clip/armodebgm00',true);$('loading').hidden=true;
   const raycaster=new THREE.Raycaster();current.renderer.domElement.addEventListener('pointerdown',event=>{
-   if(!state.tracking)return;const rect=current.renderer.domElement.getBoundingClientRect();const pointer=new THREE.Vector2((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,current.camera);
+   if(!state.placed)return;const rect=current.renderer.domElement.getBoundingClientRect();const pointer=new THREE.Vector2((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,current.camera);
    const hits=raycaster.intersectObjects([...views.values()].map(v=>v.holder),true);if(!hits.length)return;
    for(const [id,v]of views){let n=hits[0].object;while(n&&n!==v.holder)n=n.parent;if(n){engine.touch(id);clickedCharacter=true;refreshARUI();break;}}
   });
   let previous=performance.now();current.renderer.setAnimationLoop(()=>{
    const now=performance.now(),dt=Math.min((now-previous)/1000,.1);previous=now;
-   engine.update(dt);updateViews(state.tracking?dt:0,current.camera);engine.drain();refreshARUI();current.renderer.render(current.scene,current.camera);
+   engine.update(dt);updateViews(state.placed?dt:0,current.camera);engine.drain();refreshARUI();current.renderer.render(current.scene,current.camera);
   });
  }catch(error){if(token===run){stopCamera();fail(error);}}
 }
