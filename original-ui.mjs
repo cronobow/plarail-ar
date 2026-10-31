@@ -61,8 +61,16 @@ export class OriginalUI {
    }else{el.className='ar-hint';el.textContent=text||IMAGE_LABELS[imageKey(n.image.url)];}
    this.elements.set(id,el);parent.append(el);return el;
   };
-  add(96,top).classList.add('ar-back');add(83,top);
-  add(9,hints,IMAGE_LABELS.text_ar_scene_rogo);add(61,hints);add(3,hints);
+  const imageHint=(id,sourceId,parent,className)=>{
+   const source=nodes.find(n=>n.id===sourceId),key=imageKey(source.image.url);
+   const el=add(id,parent,IMAGE_LABELS[key]);el.className='ar-image-hint '+className;el.replaceChildren();
+   const img=new Image();img.src=localizedImage(source.image.url);img.alt=IMAGE_LABELS[key];img.draggable=false;
+   const [iw,ih,x,y,cw,ch]=IMAGE_BOUNDS[key];
+   el.style.aspectRatio=`${cw}/${ch}`;
+   Object.assign(img.style,{width:iw/cw*100+'%',height:ih/ch*100+'%',left:-x/cw*100+'%',top:-y/ch*100+'%'});el.append(img);
+  };
+  add(96,top).classList.add('ar-back');imageHint(83,83,top,'ar-caution-image');
+  imageHint(9,67,this.host,'ar-scan-image');add(61,hints);add(3,hints);
   const boarding=document.createElement('div');boarding.className='ar-boarding';bottom.append(boarding);
   add(82,boarding);add(40,boarding);add(48,bottom);add(69,bottom);
  }
