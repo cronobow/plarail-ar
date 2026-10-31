@@ -15,7 +15,7 @@ export const IMAGE_LABELS={
  ...Object.fromEntries(Object.entries({a1:'小男孩',a2:'小鐵',a3:'小 T',b1:'家庭主婦',b2:'上班族 1',b3:'上班族 2',c1:'上班族',d1:'男高中生',e1:'站務員 1',e2:'站務員 2',f1:'站長',g1:'保線員 1',g2:'保線員 2',h1:'女高中生',h2:'小女孩'}).map(([k,v])=>['text_list_plakids_'+k,v]))
 };
 export function imageKey(url){return url?.split('/').pop().replace(/^.*__/,'').replace(/\.png(?:\?.*)?$/,'').replace(/_push$/,'');}
-export function localizedImage(url){const key=imageKey(url);return IMAGE_LABELS[key]?`./zh-TW/${key}.png?v=1.1.0`:url;}
+export function localizedImage(url){const key=imageKey(url);return IMAGE_LABELS[key]?`./zh-TW/${key}.webp?v=1.1.5`:url;}
 const TEXT={
  '0:2':'請先閱讀使用規約與隱私說明，\n同意後再開始使用。',
  '4:12':'按鈕',
