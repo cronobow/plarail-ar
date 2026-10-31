@@ -5,7 +5,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.5'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.6'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -51,7 +51,9 @@ function showTutorial(){const ids=[10,16,13,9,3];ids.forEach((id,i)=>ui.visible(
 function updateFaceCards(){
  for(const n of data.ui['10'].nodes.filter(n=>n.name.startsWith('CharaFaceFlame'))){
   const c=n.name.replace('CharaFaceFlame','').toLowerCase(),face=readFace(c);if(!face)continue;
-  const el=ui.elements.get(n.id);const icon=el?.querySelector(':scope > [data-name="Plakids"] > img');if(icon){icon.src=face;icon.style.objectFit='contain';icon.alt='已儲存的角色臉孔';}
+  const el=ui.elements.get(n.id),button=el?.querySelector('[data-action="OnClickNextFaceCamera"]');
+  if(button){button.classList.add('face-reset');button.setAttribute('aria-label','恢復');const label=document.createElement('span');label.className='face-reset-label';label.textContent='恢復';button.append(label);}
+  const icon=el?.querySelector(':scope > [data-name="Plakids"] > img');if(icon){icon.src=face;icon.style.objectFit='contain';icon.alt='已儲存的角色臉孔';}
  }
 }
 async function dispatch(event,node){
@@ -69,12 +71,14 @@ async function dispatch(event,node){
  if(m==='OnClickVoiceButton'){playEffect(LINE_VOICE[voiceIndex++%LINE_VOICE.length]);return;}
  if(m==='OnClickSEButton'){playEffect(BROADCAST[broadcastIndex++%BROADCAST.length]);return;}
  if(m==='OnClickNextFaceCamera'){
-  const target=data.ui['10'].nodes.find(n=>n.id===event.object);faceCharacter=target.name.replace('CharaFaceFlame','').toLowerCase();await startPhoto();return;
+  const target=data.ui['10'].nodes.find(n=>n.id===event.object);faceCharacter=target.name.replace('CharaFaceFlame','').toLowerCase();
+  if(readFace(faceCharacter)){localStorage.removeItem('plarail-face-'+faceCharacter);show(10);return;}
+  await startPhoto();return;
  }
  if(m==='OnClickCameraChangeButton'){photoFacing=photoFacing==='user'?'environment':'user';await startPhoto();return;}
  if(m==='OnClickShootingButton'){captureFace();return;}
  if(m==='OnClickNewInfoButton'){modal('最新消息','原版此按鈕連往外部消息服務。離線復刻版保留入口，未連線至已停服的服務。');return;}
- if(m==='OnClickAgreement'||m==='OnClickPrivasy'){modal(m==='OnClickAgreement'?'使用說明':'隱私說明','這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色拍照頁刪除。');return;}
+ if(m==='OnClickAgreement'||m==='OnClickPrivasy'){modal(m==='OnClickAgreement'?'使用說明':'隱私說明','這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色選擇頁按「恢復」清除。');return;}
  if(m==='OnClickDownloadURL'){const link=document.createElement('a');link.href='./marker.png';link.download='action-station-marker.png';link.textContent='下載原版辨識圖';modal('辨識圖下載',link);return;}
  if(['OnClickSupportApp','OnClickSupportToy'].includes(m)){modal('原版外部服務','此入口原本通往官方支援或下載服務，復刻版未重建外部伺服器。');return;}
  if(['OnClickCancel','OnClickOk'].includes(m)){show(8);return;}
@@ -188,7 +192,7 @@ async function startPhoto(){
  show(6);const token=run,video=$('portrait-camera');video.hidden=false;video.dataset.mirrored='false';
  const shutter=ui.elements.get(4);shutter.disabled=true;
  const actions=document.createElement('div');actions.className='face-actions';
- for(const [title,handler]of [['從照片選擇',()=>$('face-file').click()],['恢復原始臉孔',()=>modal('恢復原始臉孔','刪除此角色在這個瀏覽器儲存的照片？',[['取消',()=>{}],['恢復',()=>{localStorage.removeItem('plarail-face-'+faceCharacter);show(10);}]])]]){const b=document.createElement('button');b.textContent=title;b.onclick=handler;actions.append(b);}document.body.append(actions);
+ const choose=document.createElement('button');choose.textContent='從照片選擇';choose.onclick=()=>$('face-file').click();actions.append(choose);document.body.append(actions);
  try{const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:photoFacing},audio:false});if(token!==run){stream.getTracks().forEach(t=>t.stop());return;}photoStream=stream;video.dataset.mirrored=String((stream.getVideoTracks()[0]?.getSettings().facingMode||photoFacing)==='user');video.srcObject=stream;await video.play();if(token===run)shutter.disabled=false;}catch(e){if(token===run)modal('相機未啟動','可允許相機後重試，或從照片選擇製作臉孔。');}
 }
 function cropFace(source,mirrored=false){

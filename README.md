@@ -1,6 +1,13 @@
-# 動感車站・繁體中文版 1.1.5
+# 動感車站・繁體中文版 1.1.6
 
 主入口 `index.html` 現在是完整玩法第一版；原本的單角色測試保留在 `diagnostic.html`，動畫檢視在 `animation.html`。以原始 `actionstation-1.3.apk` 的素材、UI 配置、動畫曲線及反編譯參數為依據，介面改為繁體中文，保留原版音效並加上中文字幕。這是網頁移植，並非重新打包 Android APK。
+
+## 1.1.6 原版臉孔恢復操作（2026-10-31）
+
+- 已儲存臉孔的角色卡片顯示紅色「恢復」；點一下直接清除該角色照片、還原縮圖並回到「製作臉孔」，不進入相機、不另外確認。未製作的角色維持拍照入口。
+- 依原 APK `FaceSelectionController.CreateFaceTexture` 的 `SetFaceViewResetImages` 及 `OnClickNextFaceCamera` 的 `SetFaceViewCreatedImages`／`ResetSaveData` 分支還原；繁中紅色按鈕以 CSS 呈現。
+- 移除拍照頁額外的恢復按鈕，隱私說明改指向角色選擇頁；照片匯入入口保留。
+- 本機 Chrome 完整合成相機／AR 玩法、WebKit 照片匯入流程及兩引擎啟動測試通過；四種角色皆驗證重新整理後狀態、直接恢復、原始縮圖、其他角色資料保留、不啟動相機及再次製作入口。中文化、語法與 diff 檢查通過，已檢視恢復按鈕畫面。WebKit AR 與真實 iPhone／iPad 相機仍待實測。
 
 ## 1.1.5 中文圖片傳輸最佳化（2026-10-31 測試發布版本）
 

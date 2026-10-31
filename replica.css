@@ -11,3 +11,8 @@
 #portrait-camera[data-mirrored="true"]{transform:scaleX(-1)}
 
 #loading>div{max-width:90vw;text-align:center;padding:24px;overflow-wrap:anywhere}#loading button{padding:12px 24px;border:0;border-radius:12px;background:#1678c7;color:white;font:inherit}
+
+/* 原版已製作狀態的紅色恢復按鈕；維持原節點及點擊範圍。 */
+.face-reset>.unity-sprite{visibility:hidden}
+.face-reset-label{position:absolute;inset:4px 6px 8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#f43c69,#e72443);border:3px solid white;border-radius:10px;box-shadow:0 0 0 5px #777;color:white;font-size:32px;font-weight:700;letter-spacing:4px;pointer-events:none}
+.face-reset:active>.face-reset-label{filter:brightness(.85)}
