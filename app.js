@@ -1,13 +1,24 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MindARThree} from './vendor/mindar-image-three.prod.js';
-import {CharacterAnimation,loadAnimations} from './animation.mjs';
+import {CharacterAnimation,loadAnimations} from './animation.mjs?v=0.2.1';
 const $=id=>document.getElementById(id);
 let ar=null, active=false, generation=0, model=null, found=0, lost=0, frames=0, lastFrame=0;
 const cache=new Map(), loader=new GLTFLoader();
 let clips;
+let selectedAction='WALK';
 window.testState={ready:false,tracking:false};
 function status(text){$('state').textContent=text;}
+function showMotion(){
+ const animation=model?.animation;
+ if(!animation){$('motion').textContent='角色載入中…';return;}
+ const label={REST:'靜止',WALK:'走路',LOOKING:'張望'}[animation.name];
+ if(animation.name==='REST'){$('motion').textContent='動作：靜止';return;}
+ const clip=animation.clips[animation.name], duration=clip.stop-clip.start;
+ const time=clip.loop?animation.elapsed%duration:Math.min(animation.elapsed,duration);
+ const state=!window.testState.tracking?'等待標記':!clip.loop&&animation.elapsed>=duration?'已播完，點張望可重播':'播放中';
+ $('motion').textContent=`動作：${label} · ${state} · ${time.toFixed(1)} 秒`;
+}
 function applyScale(){if(model)model.scale.setScalar(Number($('scale').value));$('size').value=Number($('scale').value).toFixed(2);}
 async function getModel(name){
  if(!cache.has(name))cache.set(name,loader.loadAsync(`./characters/${name}.glb`));
@@ -23,8 +34,8 @@ async function getModel(name){
  return group;
 }
 let selection=0;
-async function selectModel(anchor){const ticket=++selection;const next=await getModel($('character').value);if(ticket!==selection||!active)return;if(model)anchor.group.remove(model);model=next;model.animation.play($('action').value);anchor.group.add(model);applyScale();}
-function end(){generation++;selection++;active=false;if(ar){ar.renderer.setAnimationLoop(null);ar.controller?.stopProcessVideo();ar.video?.srcObject?.getTracks().forEach(t=>t.stop());ar.video?.remove();window.removeEventListener('resize',ar.resizeHandler);ar.renderer.dispose();ar.renderer.forceContextLoss();ar=null;}$('camera').replaceChildren();model=null;$('hud').hidden=true;$('welcome').hidden=false;$('start').disabled=false;$('start').textContent='啟動 AR 相機';window.testState.tracking=false;}
+async function selectModel(anchor){const ticket=++selection;const next=await getModel($('character').value);if(ticket!==selection||!active)return;if(model)anchor.group.remove(model);model=next;window.testState.model=model;model.animation.play(selectedAction);anchor.group.add(model);applyScale();showMotion();}
+function end(){generation++;selection++;active=false;if(ar){ar.renderer.setAnimationLoop(null);ar.controller?.stopProcessVideo();ar.video?.srcObject?.getTracks().forEach(t=>t.stop());ar.video?.remove();window.removeEventListener('resize',ar.resizeHandler);ar.renderer.dispose();ar.renderer.forceContextLoss();ar=null;}$('camera').replaceChildren();model=null;window.testState.model=null;$('hud').hidden=true;$('welcome').hidden=false;$('start').disabled=false;$('start').textContent='啟動 AR 相機';window.testState.tracking=false;}
 $('start').onclick=async()=>{
  const run=++generation;$('start').disabled=true;$('error').textContent='';$('metrics').textContent='等待辨識';found=lost=frames=0;lastFrame=performance.now();
  try{
@@ -40,13 +51,16 @@ $('start').onclick=async()=>{
   if(run!==generation)return;const current=ar;await current.start();
   if(run!==generation){current.controller?.stopProcessVideo();current.video?.srcObject?.getTracks().forEach(t=>t.stop());return;}
   status('尋找標記，請讓整張圖案入鏡');
-  let previous=performance.now();
-  current.renderer.setAnimationLoop(()=>{frames++;const now=performance.now();if(window.testState.tracking)model?.animation.update((now-previous)/1000);previous=now;if(now-lastFrame>1000){$('metrics').textContent=`${Math.round(frames*1000/(now-lastFrame))} FPS · 辨識 ${found} 次 · 遺失 ${lost} 次 · ${innerWidth}×${innerHeight}`;frames=0;lastFrame=now;}current.renderer.render(current.scene,current.camera);});
+  let previous=performance.now(), lastMotion=0;
+  current.renderer.setAnimationLoop(()=>{frames++;const now=performance.now();if(window.testState.tracking)model?.animation.update((now-previous)/1000);previous=now;if(now-lastMotion>100){showMotion();lastMotion=now;}if(now-lastFrame>1000){$('metrics').textContent=`${Math.round(frames*1000/(now-lastFrame))} FPS · 辨識 ${found} 次 · 遺失 ${lost} 次 · ${innerWidth}×${innerHeight}`;frames=0;lastFrame=now;}current.renderer.render(current.scene,current.camera);});
  }catch(e){if(run!==generation)return;end();$('error').textContent=`無法啟動：${e?.message || '相機權限未允許或相機無法啟動'}\n若拒絕相機權限，請在 Safari 網站設定允許相機後重試。`;}
 };
 $('stop').onclick=end;$('scale').oninput=applyScale;
-$('action').onchange=()=>model?.animation.play($('action').value);
-$('replay').onclick=()=>model?.animation.play($('action').value);
+for(const button of document.querySelectorAll('[data-action]'))button.onclick=()=>{
+ selectedAction=button.dataset.action;
+ for(const other of document.querySelectorAll('[data-action]'))other.setAttribute('aria-pressed',String(other===button));
+ model?.animation.play(selectedAction);showMotion();
+};
 window.addEventListener('pagehide',()=>{if(active)end();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)end();});
 try{

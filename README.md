@@ -1,4 +1,4 @@
-# iPad AR 追蹤與動畫測試 0.2
+# iPad AR 追蹤與動畫測試 0.2.1
 
 以 HTTPS 部署此資料夾；在 iPad Safari 點選「啟動 AR 相機」。相機影像只在瀏覽器處理，沒有上傳端點。
 
@@ -54,9 +54,9 @@ GitHub Pages 只發布 web/；APK、SDK 授權字串、原生 binary、完整研
 
 ## 第二次錄影
 
-使用新版 `https://plarail.gh.maxlab.tw/`，確認 HUD 版本 0.2。以橫向錄影，保留整個標記及車站、HUD 計數和動作選單：
+使用新版 `https://plarail.gh.maxlab.tw/`，確認 HUD 版本 0.2.1。以橫向錄影，保留整個標記及車站、HUD 計數和動作按鈕：
 
-1. 正面辨識後固定 10 秒，E2 走路；切到張望並按重播，再切靜止。
+1. 正面辨識後固定 10 秒，E2 走路；按張望，再按一次重播，再切靜止。
 2. 切 G1，再各錄走路與張望；慢慢繞到標記左右兩側，每側停 5 秒。
 3. 慢慢拉近、拉遠各一次，保持完整標記入鏡；若角色翻轉，先保持原角度 3 秒再回正面。
 4. 完全遮住標記 3 秒再移開，重複兩次；另將標記完全移出鏡頭 3 秒再回來。
@@ -67,3 +67,22 @@ GitHub Pages 只發布 web/；APK、SDK 授權字串、原生 binary、完整研
 ## 網址
 
 正式測試網域為 `plarail.gh.maxlab.tw`；`CNAME` 隨 web subtree 發布，公開 repository 只包含網頁素材。
+
+## 0.2.1 動作無反應回報
+
+收到實機「點走路／張望人物不動」回報。Chrome 與桌面 WebKit 對 0.2 線上動畫頁的連續取樣可見 elapsed、模型姿態變動；Chrome 合成相機亦可見變動，尚未取得回報裝置的執行紀錄，不能宣稱已證實該裝置的根因。
+
+本次修正可確認的缺口：HTML、app.js、animation.mjs 與 CSS 現在以版本網址配對，避免新 HTML 搭配舊版程式快取；動作改用直接按鈕，重按同一動作可重播，避免單次張望在原生選單仍開啟時已播完，並顯示播放／等待標記／播完狀態及動作秒數。
+
+瀏覽器測試新增真實 render loop 的頭部／腿部 local matrix 變動、canvas 像素變動、重播、單次播完、靜止、標記遺失暫停及恢復續播；另先保留舊的無版本模組快取，再驗證新版仍可載入。這些測試補足 0.2 只檢查手動推進與控制項、不驗證實際連續播放的缺口。實際 iPhone／iPad Safari 回報仍待更新後確認。
+
+WebKit 本機驗證（需先安裝對應瀏覽器）：
+
+```sh
+node research/plarail-ar/tools/preview/node_modules/playwright/cli.js install webkit
+node scripts/check-web.mjs --webkit --animation-only
+```
+
+發布後可用 `node scripts/check-web.mjs --live` 驗證正式站的合成相機／動畫；不使用真實相機、不傳送使用者影像。公開 Pages 與研究 repo 的歷史分開；若 subtree push 因網域設定提交而分歧，須在只含 web subtree 的獨立 checkout 合併遠端歷史、確認最終 tree 與待發布 web 一致再推送，不 force push，也不得推送研究根目錄。
+
+0.2.1 驗證紀錄：Chrome 完整網頁測試（合成相機、標記、AR 動作與獨立動畫頁）通過；桌面 WebKit 的合成串流可播放，但 60 秒內未辨識標記，該項為失敗／待調查，不代表真實 Safari 相機已測試。WebKit 的不開相機動畫範圍以 `--animation-only` 另行驗證，不將它當成完整 AR 通過。
