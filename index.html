@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#123742"><meta name="robots" content="noindex,nofollow"><title>Plarail AR · iPad 測試</title>
+<link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script></head>
+<body><div id="camera"></div><main id="welcome"><span class="tag">IPAD 實機測試 · 0.1</span><h1>把乘客放到<br>你的標記紙上。</h1><p>使用 iPad 的 Safari，允許後置相機，將完整標記對準鏡頭。</p><img src="marker.png" alt="本次辨識用的原版標記" width="320" height="141"><p class="note">請核對你的標記圖案。這是追蹤測試版：原版角色為靜止姿勢，尚未加入車站位置、動畫、排隊及延伸追蹤。</p><button id="start" disabled>載入元件中…</button><p id="error" role="alert"></p><a href="preview.html">先看 15 種原版角色 →</a><p class="privacy">相機畫面在裝置上處理，不會上傳。非官方研究測試。</p></main>
+<section id="hud" hidden><div class="top"><b id="state" role="status">準備相機</b><button id="stop">結束</button></div><div class="bottom"><p id="metrics">等待辨識</p><label>角色 <select id="character"></select></label><label>大小 <input id="scale" type="range" min="0.1" max="0.8" step="0.05" value="0.3"><output id="size">0.30</output></label><p>0.1 · 靜止模型／無延伸追蹤 · 遮住標記時角色會消失</p></div></section>
+<script type="module" src="app.js"></script></body></html>

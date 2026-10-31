@@ -1,0 +1,30 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>原版角色素材檢視</title>
+<style>body{margin:0;background:#edf1f5;font:16px system-ui;color:#172636}header{padding:20px 32px}h1{font-size:26px;margin:0 0 6px}p{margin:0;color:#516575}#grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:0 24px 24px}.card{background:white;border-radius:12px;text-align:center;padding-bottom:8px}.view{height:210px}canvas{display:block;width:100%;height:100%}b{display:block}@media(max-width:700px){#grid{grid-template-columns:repeat(2,1fr)}header{padding:20px}}</style>
+<header><a href="./">← 回到 AR 測試</a><h1>APK 原版 15 種角色</h1><p>幾何與貼圖匯出檢視 · 統一正面靜止姿勢 · 非原版執行畫面，尚未套用完整動畫與 shader 行為</p></header><div id="grid"></div>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const entries=await fetch('./characters/manifest.json').then(r=>r.json());
+const loader=new GLTFLoader();
+window.previewErrors=[];
+for(const entry of entries){
+ const card=document.createElement('div');card.className='card';const view=document.createElement('div');view.className='view';card.append(view);
+ const label=document.createElement('b');label.textContent=entry.name.replace('plakids_','').toUpperCase();card.append(label);document.querySelector('#grid').append(card);
+ try{
+  const gltf=await loader.loadAsync('./characters/'+entry.name+'.glb');
+  gltf.scene.children[0].quaternion.identity();
+  gltf.scene.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])m.depthWrite=m.userData.unityDepthWrite===true;});
+  const scene=new THREE.Scene();scene.background=new THREE.Color('#ffffff');
+  const box=new THREE.Box3().setFromObject(gltf.scene);const center=box.getCenter(new THREE.Vector3());const size=box.getSize(new THREE.Vector3());
+  const scale=3/size.y;gltf.scene.position.sub(center);const group=new THREE.Group();group.add(gltf.scene);group.scale.setScalar(scale);scene.add(group);
+  const camera=new THREE.PerspectiveCamera(30,view.clientWidth/view.clientHeight,0.01,100);camera.position.set(1.1,0.4,7.2);camera.lookAt(0,0,0);
+  const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(view.clientWidth,view.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.render(scene,camera);
+  // 將結果轉成圖片以釋放 WebGL context，避免 15 個 context 超過瀏覽器限制。
+  const image=document.createElement('img');image.src=renderer.domElement.toDataURL();image.style='width:100%;height:100%;object-fit:contain';view.append(image);renderer.dispose();renderer.forceContextLoss();
+ }catch(e){window.previewErrors.push(String(e));view.textContent='讀取失敗';}
+}
+await Promise.all([...document.images].map(i=>i.decode()));
+window.previewReady=true;
+</script></html>

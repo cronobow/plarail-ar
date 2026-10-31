@@ -1,0 +1,92 @@
+[
+  {
+    "name": "plakids_a1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_a2",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_a3",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_b1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_b2",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_b3",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_c1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_d1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_e1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_e2",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_f1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_g1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_g2",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_h1",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  },
+  {
+    "name": "plakids_h2",
+    "nodes": 7,
+    "meshes": 6,
+    "materials": 2
+  }
+]

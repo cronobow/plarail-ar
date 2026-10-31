@@ -1,0 +1,4 @@
+<!doctype html><html><script type="module">
+import {Compiler} from './vendor/mindar-image.prod.js';
+window.compileTarget=async()=>{const image=new Image();image.src='./marker.png';await image.decode();const compiler=new Compiler();await compiler.compileImageTargets([image],p=>window.compileProgress=p);return Array.from(new Uint8Array(await compiler.exportData()));};
+</script></html>
