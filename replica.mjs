@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.2',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.3',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -43,7 +43,8 @@ function stopCamera(){
 }
 function show(scene){
  stopCamera();state.scene=String(scene);ui.show(scene);$('loading').hidden=true;
- if(scene===11){const panel=ui.elements.get(11);panel.style.pointerEvents='auto';panel.setAttribute('role','button');panel.setAttribute('aria-label','開始 AR');panel.tabIndex=0;panel.onclick=()=>startAR().catch(fail);panel.onkeydown=e=>{if(e.key==='Enter')startAR().catch(fail);};}
+ $('original-ui').hidden=scene===11;$('safety-screen').hidden=scene!==11;
+ if(scene===11){$('safety-continue').onclick=()=>startAR().catch(fail);$('safety-continue').focus({preventScroll:true});}
  if(scene===9)showTutorial();
  if(scene===10)updateFaceCards();
  if(scene===8){ui.visible(9,false);}
