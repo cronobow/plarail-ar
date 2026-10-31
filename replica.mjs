@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.1',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.2',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -79,7 +79,13 @@ async function dispatch(event,node){
  if(m==='OnClickCameraChangeButton'){photoFacing=photoFacing==='user'?'environment':'user';await startPhoto();return;}
  if(m==='OnClickShootingButton'){captureFace();return;}
  if(m==='OnClickNewInfoButton'){modal('最新消息','原版此按鈕連往外部消息服務。離線復刻版保留入口，未連線至已停服的服務。');return;}
- if(m==='OnClickAgreement'||m==='OnClickPrivasy'){modal(m==='OnClickAgreement'?'使用說明':'隱私說明','這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色選擇頁按「恢復」清除。');return;}
+ if(m==='OnClickAgreement'||m==='OnClickPrivasy'){
+  const body=document.createElement('div'),description=document.createElement('p'),credit=document.createElement('p'),license=document.createElement('a');
+  description.textContent='這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色選擇頁按「恢復」清除。';
+  credit.textContent='空間追蹤使用 Niantic Spatial, Inc. 製作的 8th Wall Engine，© 2026 Niantic Spatial, Inc.。依 XR Engine License Agreement 授權；軟體依現狀提供，不附任何保證。';
+  license.href='./vendor/xr8/LICENSE';license.target='_blank';license.rel='noopener';license.textContent='查看完整授權與免責聲明';
+  body.append(description,credit,license);modal(m==='OnClickAgreement'?'使用說明':'隱私說明',body);return;
+ }
  if(m==='OnClickDownloadURL'){const link=document.createElement('a');link.href='./marker.png';link.download='action-station-marker.png';link.textContent='下載原版辨識圖';modal('辨識圖下載',link);return;}
  if(['OnClickSupportApp','OnClickSupportToy'].includes(m)){modal('原版外部服務','此入口原本通往官方支援或下載服務，復刻版未重建外部伺服器。');return;}
  if(['OnClickCancel','OnClickOk'].includes(m)){show(8);return;}
