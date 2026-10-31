@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MindARThree} from './vendor/mindar-image-three.prod.js';
-import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.0.0';
-import {OriginalUI} from './original-ui.mjs?v=1.0.0';
-import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.0.0';
+import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.0.1';
+import {OriginalUI} from './original-ui.mjs?v=1.0.1';
+import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.0.1';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,engine:null,error:null,version:'1.0.0'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,engine:null,error:null,version:'1.0.1'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null;
@@ -60,8 +60,8 @@ async function dispatch(event,node){
  if(m==='OnClickAppOptionButton'){show(8);return;}
  if(m==='OnClickNext'){tutorial=Math.min(4,tutorial+1);showTutorial();return;}
  if(m==='OnClickPrev'){tutorial=Math.max(0,tutorial-1);showTutorial();return;}
- if(m==='OnClickPreRideButton'){if(engine?.lineUp())play('audio/voice/no20-1');refreshARUI();return;}
- if(m==='OnClickRideButton'){if(engine?.board())play('audio/voice/no20-2');refreshARUI();return;}
+ if(m==='OnClickPreRideButton'){engine?.lineUp();refreshARUI();return;}
+ if(m==='OnClickRideButton'){engine?.board();refreshARUI();return;}
  if(m==='OnClickVoiceButton'){playEffect(LINE_VOICE[voiceIndex++%LINE_VOICE.length]);return;}
  if(m==='OnClickSEButton'){playEffect(BROADCAST[broadcastIndex++%BROADCAST.length]);return;}
  if(m==='OnClickNextFaceCamera'){
@@ -88,7 +88,10 @@ function setMotion(view,name){
 function newView(p){
  const model=templates.get(p.character).scene.clone(true),holder=new THREE.Group();holder.add(model);world.add(holder);
  // 原版 CreatePlakids 使用 station root localScale（1），不按角色高度正規化。
- model.scale.setScalar(1);model.position.set(0,0,0);
+ const prefab=model.getObjectByName('plakids_'+p.character);
+ if(!prefab)throw new Error('缺少原版角色根節點：'+p.character);
+ // CreatePlakids 0x976c34 / 0x976cb0 覆寫 prefab 根的旋轉／位置。
+ prefab.position.set(0,0,0);prefab.quaternion.identity();prefab.scale.setScalar(1);
  const materials=[];model.traverse(o=>{if(o.isMesh){const copies=(Array.isArray(o.material)?o.material:[o.material]).map(m=>{const copy=m.clone();copy.depthWrite=true;materials.push(copy);return copy;});o.material=Array.isArray(o.material)?copies:copies[0];}});
  const animation=new CharacterAnimation(model,clips),view={holder,model,animation,materials,action:null,person:p,faceTexture:null};
  const saved=readFace(p.character);if(saved){const tex=new THREE.TextureLoader().load(saved);tex.flipY=false;tex.colorSpace=THREE.SRGBColorSpace;view.faceTexture=tex;model.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(/face/i.test(m.name))m.map=tex;});}
@@ -130,7 +133,7 @@ async function startAR(){
   anchor.onTargetFound=()=>{state.tracking=true;engine?.setTracking(true);refreshARUI();};anchor.onTargetLost=()=>{state.tracking=false;engine?.setTracking(false);refreshARUI();};refreshARUI();
   await current.start();if(token!==run){current.controller?.stopProcessVideo();current.video?.srcObject?.getTracks().forEach(t=>t.stop());current.video?.remove();return;}
   play('clip/armodebgm00',true);$('loading').hidden=true;
-  const raycaster=new THREE.Raycaster();current.renderer.domElement.addEventListener('pointerup',event=>{
+  const raycaster=new THREE.Raycaster();current.renderer.domElement.addEventListener('pointerdown',event=>{
    if(!state.tracking)return;const rect=current.renderer.domElement.getBoundingClientRect();const pointer=new THREE.Vector2((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,current.camera);
    const hits=raycaster.intersectObjects([...views.values()].map(v=>v.holder),true);if(!hits.length)return;
    for(const [id,v]of views){let n=hits[0].object;while(n&&n!==v.holder)n=n.parent;if(n){engine.touch(id);clickedCharacter=true;refreshARUI();break;}}
