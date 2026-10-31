@@ -6,9 +6,10 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.6',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.7',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
+const cameraPosition=new THREE.Vector3();
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
 const LINE_VOICE=['audio/se/no19','audio/voice/no17','audio/voice/no18','audio/voice/no2-2','audio/voice/no19','audio/se/no19','audio/voice/no20-1','audio/voice/no20-2'];
 const BROADCAST=['audio/se/no14','audio/se/no15','audio/se/no16'].flatMap(first=>[first,'audio/voice/no14','audio/voice/no15','audio/se/no17','audio/voice/no16']);
@@ -164,7 +165,7 @@ async function startAR(){
   const target=await fetchJSON('./image-targets/station.json');if(token!==run)return;
   const current=new WorldTracking(XR8,{container:$('camera'),target,
    onChange:session=>{if(token!==run)return;state.tracking=session.tracking;state.worldTracking=session.status;if(session.placed&&!state.placed){state.placed=true;engine.setTracking(true);}refreshARUI();},
-   onFrame:(dt,camera)=>{if(token!==run)return;engine.update(dt);updateViews(state.placed?dt:0,camera);engine.drain();refreshARUI();},
+   onFrame:(dt,camera)=>{if(token!==run)return;engine.update(dt,world.worldToLocal(camera.getWorldPosition(cameraPosition)).toArray());updateViews(state.placed?dt:0,camera);engine.drain();refreshARUI();},
    onError:error=>{if(token===run){stopCamera();fail(error);}},
   });ar=current;
   const placement=current.placement;
