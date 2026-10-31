@@ -29,3 +29,25 @@
 #safety-continue{align-self:center;flex-shrink:0;min-width:180px;min-height:48px;padding:12px 32px;border:2px solid #105c9a;border-radius:14px;background:#1678c7;color:#fff;font-size:22px;font-weight:700;box-shadow:0 3px 0 #105c9a}
 #safety-continue:active{transform:translateY(2px);box-shadow:0 1px 0 #105c9a}
 body:has(#safety-screen:not([hidden])) #orientation{display:none}
+
+/* AR 以可用視窗排版，四邊預留瀏海與 Home 指示器的安全距離。 */
+body:has(.ar-ui){--ar-top:max(8px,env(safe-area-inset-top));--ar-right:max(12px,env(safe-area-inset-right));--ar-bottom:max(10px,env(safe-area-inset-bottom));--ar-left:max(12px,env(safe-area-inset-left));--ar-control-height:clamp(48px,10vh,76px)}
+#original-ui.ar-ui{inset:0;transform:none;display:flex;flex-direction:column;justify-content:space-between;padding:var(--ar-top) var(--ar-right) var(--ar-bottom) var(--ar-left)}
+.ar-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.ar-hint{width:fit-content;max-width:100%;padding:6px 10px;border-radius:10px;background:#16365be6;color:white;font-size:clamp(14px,2vw,18px);line-height:1.4;overflow-wrap:anywhere}
+.ar-top .ar-hint{margin-left:auto;text-align:right}
+.ar-button{position:relative;display:block;overflow:hidden;padding:0;border:0;background:transparent;pointer-events:auto;height:var(--ar-control-height);width:100%;max-width:181px;min-height:44px}
+.ar-button img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.ar-button:active{filter:brightness(.85)}
+.ar-button.ar-back{width:48px;height:48px;flex:0 0 48px}
+.ar-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.ar-bottom>*{flex:0 1 181px;min-width:0}
+.ar-boarding:has(>button:not([hidden])){display:block}
+.ar-boarding{height:var(--ar-control-height)}
+.ar-hints{position:absolute;left:var(--ar-left);right:var(--ar-right);bottom:calc(var(--ar-bottom) + var(--ar-control-height) + 10px);display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+body:has(.ar-ui) #orientation{display:none}
+body:has(.ar-ui) #tracking-note{left:auto;right:var(--ar-right);top:calc(var(--ar-top) + 48px + 8px);bottom:auto;transform:none;max-width:calc(100vw - var(--ar-left) - var(--ar-right));font-size:13px}
+body:has(.ar-ui) #audio-caption{left:var(--ar-left);right:var(--ar-right);top:calc(var(--ar-top) + 96px);transform:none;margin:0 0 0 auto;max-width:min(560px,100%);font-size:clamp(14px,2vw,20px);padding:6px 10px;text-align:right}
+
+body:has(.ar-ui) #ar-messages{position:fixed;top:calc(var(--ar-top) + 56px);right:var(--ar-right);left:var(--ar-left);display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none;z-index:3}
+body:has(.ar-ui) #ar-messages>*{position:static;transform:none;margin:0;max-width:min(560px,100%)}
