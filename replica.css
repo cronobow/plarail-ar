@@ -7,3 +7,5 @@
 .unity-node[data-action="OnClickMortormanModeButton"]::before{content:'';position:absolute;inset:8px;border-radius:24px;background:#3bc629}
 /* 教學箭頭保留原點擊範圍，縮小圖示以避開中文內文。 */
 .unity-node[data-action="OnClickPrev"]>.unity-sprite,.unity-node[data-action="OnClickNext"]>.unity-sprite{transform:scale(.6)}
+
+#portrait-camera[data-mirrored="true"]{transform:scaleX(-1)}
