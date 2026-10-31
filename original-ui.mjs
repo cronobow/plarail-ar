@@ -5,7 +5,8 @@ const labels={OnClickControlModeButton:'AR 車站',OnClickMortormanModeButton:'�
 export class OriginalUI {
  constructor(host,data,dispatch,clips={}){this.host=host;this.data=data;this.dispatch=dispatch;this.clips=clips;this.elements=new Map();this.layout=new Map();this.groups=[];}
  show(scene){
-  this.scene=String(scene);this.host.replaceChildren();this.elements.clear();this.layout.clear();this.groups=[];this.started=performance.now();
+  this.scene=String(scene);this.host.replaceChildren();this.elements.clear();this.layout.clear();this.groups=[];this.started=performance.now();this.host.classList.toggle('ar-ui',this.scene==='4');
+  if(this.scene==='4'){this.showAR();return;}
   const d=this.data[this.scene], byId=new Map(d.nodes.map(n=>[n.transform,n]));
   this.host.style.width=d.reference[0]+'px';this.host.style.height=d.reference[1]+'px';
   this.reference=d.reference;document.body.style.backgroundImage=d.background?`url('${d.background}')`:'none';document.body.style.backgroundSize='512px';
@@ -41,6 +42,29 @@ export class OriginalUI {
   };
   for(const id of d.roots)build(id,this.host,...d.reference,true);
   this.reflow();this.resize();
+ }
+ // AR 使用螢幕邊緣版面；保留原節點 ID、按鈕事件及遊戲狀態切換。
+ showAR(){
+  this.reference=null;this.host.removeAttribute('style');document.body.style.backgroundImage='none';
+  const nodes=this.data['4'].nodes;
+  const region=name=>{const el=document.createElement('div');el.className=name;this.host.append(el);return el;};
+  const top=region('ar-top'),hints=region('ar-hints'),bottom=region('ar-bottom');
+  const add=(id,parent,text=null)=>{
+   const n=nodes.find(n=>n.id===id),event=n.button?.find(e=>e.method!=='OnShow');
+   const el=document.createElement(event?'button':'div');el.dataset.go=id;el.dataset.name=n.name;el.hidden=!n.active;
+   if(event){
+    el.className='ar-button';el.dataset.action=event.method;el.setAttribute('aria-label',labels[event.method]||'返回');el.onclick=e=>{e.stopPropagation();this.dispatch(event,n);};
+    const img=new Image();img.src=localizedImage(n.image.url);img.alt='';img.draggable=false;
+    const bounds=IMAGE_BOUNDS[imageKey(n.image.url)];
+    if(bounds){const [iw,ih,x,y,cw,ch]=bounds;Object.assign(img.style,{width:iw/cw*100+'%',height:ih/ch*100+'%',left:-x/cw*100+'%',top:-y/ch*100+'%'});}
+    el.append(img);
+   }else{el.className='ar-hint';el.textContent=text||IMAGE_LABELS[imageKey(n.image.url)];}
+   this.elements.set(id,el);parent.append(el);return el;
+  };
+  add(96,top).classList.add('ar-back');add(83,top);
+  add(9,hints,IMAGE_LABELS.text_ar_scene_rogo);add(61,hints);add(3,hints);
+  const boarding=document.createElement('div');boarding.className='ar-boarding';bottom.append(boarding);
+  add(82,boarding);add(40,boarding);add(48,bottom);add(69,bottom);
  }
  reflow(){for(const group of this.groups){
   const g=group.node.horizontal,p=g.m_Padding,children=group.children.filter(id=>!this.elements.get(id).hidden);if(!children.length)continue;
