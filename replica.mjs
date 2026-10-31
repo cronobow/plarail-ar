@@ -5,7 +5,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.3'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.4'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -122,6 +122,17 @@ function refreshARUI(){
  ui.visible(82,state.placed&&engine.mode==='Normal');ui.visible(40,state.placed&&engine.mode==='Ready');
  ui.visible(3,state.placed&&engine.mode==='PreRide');const speech=ui.elements.get(3);if(speech)speech.style.transform='scale(1)';
 }
+const fetchJSON=async path=>{const r=await fetch(path);if(!r.ok)throw new Error('素材讀取失敗：'+path);return r.json();};
+let arAssets;
+function loadARAssets(){
+ if(!arAssets)arAssets=(async()=>{
+  const [dialogs,transforms,routes,animations,models,station]=await Promise.all([
+   fetchJSON('./zh-TW/dialogs.json?v=1.1.0'),fetchJSON('./original/transforms.json'),fetchJSON('./station.json'),loadAnimations(),
+   Promise.all(CHARACTERS.map(async c=>[c,await loader.loadAsync(`./characters/plakids_${c}.glb`)])),loader.loadAsync('./original/station.glb')]);
+  Object.assign(data,{dialogs,transforms,routes});clips=animations;templates=new Map(models);occluder=station;
+ })().catch(error=>{arAssets=null;throw error;});
+ return arAssets;
+}
 async function startAR(){
  show(4);state.scene='4';voiceIndex=broadcastIndex=0;$('loading').hidden=false;$('loading').textContent='正在啟動相機…';const token=run;
  try{
@@ -130,6 +141,12 @@ async function startAR(){
   const {MindARThree}=await Promise.race([
    import('./vendor/mindar-image-three.prod.js'),
    new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('AR 追蹤程式載入逾時，請返回選單後重試。')),30000);})
+  ]).finally(()=>clearTimeout(timeout));
+  if(token!==run)return;
+  $('loading').textContent='正在載入 AR 角色與車站素材…';
+  await Promise.race([
+   loadARAssets(),
+   new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('AR 素材載入超過 30 秒，請返回選單後重試。')),30000);})
   ]).finally(()=>clearTimeout(timeout));
   if(token!==run)return;
   $('loading').textContent='正在啟動相機…';
@@ -190,13 +207,11 @@ $('face-file').onchange=async()=>{const file=$('face-file').files[0];if(!file)re
 window.addEventListener('resize',()=>ui?.resize());window.addEventListener('pagehide',stopCamera);
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&['4','6'].includes(state.scene)){stopCamera();modal('已暫停','返回後點選繼續。',[['返回選單',()=>show(3)],['繼續',()=>state.scene==='4'?startAR():startPhoto()]]);}});
 try{
- const fetchJSON=async path=>{const r=await fetch(path);if(!r.ok)throw new Error('素材讀取失敗：'+path);return r.json();};
- const [uiData,audio,dialogs,transforms,routes,animations,models,station,uiClips]=await Promise.all([
-  fetchJSON('./original/ui.json'),fetchJSON('./original/audio.json'),fetchJSON('./zh-TW/dialogs.json?v=1.1.0'),fetchJSON('./original/transforms.json'),fetchJSON('./station.json'),loadAnimations(),
-  Promise.all(CHARACTERS.map(async c=>[c,await loader.loadAsync(`./characters/plakids_${c}.glb`)])),loader.loadAsync('./original/station.glb'),fetchJSON('./original/ui-animations.json')]);
- localizeUI(uiData);
- data={ui:uiData,audio,dialogs,transforms,routes};clips=animations;templates=new Map(models);occluder=station;
- faceMask=new Image();faceMask.src='./original/textures/resources.assets__60__cut_face.png';await faceMask.decode();
+ const track=(name,task)=>window.stationBoot?.track?window.stationBoot.track(name,task):task();
+ const [uiData,audio,uiClips]=await Promise.all([
+  ...['./original/ui.json','./original/audio.json','./original/ui-animations.json'].map(path=>track(path,()=>fetchJSON(path))),
+  track('換臉遮罩',async()=>{faceMask=new Image();faceMask.src='./original/textures/resources.assets__60__cut_face.png';await faceMask.decode();})]);
+ localizeUI(uiData);data={ui:uiData,audio};
  ui=new OriginalUI($('original-ui'),uiData,(event,node)=>dispatch(event,node).catch(fail),uiClips);state.ready=true;show(3);window.stationBoot?.ready();
  // 只供本機端對端測試觀察，不改變遊戲的參數或時序。
  state.ui=ui;state.startAR=startAR;state.show=show;
