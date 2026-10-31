@@ -2,7 +2,7 @@
 
 Source: [`@8thwall/engine-binary@1.0.0`](https://www.npmjs.com/package/@8thwall/engine-binary/v/1.0.0), [official repository](https://github.com/8thwall/engine).
 
-The package's `dist/` (including its `LICENSE`) is copied without modification; the package root license is also preserved as `LICENSE.package`. `SHA256SUMS` records the distributed files. The binary is governed by its [8th Wall Engine Binary License Agreement](LICENSE), **not the MIT license** used by separate open source framework code. © 2026 Niantic Spatial, Inc. The application displays the copyright and license/disclaimer link.
+The package's `dist/` (including its `LICENSE`) is copied without modification; the package root license is also preserved as `LICENSE.package`. `SHA256SUMS` records the distributed files. The binary is governed by its [8th Wall Engine Binary License Agreement](LICENSE), **not the MIT license** used by separate open source framework code. © 2026 Niantic Spatial, Inc. The application provides the copyright, license and disclaimer link in Settings → 使用說明／隱私說明.
 
 The main application loads `xr.js` and the `slam` chunk on entering AR. Image targets and SLAM use the camera and device motion sensors; there is no API key or runtime CDN dependency. Other package chunks remain intact but are not enabled by this application.
 
