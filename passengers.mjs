@@ -92,7 +92,7 @@ export class Passengers {
   const step=Math.min(1,RULES.walkSpeed*dt/d);p.position=p.position.map((v,i)=>v+delta[i]*step);return false;
  }
  remove(p){this.people=this.people.filter(x=>x!==p);this.events.push({type:'remove',person:p});}
- update(dt){
+ update(dt,cameraPosition){
   if(!this.tracking||!Number.isFinite(dt)||dt<=0)return;
   this.elapsed+=dt;
   for(const p of [...this.people]){
@@ -103,7 +103,14 @@ export class Passengers {
     case 'Looking':if(p.time>=p.wait)this.state(p,'Neutral');break;
     case 'Talk':case 'Spoken':if(p.time>=p.wait){p.talkCooldown=3;this.state(p,'Neutral');}break;
     case 'Attention':if(p.time>=p.wait)this.state(p,'Neutral');break;
-    case 'Guide':if(p.time>=p.wait)this.state(p,'Neutral');break;
+    case 'Guide':
+     // 原版 met_Guide 0x99e9b0–0x99eb08：朝相機水平轉身，Slerp 係數 0.1。
+     // 以 60 fps 換算，讓不同螢幕更新率保有一致的轉身速度。
+     if(cameraPosition?.every(Number.isFinite)){
+      const dx=cameraPosition[0]-p.position[0],dz=cameraPosition[2]-p.position[2];
+      if(Math.hypot(dx,dz)>1e-6){const target=Math.atan2(dx,dz),delta=Math.atan2(Math.sin(target-p.angle),Math.cos(target-p.angle));p.angle+=delta*(1-Math.pow(.9,dt*60));}
+     }
+     if(p.time>=p.wait)this.state(p,'Neutral');break;
     case 'PreRide':if(!p.ready){if(this.move(p,dt)){p.ready=true;p.time=0;p.angle=0;}}break;
     case 'Ride':p.position[2]+=RULES.rideSpeed*dt;p.angle=0;if(p.position[2]>=RULES.rideEndZ)this.remove(p);break;
     case 'Exit':p.alpha=Math.max(0,1-p.time/RULES.fadeSeconds);if(p.alpha===0)this.remove(p);break;
