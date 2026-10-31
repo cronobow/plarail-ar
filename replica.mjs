@@ -1,12 +1,11 @@
 import {localizeUI,audioCaption} from './localization.mjs?v=1.1.0';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {MindARThree} from './vendor/mindar-image-three.prod.js';
 import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.1'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.2'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -126,6 +125,14 @@ function refreshARUI(){
 async function startAR(){
  show(4);state.scene='4';voiceIndex=broadcastIndex=0;$('loading').hidden=false;$('loading').textContent='正在啟動相機…';const token=run;
  try{
+  $('loading').textContent='正在載入 AR 追蹤程式…';
+  let timeout;
+  const {MindARThree}=await Promise.race([
+   import('./vendor/mindar-image-three.prod.js'),
+   new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('AR 追蹤程式載入逾時，請返回選單後重試。')),30000);})
+  ]).finally(()=>clearTimeout(timeout));
+  if(token!==run)return;
+  $('loading').textContent='正在啟動相機…';
   const current=new MindARThree({container:$('camera'),imageTargetSrc:'./marker.mind',maxTrack:1,uiLoading:'no',uiScanning:'no',uiError:'no'});ar=current;
   current.cssRenderer.domElement.style.pointerEvents='none';
   current.renderer.setPixelRatio(Math.min(devicePixelRatio,2));const anchor=current.addAnchor(0);
@@ -190,8 +197,8 @@ try{
  localizeUI(uiData);
  data={ui:uiData,audio,dialogs,transforms,routes};clips=animations;templates=new Map(models);occluder=station;
  faceMask=new Image();faceMask.src='./original/textures/resources.assets__60__cut_face.png';await faceMask.decode();
- ui=new OriginalUI($('original-ui'),uiData,(event,node)=>dispatch(event,node).catch(fail),uiClips);state.ready=true;show(3);
+ ui=new OriginalUI($('original-ui'),uiData,(event,node)=>dispatch(event,node).catch(fail),uiClips);state.ready=true;show(3);window.stationBoot?.ready();
  // 只供本機端對端測試觀察，不改變遊戲的參數或時序。
  state.ui=ui;state.startAR=startAR;state.show=show;
  const animateUI=now=>{ui.animate(now,engine?.mode==='PreRide');requestAnimationFrame(animateUI);};requestAnimationFrame(animateUI);
-}catch(e){fail(e);}
+}catch(e){if(window.stationBoot)window.stationBoot.fail(e);else fail(e);}
