@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.0'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.1'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -52,7 +52,7 @@ function showTutorial(){const ids=[10,16,13,9,3];ids.forEach((id,i)=>ui.visible(
 function updateFaceCards(){
  for(const n of data.ui['10'].nodes.filter(n=>n.name.startsWith('CharaFaceFlame'))){
   const c=n.name.replace('CharaFaceFlame','').toLowerCase(),face=readFace(c);if(!face)continue;
-  const el=ui.elements.get(n.id);const icon=el?.querySelector('[data-name="FaceIcon"] img');if(icon)icon.src=face;
+  const el=ui.elements.get(n.id);const icon=el?.querySelector(':scope > [data-name="Plakids"] > img');if(icon){icon.src=face;icon.style.objectFit='contain';icon.alt='已儲存的角色臉孔';}
  }
 }
 async function dispatch(event,node){
@@ -99,7 +99,7 @@ function newView(p){
  prefab.position.set(0,0,0);prefab.quaternion.identity();prefab.scale.setScalar(1);
  const materials=[];model.traverse(o=>{if(o.isMesh){const copies=(Array.isArray(o.material)?o.material:[o.material]).map(m=>{const copy=m.clone();copy.depthWrite=true;materials.push(copy);return copy;});o.material=Array.isArray(o.material)?copies:copies[0];}});
  const animation=new CharacterAnimation(model,clips),view={holder,model,animation,materials,action:null,person:p,faceTexture:null};
- const saved=readFace(p.character);if(saved){const tex=new THREE.TextureLoader().load(saved);tex.flipY=false;tex.colorSpace=THREE.SRGBColorSpace;view.faceTexture=tex;model.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(/face/i.test(m.name))m.map=tex;});}
+ const saved=readFace(p.character);if(saved){const tex=new THREE.TextureLoader().load(saved);tex.flipY=false;tex.colorSpace=THREE.SRGBColorSpace;view.faceTexture=tex;model.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(/_tex01$/.test(m.name))m.map=tex;});}
  const bubble=document.createElement('button');bubble.className='speech';bubble.hidden=true;bubble.onclick=()=>{p.dialog=null;engine.state(p,'Neutral');};$('bubbles').append(bubble);view.bubble=bubble;
  views.set(p.id,view);return view;
 }
@@ -161,22 +161,24 @@ async function startAR(){
  }catch(error){if(token===run){stopCamera();fail(error);}}
 }
 async function startPhoto(){
- show(6);const token=run;$('portrait-camera').hidden=false;
+ show(6);const token=run,video=$('portrait-camera');video.hidden=false;video.dataset.mirrored='false';
+ const shutter=ui.elements.get(4);shutter.disabled=true;
  const actions=document.createElement('div');actions.className='face-actions';
  for(const [title,handler]of [['從照片選擇',()=>$('face-file').click()],['恢復原始臉孔',()=>modal('恢復原始臉孔','刪除此角色在這個瀏覽器儲存的照片？',[['取消',()=>{}],['恢復',()=>{localStorage.removeItem('plarail-face-'+faceCharacter);show(10);}]])]]){const b=document.createElement('button');b.textContent=title;b.onclick=handler;actions.append(b);}document.body.append(actions);
- try{const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:photoFacing},audio:false});if(token!==run){stream.getTracks().forEach(t=>t.stop());return;}photoStream=stream;$('portrait-camera').srcObject=stream;await $('portrait-camera').play();}catch(e){if(token===run)modal('相機未啟動','可允許相機後重試，或從照片選擇製作臉孔。');}
+ try{const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:photoFacing},audio:false});if(token!==run){stream.getTracks().forEach(t=>t.stop());return;}photoStream=stream;video.dataset.mirrored=String((stream.getVideoTracks()[0]?.getSettings().facingMode||photoFacing)==='user');video.srcObject=stream;await video.play();if(token===run)shutter.disabled=false;}catch(e){if(token===run)modal('相機未啟動','可允許相機後重試，或從照片選擇製作臉孔。');}
 }
-function cropFace(source){
+function cropFace(source,mirrored=false){
  const w=source.videoWidth||source.naturalWidth,h=source.videoHeight||source.naturalHeight;if(!w||!h)throw new Error('相機尚未準備好');
  const canvas=document.createElement('canvas');canvas.width=canvas.height=256;const ctx=canvas.getContext('2d'),size=Math.min(256,w,h);
  // goWebCamTexture.Shooting: 中心 256×256、Y +20（Unity 底部原點）、RGB +100；遮罩外填原版膚色。
+ if(mirrored){ctx.translate(256,0);ctx.scale(-1,1);}
  ctx.drawImage(source,(w-size)/2,Math.max(0,(h-size)/2-20),size,size,0,0,256,256);
  const pixels=ctx.getImageData(0,0,256,256);const mask=document.createElement('canvas');mask.width=mask.height=256;const m=mask.getContext('2d');m.drawImage(faceMask,0,0,256,256);const alpha=m.getImageData(0,0,256,256).data;
  for(let i=0;i<pixels.data.length;i+=4){if(alpha[i+3]===0){pixels.data.set([254,225,183,255],i);}else for(let c=0;c<3;c++)pixels.data[i+c]=Math.min(255,pixels.data[i+c]+100);}
  ctx.putImageData(pixels,0,0);return canvas.toDataURL('image/png');
 }
 function confirmFace(url){const img=new Image();img.src=url;modal('使用這張臉孔？',img,[['重拍',()=>{}],['使用',()=>{localStorage.setItem('plarail-face-'+faceCharacter,url);show(10);}]]);}
-function captureFace(){try{play('clip/camerashutter');confirmFace(cropFace($('portrait-camera')));}catch(e){fail(e);}}
+function captureFace(){try{play('clip/camerashutter');confirmFace(cropFace($('portrait-camera'),$('portrait-camera').dataset.mirrored==='true'));}catch(e){fail(e);}}
 $('face-file').onchange=async()=>{const file=$('face-file').files[0];if(!file)return;const url=URL.createObjectURL(file);try{const image=new Image();image.src=url;await image.decode();confirmFace(cropFace(image));}catch(e){fail(e);}finally{URL.revokeObjectURL(url);$('face-file').value='';}};
 window.addEventListener('resize',()=>ui?.resize());window.addEventListener('pagehide',stopCamera);
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&['4','6'].includes(state.scene)){stopCamera();modal('已暫停','返回後點選繼續。',[['返回選單',()=>show(3)],['繼續',()=>state.scene==='4'?startAR():startPhoto()]]);}});
