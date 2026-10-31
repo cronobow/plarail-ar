@@ -1,12 +1,12 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>原版角色動畫測試</title>
-<link rel="stylesheet" href="style.css"><style>#view{height:55vh;min-height:280px}#view canvas{display:block;width:100%;height:100%}#welcome{margin:16px auto}label{display:inline-block;margin:8px}#welcome a{margin:0}</style>
+<link rel="stylesheet" href="style.css?v=0.2.1"><style>#view{height:55vh;min-height:280px}#view canvas{display:block;width:100%;height:100%}#welcome{margin:16px auto}label{display:inline-block;margin:8px}#welcome a{margin:0}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script></head><body>
-<main id="welcome"><a href="./">← 回到 AR 測試</a><h1>原版角色動畫</h1><p>APK 原始曲線 · 走路為原地循環、張望播放一次。尚未還原 Animator 轉場、移動路徑及換臉。</p>
-<label>角色 <select id="character"></select></label><label>動作 <select id="action"><option value="REST">靜止</option><option value="WALK" selected>走路</option><option value="LOOKING">張望</option></select></label><button id="replay">重播</button><div id="view"></div><p id="error" role="alert"></p></main>
+<main id="welcome"><a href="./?v=0.2.1">← 回到 AR 測試</a><h1>原版角色動畫</h1><p>測試版 0.2.1</p><p>APK 原始曲線 · 走路為原地循環、張望播放一次。尚未還原 Animator 轉場、移動路徑及換臉。</p>
+<label>角色 <select id="character"></select></label><div class="actions" role="group" aria-label="角色動作"><button data-action="REST" aria-pressed="false">靜止</button><button data-action="WALK" aria-pressed="true">走路（原地）</button><button data-action="LOOKING" aria-pressed="false">張望／重播</button></div><p id="motion">角色載入中…</p><div id="view"></div><p id="error" role="alert"></p></main>
 <script type="module">
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {CharacterAnimation,loadAnimations} from './animation.mjs';
+import {CharacterAnimation,loadAnimations} from './animation.mjs?v=0.2.1';
 const $=id=>document.getElementById(id), view=$('view');
 window.animationTest={ready:false};
 try {
@@ -16,7 +16,13 @@ try {
  const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));view.append(renderer.domElement);
  const resize=()=>{renderer.setSize(view.clientWidth,view.clientHeight);camera.aspect=view.clientWidth/view.clientHeight;camera.updateProjectionMatrix();};
  new ResizeObserver(resize).observe(view);resize();
- const loader=new GLTFLoader(), cache=new Map();let model, animation, selection=0;
+ const loader=new GLTFLoader(), cache=new Map();let model, animation, selection=0, selectedAction='WALK';
+ function showMotion(){
+  if(!animation)return;
+  const label={REST:'靜止',WALK:'走路',LOOKING:'張望'}[animation.name], clip=clips[animation.name];
+  const time=clip?(clip.loop?animation.elapsed%(clip.stop-clip.start):Math.min(animation.elapsed,clip.stop-clip.start)):0;
+  $('motion').textContent=clip?`動作：${label} · ${!clip.loop&&animation.elapsed>=clip.stop-clip.start?'已播完，點張望可重播':'播放中'} · ${time.toFixed(1)} 秒`:'動作：靜止';
+ }
  for(const entry of entries){const option=document.createElement('option');option.value=entry.name;option.textContent=entry.name.replace('plakids_','').toUpperCase();$('character').append(option);}
  async function select(){
   const ticket=++selection, name=$('character').value;
@@ -27,14 +33,24 @@ try {
   model.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])m.depthWrite=m.userData.unityDepthWrite===true;});
   animation=new CharacterAnimation(model,clips);
   const box=new THREE.Box3().setFromObject(model), center=box.getCenter(new THREE.Vector3()), scale=3/box.getSize(new THREE.Vector3()).y;
-  model.position.copy(center).multiplyScalar(-scale);model.scale.setScalar(scale);scene.add(model);animation.play($('action').value);
+  model.position.copy(center).multiplyScalar(-scale);model.scale.setScalar(scale);scene.add(model);animation.play(selectedAction);
   window.animationTest.name=name;window.animationTest.animation=animation;window.animationTest.ready=true;
+  showMotion();
  }
  const report=e=>$('error').textContent=e.message;
  $('character').onchange=()=>select().catch(report);
- $('action').onchange=$('replay').onclick=()=>animation?.play($('action').value);
+ for(const button of document.querySelectorAll('[data-action]'))button.onclick=()=>{
+  selectedAction=button.dataset.action;
+  for(const other of document.querySelectorAll('[data-action]'))other.setAttribute('aria-pressed',String(other===button));
+  animation?.play(selectedAction);
+  showMotion();
+ };
  await select();let previous=performance.now();
- renderer.setAnimationLoop(now=>{if(!window.animationTest.paused)animation?.update((now-previous)/1000);previous=now;renderer.render(scene,camera);});
+ renderer.setAnimationLoop(now=>{
+  if(!window.animationTest.paused)animation?.update((now-previous)/1000);previous=now;
+  showMotion();
+  renderer.render(scene,camera);
+ });
  window.addEventListener('pagehide',()=>{renderer.setAnimationLoop(null);renderer.dispose();});
 } catch(e){$('error').textContent=e.message;}
 </script></body></html>
