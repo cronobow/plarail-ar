@@ -9,3 +9,5 @@
 .unity-node[data-action="OnClickPrev"]>.unity-sprite,.unity-node[data-action="OnClickNext"]>.unity-sprite{transform:scale(.6)}
 
 #portrait-camera[data-mirrored="true"]{transform:scaleX(-1)}
+
+#loading>div{max-width:90vw;text-align:center;padding:24px;overflow-wrap:anywhere}#loading button{padding:12px 24px;border:0;border-radius:12px;background:#1678c7;color:white;font:inherit}
