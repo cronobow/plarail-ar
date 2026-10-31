@@ -1,0 +1,2862 @@
+[
+  {
+    "id": "dialog-001",
+    "source_line": 1,
+    "character": "A1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おっは～！",
+    "zh_TW": "早安呀！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-002",
+    "source_line": 2,
+    "character": "A1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おはよーきょうは\\nでんしゃにのるんだ",
+    "zh_TW": "早安～今天\\n要搭火車喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-003",
+    "source_line": 3,
+    "character": "A1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "かいさつとおると\\nわくわくしちゃう",
+    "zh_TW": "一走進驗票閘門，\\n就好興奮！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-004",
+    "source_line": 4,
+    "character": "A1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "えきいんさんて\\nかっこいいなー",
+    "zh_TW": "站務員\\n好帥氣喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-005",
+    "source_line": 5,
+    "character": "A1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "E6けいしんかんせん\\nぼくのおきにいり！",
+    "zh_TW": "E6 系新幹線，\\n是我的最愛！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-006",
+    "source_line": 6,
+    "character": "A1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "さっき\\nにじをみたんだ！",
+    "zh_TW": "我剛剛\\n看到彩虹了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-007",
+    "source_line": 7,
+    "character": "A1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "えきのおべんとうって\\nだいすきなんだ",
+    "zh_TW": "我最喜歡\\n車站便當了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-008",
+    "source_line": 8,
+    "character": "A1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "えきべんまつりだ\\nすごいなー",
+    "zh_TW": "鐵路便當展，\\n好厲害喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-009",
+    "source_line": 9,
+    "character": "A1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "よーしえきを\\nたんけんするぞー",
+    "zh_TW": "好！來去\\n探索車站吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-010",
+    "source_line": 10,
+    "character": "A1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こんばんは～！",
+    "zh_TW": "晚安～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-011",
+    "source_line": 11,
+    "character": "A1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるのえきもすごいな\\nひとがいっぱいいる",
+    "zh_TW": "晚上的車站也好熱鬧，\\n有好多好多人！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-012",
+    "source_line": 12,
+    "character": "A1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こどもはかえるじかん\\nさよならー",
+    "zh_TW": "小朋友該回家了，\\n再見～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-013",
+    "source_line": 13,
+    "character": "A1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "なんだかねむいなぁ\\nふわーあーあー",
+    "zh_TW": "好像有點睏了，\\n哈啊～啊～",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-014",
+    "source_line": 14,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きゅうこうきたぞ\\nはやいなー！",
+    "zh_TW": "急行列車來了，\\n好快喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-015",
+    "source_line": 15,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "つうきんかいそく！\\nのりたいなー！",
+    "zh_TW": "通勤快速列車！\\n好想搭搭看！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-016",
+    "source_line": 16,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "しんかんせんだ！\\nかっこいいなー！",
+    "zh_TW": "是新幹線！\\n好帥喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-017",
+    "source_line": 17,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "ふつうのでんしゃにも\\nのりたいなー！",
+    "zh_TW": "我也想搭搭看\\n普通列車！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-018",
+    "source_line": 18,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "つぎはどっちの\\nほーむにくるかな",
+    "zh_TW": "下一班會進\\n哪一邊的月台呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-019",
+    "source_line": 19,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "とっきゅうでんしゃ\\nはやいな～！",
+    "zh_TW": "特急列車\\n好快喔～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-020",
+    "source_line": 20,
+    "character": "A1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "よるなのにたくさん\\nひとがのっているね",
+    "zh_TW": "已經晚上了，\\n車上還有好多人耶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-021",
+    "source_line": 21,
+    "character": "A2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おはよう！",
+    "zh_TW": "早安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-022",
+    "source_line": 22,
+    "character": "A2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あれはとっきゅうだよ\\nかっこいいよね",
+    "zh_TW": "那是特急列車喔，\\n很帥對吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-023",
+    "source_line": 23,
+    "character": "A2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうはTくんとね\\nまちあわせしてるんだ",
+    "zh_TW": "今天我跟小 T\\n約好在這裡碰面。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-024",
+    "source_line": 24,
+    "character": "A2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "つうきんでんしゃって\\nカラフルだよねー",
+    "zh_TW": "通勤列車的顏色\\n好多樣喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-025",
+    "source_line": 25,
+    "character": "A2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "こんにちは！",
+    "zh_TW": "午安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-026",
+    "source_line": 26,
+    "character": "A2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "でんしゃのしゃしんが\\nとりたいな～！",
+    "zh_TW": "好想拍\\n火車的照片喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-027",
+    "source_line": 27,
+    "character": "A2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "しんかんせんが\\nみられるかもしれない",
+    "zh_TW": "說不定\\n能看到新幹線！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-028",
+    "source_line": 28,
+    "character": "A2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "ぼくはてっちゃん\\nプラレールだいすき",
+    "zh_TW": "我是小鐵，\\n最喜歡 PLARAIL！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-029",
+    "source_line": 29,
+    "character": "A2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こんばんは！",
+    "zh_TW": "晚安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-030",
+    "source_line": 30,
+    "character": "A2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるのでんしゃは\\nライトがきれいだね",
+    "zh_TW": "晚上列車的燈光\\n真漂亮！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-031",
+    "source_line": 31,
+    "character": "A2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "はっしゃのメロディ\\nきくのすきなんだ",
+    "zh_TW": "我很喜歡聽\\n列車的發車音樂。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-032",
+    "source_line": 32,
+    "character": "A2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "かもつれっしゃって\\nちからもちだよね",
+    "zh_TW": "貨運列車\\n力氣好大喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-033",
+    "source_line": 33,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "でんしゃはやく\\nこないかな～",
+    "zh_TW": "火車怎麼\\n還沒來呀～",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-034",
+    "source_line": 34,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "それはかいそくだから\\nきをつけてね",
+    "zh_TW": "那是快速列車，\\n要注意別搭錯喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-035",
+    "source_line": 35,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "しんがたしゃりょうだ\\nみれてラッキーだね",
+    "zh_TW": "是新型列車，\\n能看到真幸運！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-036",
+    "source_line": 36,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "はしってくるところ\\nかっこいいよね",
+    "zh_TW": "列車開過來的樣子\\n很帥對吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-037",
+    "source_line": 37,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "どくたーいえろーが\\nみたいな",
+    "zh_TW": "好想看看\\n黃色醫生喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-038",
+    "source_line": 38,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ばいばい、こんどは\\nトミカをみにいこうよ",
+    "zh_TW": "再見，下次\\n一起去看 TOMICA 吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-039",
+    "source_line": 39,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "やこうれっしゃって\\nいつかのってみたい",
+    "zh_TW": "有一天好想\\n搭搭看夜行列車！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-040",
+    "source_line": 40,
+    "character": "A2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "さんかいだてのえきが\\nあったらいいな",
+    "zh_TW": "要是有三層樓的車站，\\n一定很棒！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-041",
+    "source_line": 41,
+    "character": "A3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おはよう！",
+    "zh_TW": "早安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-042",
+    "source_line": 42,
+    "character": "A3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "しんかんせんかな？\\nかっこいいなー！",
+    "zh_TW": "那是新幹線嗎？\\n好帥喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-043",
+    "source_line": 43,
+    "character": "A3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "てっちゃんどこだろ？\\nまちあわせしてるんだ",
+    "zh_TW": "小鐵在哪裡呢？\\n我們約好見面的。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-044",
+    "source_line": 44,
+    "character": "A3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "みんないそがしそう\\nあさのえきはすごいね",
+    "zh_TW": "大家好像都很忙，\\n早上的車站真熱鬧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-045",
+    "source_line": 45,
+    "character": "A3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あかいしんかんせんの\\nなまえってなんだっけ",
+    "zh_TW": "紅色新幹線\\n叫什麼名字來著？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-046",
+    "source_line": 46,
+    "character": "A3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "こんにちは！",
+    "zh_TW": "午安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-047",
+    "source_line": 47,
+    "character": "A3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "このままえきで\\nあそぶのもいいね",
+    "zh_TW": "就這樣留在車站\\n玩也不錯呢！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-048",
+    "source_line": 48,
+    "character": "A3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "かもつれっしゃが\\nみたいなぁ",
+    "zh_TW": "好想看看\\n貨運列車喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-049",
+    "source_line": 49,
+    "character": "A3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "ぼくはTくん\\nとみかもすきだよ",
+    "zh_TW": "我是小 T，\\n也喜歡 TOMICA 喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-050",
+    "source_line": 50,
+    "character": "A3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こんばんは！",
+    "zh_TW": "晚安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-051",
+    "source_line": 51,
+    "character": "A3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "やこうれっしゃに\\nあこがれるんだ",
+    "zh_TW": "我一直很嚮往\\n搭夜行列車。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-052",
+    "source_line": 52,
+    "character": "A3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "はっしゃのメロディ\\nいいよね！",
+    "zh_TW": "發車音樂\\n真好聽！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-053",
+    "source_line": 53,
+    "character": "A3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "くるまよりもはやいね\\nでんしゃって！",
+    "zh_TW": "火車跑得\\n比汽車還快呢！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-054",
+    "source_line": 54,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "すごいなー\\nおきゃくさんがいっぱい",
+    "zh_TW": "好厲害，\\n有好多乘客！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-055",
+    "source_line": 55,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "あっ、でんしゃがきた\\nはやくのろうよ！",
+    "zh_TW": "啊，火車來了！\\n快上車吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-056",
+    "source_line": 56,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "でんしゃがきたよ！\\nはじめてみるでんしゃ",
+    "zh_TW": "火車來了！\\n是我沒看過的列車！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-057",
+    "source_line": 57,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "トミカもいいけど\\nプラレールもいいな",
+    "zh_TW": "TOMICA 很棒，\\nPLARAIL 也很棒！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-058",
+    "source_line": 58,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "E7けいしんかんせん\\nまだかな",
+    "zh_TW": "E7 系新幹線\\n怎麼還沒來呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-059",
+    "source_line": 59,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "そろそろかえるじかん\\nプラレールっていいね",
+    "zh_TW": "差不多該回家了，\\nPLARAIL 真好玩！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-060",
+    "source_line": 60,
+    "character": "A3",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "よるのでんしゃは\\nライトがめだつね",
+    "zh_TW": "晚上列車的燈光\\n特別顯眼呢！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-061",
+    "source_line": 61,
+    "character": "B1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "「きょうのうらない」で\\n1いだったのよ♪",
+    "zh_TW": "今天的星座運勢，\\n我可是第一名喔♪",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-062",
+    "source_line": 62,
+    "character": "B1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうはえきに\\nおかいものにきたの",
+    "zh_TW": "今天我來車站\\n買東西。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-063",
+    "source_line": 63,
+    "character": "B1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "えきのめいてんがいは\\nどこにあるのかしら",
+    "zh_TW": "車站的商店街\\n在哪裡呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-064",
+    "source_line": 64,
+    "character": "B1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おおきなえきねー\\nひともいっぱい",
+    "zh_TW": "好大的車站，\\n人也好多喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-065",
+    "source_line": 65,
+    "character": "B1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きいろいでんしゃを\\nみるとしあわせ～",
+    "zh_TW": "看到黃色列車，\\n就覺得好幸福～",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-066",
+    "source_line": 66,
+    "character": "B1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "あら　\\nみかけないかおね",
+    "zh_TW": "咦，\\n沒見過你耶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-067",
+    "source_line": 67,
+    "character": "B1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "えきなかでおかいもの\\nえきべんまつりはどこ",
+    "zh_TW": "來車站逛街，\\n鐵路便當展在哪裡呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-068",
+    "source_line": 68,
+    "character": "B1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "ぶっさんてんで\\nおみやげかわなきゃ",
+    "zh_TW": "得在物產展\\n買點伴手禮才行！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-069",
+    "source_line": 69,
+    "character": "B1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "めいぶつはどれも\\nおいしいわねぇ",
+    "zh_TW": "每樣名產\\n都好好吃喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-070",
+    "source_line": 70,
+    "character": "B1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "「きょうのうらない」\\nはずれちゃったわ",
+    "zh_TW": "今天的星座運勢，\\n一點也不準呢！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-071",
+    "source_line": 71,
+    "character": "B1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "へいてんまぎわの\\nやすうりもチェックよ",
+    "zh_TW": "關店前的特價\\n也不能錯過！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-072",
+    "source_line": 72,
+    "character": "B1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "いちにちかいものして\\nつかれちゃったわ",
+    "zh_TW": "逛了一整天，\\n好累喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-073",
+    "source_line": 73,
+    "character": "B1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "おゆうはんは\\nえきべんまつりよ",
+    "zh_TW": "今天的晚餐，\\n就吃鐵路便當吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-074",
+    "source_line": 74,
+    "character": "B1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "いつもこんでるわねぇ\\nみんなたいへんねー",
+    "zh_TW": "總是這麼擠，\\n大家都辛苦了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-075",
+    "source_line": 75,
+    "character": "B1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "じょせいせんようしゃ\\nいちばんまえなのね",
+    "zh_TW": "女性專用車廂\\n原來在最前面啊！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-076",
+    "source_line": 76,
+    "character": "B1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "あらいやだ！\\nまいごになっちゃった",
+    "zh_TW": "哎呀，糟糕！\\n我迷路了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-077",
+    "source_line": 77,
+    "character": "B1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "はんたいのホームに\\nおりちゃったわ",
+    "zh_TW": "我走到\\n對面的月台了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-078",
+    "source_line": 78,
+    "character": "B1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "いすにすわって\\nでんしゃをまつの",
+    "zh_TW": "坐在椅子上\\n等火車吧。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-079",
+    "source_line": 79,
+    "character": "B1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ばんごはんのしたく、\\nしなくっちゃ！",
+    "zh_TW": "得趕快\\n準備晚餐了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-080",
+    "source_line": 80,
+    "character": "B2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "なにかいいことが\\nおきそうね",
+    "zh_TW": "感覺今天\\n會有好事發生！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-081",
+    "source_line": 81,
+    "character": "B2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "かみがたもばっちり\\nぜっこうちょうよ",
+    "zh_TW": "髮型也很完美，\\n今天狀態超好！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-082",
+    "source_line": 82,
+    "character": "B2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうもかいしゃに\\nいってきまーす",
+    "zh_TW": "今天也要\\n去上班囉！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-083",
+    "source_line": 83,
+    "character": "B2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "さわやかなあさね\\nいいきもち",
+    "zh_TW": "好清爽的早晨，\\n真舒服！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-084",
+    "source_line": 84,
+    "character": "B2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "ボン　ジュール♪",
+    "zh_TW": "你好呀♪",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-085",
+    "source_line": 85,
+    "character": "B2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "えきなかでスイーツを\\nたべまくるわ",
+    "zh_TW": "我要在車站裡\\n盡情吃甜點！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-086",
+    "source_line": 86,
+    "character": "B2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "じぶんへのごほうびに\\nスイーツをかうの",
+    "zh_TW": "買點甜點，\\n好好犒賞自己。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-087",
+    "source_line": 87,
+    "character": "B2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "スイーツおいしい\\nスイーツおいしい",
+    "zh_TW": "甜點好好吃，\\n甜點好好吃！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-088",
+    "source_line": 88,
+    "character": "B2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "ブオナ　セラ♪",
+    "zh_TW": "晚安呀♪",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-089",
+    "source_line": 89,
+    "character": "B2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "おかあさんから\\nメールがきたわ",
+    "zh_TW": "媽媽傳訊息\\n給我了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-090",
+    "source_line": 90,
+    "character": "B2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "いそがしいまいにち\\nでもじゅうじつしてる",
+    "zh_TW": "每天都很忙，\\n不過也很充實。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-091",
+    "source_line": 91,
+    "character": "B2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "いそがなきゃ\\nドラマがみたいのよ",
+    "zh_TW": "得快一點，\\n我想回家看連續劇！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-092",
+    "source_line": 92,
+    "character": "B2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きょうもラッシュよ\\nつうきんラッシュ",
+    "zh_TW": "今天也好擠，\\n又是上班尖峰時間！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-093",
+    "source_line": 93,
+    "character": "B2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "じょせいせんようしゃ\\nどこかしらー！",
+    "zh_TW": "女性專用車廂\\n在哪裡呀？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-094",
+    "source_line": 94,
+    "character": "B2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "プレゼンにいくのよ\\nきあいがはいるわー",
+    "zh_TW": "我要去做簡報，\\n得打起精神！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-095",
+    "source_line": 95,
+    "character": "B2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "このこうこくのおみせ\\nこんどいこうかな",
+    "zh_TW": "廣告上的這家店，\\n下次去看看吧。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-096",
+    "source_line": 96,
+    "character": "B2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "きょうも、ラッシュよ\\nきたくラッシュ！",
+    "zh_TW": "今天也好擠，\\n下班尖峰時間到了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-097",
+    "source_line": 97,
+    "character": "B2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "いもうとにメールしよ\\nきょうはケーキあるよ",
+    "zh_TW": "傳訊息給妹妹吧，\\n今天有蛋糕喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-098",
+    "source_line": 98,
+    "character": "B3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "(o^∇^o)ﾉ",
+    "zh_TW": "(o^∇^o)ﾉ",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-099",
+    "source_line": 99,
+    "character": "B3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "＼(＾▽＾)／",
+    "zh_TW": "＼(＾▽＾)／",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-100",
+    "source_line": 100,
+    "character": "B3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "｡o@(^-^)@o｡",
+    "zh_TW": "｡o@(^-^)@o｡",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-101",
+    "source_line": 101,
+    "character": "B3",
+    "state": "通常",
+    "time": "朝",
+    "ja": "o(*^▽^*)o~♪",
+    "zh_TW": "o(*^▽^*)o~♪",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-102",
+    "source_line": 102,
+    "character": "B3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "(*￣∇￣*)",
+    "zh_TW": "(*￣∇￣*)",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-103",
+    "source_line": 103,
+    "character": "B3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "(o^-^o)",
+    "zh_TW": "(o^-^o)",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-104",
+    "source_line": 104,
+    "character": "B3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "(＠⌒ο⌒＠)ｂ",
+    "zh_TW": "(＠⌒ο⌒＠)ｂ",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-105",
+    "source_line": 105,
+    "character": "B3",
+    "state": "通常",
+    "time": "昼",
+    "ja": "（ ﾟ ρ ﾟ )",
+    "zh_TW": "（ ﾟ ρ ﾟ )",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-106",
+    "source_line": 106,
+    "character": "B3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "...ヽ( ´_つ｀)ノ ?",
+    "zh_TW": "...ヽ( ´_つ｀)ノ ?",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-107",
+    "source_line": 107,
+    "character": "B3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "(￣▽￣)",
+    "zh_TW": "(￣▽￣)",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-108",
+    "source_line": 108,
+    "character": "B3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "ヾ(＠°▽°＠)ﾉ",
+    "zh_TW": "ヾ(＠°▽°＠)ﾉ",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-109",
+    "source_line": 109,
+    "character": "B3",
+    "state": "通常",
+    "time": "晩",
+    "ja": "(☆ｏ☆)",
+    "zh_TW": "(☆ｏ☆)",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-110",
+    "source_line": 110,
+    "character": "B3",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "o(>▽<)o",
+    "zh_TW": "o(>▽<)o",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-111",
+    "source_line": 111,
+    "character": "B3",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "(〃￣∇￣)ﾉ彡",
+    "zh_TW": "(〃￣∇￣)ﾉ彡",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-112",
+    "source_line": 112,
+    "character": "B3",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "（〃＾∇＾）o_彡",
+    "zh_TW": "（〃＾∇＾）o_彡",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-113",
+    "source_line": 113,
+    "character": "B3",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "((ﾐ￣ｴ￣ﾐ))",
+    "zh_TW": "((ﾐ￣ｴ￣ﾐ))",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-114",
+    "source_line": 114,
+    "character": "B3",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "~(＾◇^)/",
+    "zh_TW": "~(＾◇^)/",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-115",
+    "source_line": 115,
+    "character": "B3",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "((ｏ(＞▽＜)ｏ))",
+    "zh_TW": "((ｏ(＞▽＜)ｏ))",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-116",
+    "source_line": 116,
+    "character": "C1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あさひがまぶしいな～",
+    "zh_TW": "早晨的陽光\\n好耀眼喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-117",
+    "source_line": 117,
+    "character": "C1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "いけないねぼうしたよ\\nちこくだいそげいそげ",
+    "zh_TW": "糟了，睡過頭！\\n要遲到了，快快快！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-118",
+    "source_line": 118,
+    "character": "C1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうもおしごと\\nがんばるぞ！",
+    "zh_TW": "今天上班\\n也要加油！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-119",
+    "source_line": 119,
+    "character": "C1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "スマートフォンで\\nニュースをみるぞ",
+    "zh_TW": "用手機\\n看看新聞吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-120",
+    "source_line": 120,
+    "character": "C1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "はねばしをこえて\\nとおくまでいきたいな",
+    "zh_TW": "好想越過開合橋，\\n到遠方去！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-121",
+    "source_line": 121,
+    "character": "C1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "こんにチワワ",
+    "zh_TW": "午安，汪汪！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-122",
+    "source_line": 122,
+    "character": "C1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おひるはおそばだ\\nうどんもいいなぁ",
+    "zh_TW": "午餐吃蕎麥麵吧，\\n烏龍麵也不錯！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-123",
+    "source_line": 123,
+    "character": "C1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "あんぱんください\\nあとぎゅうにゅうも",
+    "zh_TW": "請給我紅豆麵包，\\n還有牛奶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-124",
+    "source_line": 124,
+    "character": "C1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "そとまわりはたいへん\\nおしごとがんばるぞ",
+    "zh_TW": "跑外勤真辛苦，\\n工作要加油！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-125",
+    "source_line": 125,
+    "character": "C1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こんばんわんこそば",
+    "zh_TW": "晚安，來碗麵！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-126",
+    "source_line": 126,
+    "character": "C1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "きょうはつかれたなー\\nもうねむいよぐうぐう",
+    "zh_TW": "今天好累，\\n好睏喔……呼呼。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-127",
+    "source_line": 127,
+    "character": "C1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "ＩＣカードに\\nにゅうきんしなきゃ",
+    "zh_TW": "該幫\\n電子票證儲值了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-128",
+    "source_line": 128,
+    "character": "C1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "スマートフォンで\\nやきゅうをみるぞ",
+    "zh_TW": "用手機\\n看棒球吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-129",
+    "source_line": 129,
+    "character": "C1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "つうきんラッシュは\\nつらいっシュ",
+    "zh_TW": "上班尖峰時間，\\n擠得真辛苦！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-130",
+    "source_line": 130,
+    "character": "C1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "うひゃーきょうも\\nすごくこんでるなぁ",
+    "zh_TW": "哇，今天\\n也好擠喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-131",
+    "source_line": 131,
+    "character": "C1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "スマートフォンで\\nいきさきをしらべよう",
+    "zh_TW": "用手機\\n查查目的地吧。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-132",
+    "source_line": 132,
+    "character": "C1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "えいぎょうのおしごと\\nとりひきさきにいくぞ",
+    "zh_TW": "業務工作開始，\\n去拜訪客戶囉！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-133",
+    "source_line": 133,
+    "character": "C1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "きょうも、ラッシュだ\\nきたくラッシュ！",
+    "zh_TW": "今天又碰上\\n下班尖峰時間！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-134",
+    "source_line": 134,
+    "character": "C1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "きょうもいちにち\\nがんばったなぁ",
+    "zh_TW": "今天一整天\\n也很努力呢！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-135",
+    "source_line": 135,
+    "character": "D1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きもちのいいあさだね！",
+    "zh_TW": "真是舒服的早晨！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-136",
+    "source_line": 136,
+    "character": "D1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "いそがなきゃ！\\nちこくしちゃうよー！",
+    "zh_TW": "得快一點！\\n要遲到了啦！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-137",
+    "source_line": 137,
+    "character": "D1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうはあされんだ\\nはやおきしたぞ",
+    "zh_TW": "今天有晨練，\\n所以特別早起！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-138",
+    "source_line": 138,
+    "character": "D1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あさごはんは\\nおにぎりだもぐもぐ",
+    "zh_TW": "早餐吃飯糰，\\n嚼嚼嚼。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-139",
+    "source_line": 139,
+    "character": "D1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "たいようがまぶしいな",
+    "zh_TW": "太陽好耀眼喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-140",
+    "source_line": 140,
+    "character": "D1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おそばやさんが\\nやけにこんでいるなぁ",
+    "zh_TW": "蕎麥麵店\\n今天特別多人耶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-141",
+    "source_line": 141,
+    "character": "D1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "しゅうがくりょこうは\\nどきどきするなぁ",
+    "zh_TW": "校外旅行，\\n讓人好期待！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-142",
+    "source_line": 142,
+    "character": "D1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "メールのおへんじ\\nはやくかかなきゃ",
+    "zh_TW": "得趕快\\n回覆訊息！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-143",
+    "source_line": 143,
+    "character": "D1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "ゆうやけがきれいだな",
+    "zh_TW": "晚霞真漂亮！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-144",
+    "source_line": 144,
+    "character": "D1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "アルバイトたいへん\\nでもがんばったぞ",
+    "zh_TW": "打工很辛苦，\\n不過我很努力喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-145",
+    "source_line": 145,
+    "character": "D1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "ありゃりゃさいふを\\nおとしたぞー",
+    "zh_TW": "糟糕，\\n錢包掉了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-146",
+    "source_line": 146,
+    "character": "D1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "がくせいははやめに\\nかえりまーす",
+    "zh_TW": "學生要\\n早點回家囉！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-147",
+    "source_line": 147,
+    "character": "D1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きょうもラッシュだ！\\nつうがくラッシュ",
+    "zh_TW": "今天也好擠！\\n上學尖峰時間到了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-148",
+    "source_line": 148,
+    "character": "D1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "はやくきてくれー\\nちこくしちゃうよー",
+    "zh_TW": "火車快來呀，\\n我要遲到了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-149",
+    "source_line": 149,
+    "character": "D1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "ぶかつのしあいだ\\nがんばるぞー",
+    "zh_TW": "今天有社團比賽，\\n我要加油！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-150",
+    "source_line": 150,
+    "character": "D1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "がっこうのほしゅう\\nとほほのほ",
+    "zh_TW": "學校要補課，\\n唉呀呀。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-151",
+    "source_line": 151,
+    "character": "D1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ポスターのあいどる\\nかわいいなぁ",
+    "zh_TW": "海報上的偶像\\n好可愛喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-152",
+    "source_line": 152,
+    "character": "D1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ふうやっとバイトが\\nおわったぞ",
+    "zh_TW": "呼，打工\\n終於結束了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-153",
+    "source_line": 153,
+    "character": "E1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おはようございます！",
+    "zh_TW": "早安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-154",
+    "source_line": 154,
+    "character": "E1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "いいあさですね！",
+    "zh_TW": "真是美好的早晨！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-155",
+    "source_line": 155,
+    "character": "E1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "つうきんのじかんは\\nたいへんなんだよ",
+    "zh_TW": "通勤時間\\n可是很忙的喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-156",
+    "source_line": 156,
+    "character": "E1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あさのラッシュは\\nおおいそがしだなあ",
+    "zh_TW": "早上的尖峰時間\\n忙得不得了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-157",
+    "source_line": 157,
+    "character": "E1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "こんにちは！",
+    "zh_TW": "午安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-158",
+    "source_line": 158,
+    "character": "E1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "こうたいのじかんだ\\nおしごとがんばるぞ",
+    "zh_TW": "換班時間到了，\\n工作要加油！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-159",
+    "source_line": 159,
+    "character": "E1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "かいさつぐちで\\nきっぷをみます",
+    "zh_TW": "我會在驗票口\\n查驗車票。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-160",
+    "source_line": 160,
+    "character": "E1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "けんばいきの\\nてんけんもするよ",
+    "zh_TW": "也會檢查\\n自動售票機喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-161",
+    "source_line": 161,
+    "character": "E1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こんばんは！",
+    "zh_TW": "晚安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-162",
+    "source_line": 162,
+    "character": "E1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "まよなかもこうたいで\\nえきにいるんだよ",
+    "zh_TW": "半夜也有人\\n輪班留在車站喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-163",
+    "source_line": 163,
+    "character": "E1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こうたいのじかんだ\\nばんごはんにしよう",
+    "zh_TW": "換班時間到了，\\n吃晚餐吧。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-164",
+    "source_line": 164,
+    "character": "E1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるのてんけん\\nいじょうはないかな",
+    "zh_TW": "夜間巡檢，\\n有沒有異常呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-165",
+    "source_line": 165,
+    "character": "E1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "そういえばこのさきは\\nのぼりざかだったかな",
+    "zh_TW": "說起來，前面\\n好像是上坡吧？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-166",
+    "source_line": 166,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "でんしゃがまいります\\nおさがりくださーい！",
+    "zh_TW": "列車進站，\\n請往後退！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-167",
+    "source_line": 167,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "すいているどあを\\nごりようくださーい",
+    "zh_TW": "請利用\\n較空的車門上車！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-168",
+    "source_line": 168,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "まもなくでんしゃが\\nまいりまーす",
+    "zh_TW": "列車即將\\n進站！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-169",
+    "source_line": 169,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "ぎょうむれんらく\\nおとしものかくにん",
+    "zh_TW": "工作聯絡：\\n請確認遺失物。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-170",
+    "source_line": 170,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "しゃこにはいる\\nかいそうでんしゃです",
+    "zh_TW": "這是要回車庫的\\n不載客列車。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-171",
+    "source_line": 171,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ドアからはなれて\\nくださーい！",
+    "zh_TW": "請離開\\n車門！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-172",
+    "source_line": 172,
+    "character": "E1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "このさきには\\nふみきりがあったな",
+    "zh_TW": "前面好像\\n有個平交道。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-173",
+    "source_line": 173,
+    "character": "E2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "「おはよう」の\\nあいさつはだいじだよ",
+    "zh_TW": "早上記得\\n和大家說早安喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-174",
+    "source_line": 174,
+    "character": "E2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうもあんぜんに\\nすごせますように",
+    "zh_TW": "希望今天\\n也能平平安安。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-175",
+    "source_line": 175,
+    "character": "E2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "ホームにおうえんに\\nいかなきゃ",
+    "zh_TW": "得去月台\\n支援才行！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-176",
+    "source_line": 176,
+    "character": "E2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "てんけんよし！\\nしゅっぱつしんこう",
+    "zh_TW": "檢查完畢！\\n出發前進！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-177",
+    "source_line": 177,
+    "character": "E2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "ごりよう\\nありがとうございます！",
+    "zh_TW": "感謝\\n您的搭乘！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-178",
+    "source_line": 178,
+    "character": "E2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "こうたいのじかんだ\\nおひるにしようか",
+    "zh_TW": "換班時間到了，\\n來吃午餐吧。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-179",
+    "source_line": 179,
+    "character": "E2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "なんだかきょうは\\nおそばがにんきだなぁ",
+    "zh_TW": "今天的蕎麥麵\\n好像特別受歡迎！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-180",
+    "source_line": 180,
+    "character": "E2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "はくせんのうちがわに\\nおさがりください～！",
+    "zh_TW": "請退到\\n白線內等候！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-181",
+    "source_line": 181,
+    "character": "E2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "かけこみじょうしゃは\\nごえんりょください",
+    "zh_TW": "請勿\\n奔跑搶上車。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-182",
+    "source_line": 182,
+    "character": "E2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "てんけんおわり\\nいじょうなし",
+    "zh_TW": "檢查完畢，\\n一切正常。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-183",
+    "source_line": 183,
+    "character": "E2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こうたいのじかんだ\\nえきにとまるんだ",
+    "zh_TW": "換班時間到了，\\n今晚住在車站。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-184",
+    "source_line": 184,
+    "character": "E2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "しゅくしゃはいります\\nあしたは、しはつだ",
+    "zh_TW": "我要進宿舍了，\\n明天值首班車。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-185",
+    "source_line": 185,
+    "character": "E2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "つぎのえきは\\nいなかのえきです",
+    "zh_TW": "下一站\\n是鄉間車站。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-186",
+    "source_line": 186,
+    "character": "E2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きいろいせんのそとに\\nおさがりくださーい",
+    "zh_TW": "請退到黃線後，\\n遠離月台邊緣！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-187",
+    "source_line": 187,
+    "character": "E2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "すまーとほんの\\nながらあるきはきけん",
+    "zh_TW": "邊走邊看手機\\n很危險喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-188",
+    "source_line": 188,
+    "character": "E2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "あぶないですので\\nおさがりくださーい",
+    "zh_TW": "為了您的安全，\\n請往後退！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-189",
+    "source_line": 189,
+    "character": "E2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "かもつれっしゃが\\nつうかしまーす",
+    "zh_TW": "貨運列車\\n即將通過！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-190",
+    "source_line": 190,
+    "character": "E2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "かいそうでんしゃには\\nのれません",
+    "zh_TW": "不載客列車\\n不能搭乘喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-191",
+    "source_line": 191,
+    "character": "E2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "さいしゅうでんしゃ\\nまもなくとうちゃく",
+    "zh_TW": "末班列車\\n即將到站。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-192",
+    "source_line": 192,
+    "character": "F1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おっほん、あたらしい\\n1にちのスタートです",
+    "zh_TW": "咳咳，新的一天\\n開始了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-193",
+    "source_line": 193,
+    "character": "F1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おっほん、わたしが\\nえきちょうです",
+    "zh_TW": "咳咳，\\n我就是站長。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-194",
+    "source_line": 194,
+    "character": "F1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おはようございます\\nえきちょうです",
+    "zh_TW": "早安，\\n我是站長。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-195",
+    "source_line": 195,
+    "character": "F1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "おっほん、あさは\\nきもちがいいですな",
+    "zh_TW": "咳咳，早晨\\n真是舒服啊！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-196",
+    "source_line": 196,
+    "character": "F1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おっほん、こんにちは",
+    "zh_TW": "咳咳，午安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-197",
+    "source_line": 197,
+    "character": "F1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "つぎのぶっさんてんは\\nどこにきてもらおうかな",
+    "zh_TW": "下次的物產展，\\n要邀請哪個地方呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-198",
+    "source_line": 198,
+    "character": "F1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おっほん、おひるは\\nたちぐいそばですぞ",
+    "zh_TW": "咳咳，午餐\\n吃站著吃的蕎麥麵！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-199",
+    "source_line": 199,
+    "character": "F1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "てんぷらそばです\\nえきちょうなので",
+    "zh_TW": "是天婦羅蕎麥麵，\\n因為我是站長嘛！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-200",
+    "source_line": 200,
+    "character": "F1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "おっほん、\\nこんばんは",
+    "zh_TW": "咳咳，\\n晚安！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-201",
+    "source_line": 201,
+    "character": "F1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "おっほんおとしもの\\nとどいていますよ",
+    "zh_TW": "咳咳，有人\\n送來遺失物喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-202",
+    "source_line": 202,
+    "character": "F1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こどもがおそくまで\\nあそんではいけません",
+    "zh_TW": "小朋友\\n不能玩到太晚喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-203",
+    "source_line": 203,
+    "character": "F1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "おっほん、よるも\\nはたらきます",
+    "zh_TW": "咳咳，晚上\\n也要工作。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-204",
+    "source_line": 204,
+    "character": "F1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "へいじょうどおりに\\nうんこうちゅう",
+    "zh_TW": "目前列車\\n正常行駛。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-205",
+    "source_line": 205,
+    "character": "F1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "こえかけうんどうに\\nごきょうりょくを！",
+    "zh_TW": "請一起主動關心，\\n提醒需要協助的旅客！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-206",
+    "source_line": 206,
+    "character": "F1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "とくべつれっしゃが\\nまいりまーす",
+    "zh_TW": "特別列車\\n即將進站！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-207",
+    "source_line": 207,
+    "character": "F1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "えきちょうもホームで\\nおしごとしますぞ",
+    "zh_TW": "站長也會在月台\\n工作喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-208",
+    "source_line": 208,
+    "character": "F1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "あたらしいポスターに\\nはりかえますぞ",
+    "zh_TW": "該換上\\n新的海報囉！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-209",
+    "source_line": 209,
+    "character": "F1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "きょうもいちにち\\nおつかれさまでした",
+    "zh_TW": "今天一整天，\\n大家辛苦了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-210",
+    "source_line": 210,
+    "character": "G1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうはあさばんです",
+    "zh_TW": "今天我值早班。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-211",
+    "source_line": 211,
+    "character": "G1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "ぼくはほせんいん\\nせんろをなおすよ",
+    "zh_TW": "我是保線員，\\n負責修理鐵軌！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-212",
+    "source_line": 212,
+    "character": "G1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あんぜんうんこうは\\nぼくらがいてこそさ",
+    "zh_TW": "有我們的努力，\\n列車才能安全行駛。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-213",
+    "source_line": 213,
+    "character": "G1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "ぼくらはてつどう\\nほせんいん！",
+    "zh_TW": "我們是\\n鐵路保線員！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-214",
+    "source_line": 214,
+    "character": "G1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "このさきはおおきな\\nてっきょうがあるはず",
+    "zh_TW": "前面應該\\n有一座大鐵橋。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-215",
+    "source_line": 215,
+    "character": "G1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "たいようがのぼると\\nあつくなってきた",
+    "zh_TW": "太陽升起後，\\n越來越熱了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-216",
+    "source_line": 216,
+    "character": "G1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "そろそろおなかが\\nすいたなぁ",
+    "zh_TW": "差不多\\n有點餓了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-217",
+    "source_line": 217,
+    "character": "G1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おそばをたべないか？\\nうどんでもいいぞ",
+    "zh_TW": "要吃蕎麥麵嗎？\\n烏龍麵也可以！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-218",
+    "source_line": 218,
+    "character": "G1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おひるやすみだ\\nしっかりやすむぞ",
+    "zh_TW": "午休時間到了，\\n好好休息吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-219",
+    "source_line": 219,
+    "character": "G1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "このヘルメット\\nかっこいいでしょ",
+    "zh_TW": "這頂安全帽\\n很帥吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-220",
+    "source_line": 220,
+    "character": "G1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるのあいだに\\nこうじをするんだよ",
+    "zh_TW": "我們會在晚上\\n進行施工喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-221",
+    "source_line": 221,
+    "character": "G1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "せんろをまるごと\\nかえることもあるよ",
+    "zh_TW": "有時候還會\\n換掉整段鐵軌。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-222",
+    "source_line": 222,
+    "character": "G1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "チームワークが\\nいちばんだいじさ",
+    "zh_TW": "團隊合作\\n最重要！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-223",
+    "source_line": 223,
+    "character": "G1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "いつかはやぶさを\\nうんてんしたいぞ",
+    "zh_TW": "有一天我想\\n駕駛隼號！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-224",
+    "source_line": 224,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "せんろにごみを\\nすてないでほしいな",
+    "zh_TW": "希望大家別把垃圾\\n丟到鐵軌上。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-225",
+    "source_line": 225,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きょうもせんろは\\nぴかぴかだ！",
+    "zh_TW": "今天的鐵軌\\n也亮晶晶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-226",
+    "source_line": 226,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "せんろや、まくらぎを\\nこうかんするぞ！",
+    "zh_TW": "要更換\\n鐵軌和枕木囉！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-227",
+    "source_line": 227,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "せんろのあんぜんを\\nかくにんしてるんだ",
+    "zh_TW": "我正在確認\\n鐵軌的安全。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-228",
+    "source_line": 228,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "そろそろあかい\\nしゃりょうがつくかな",
+    "zh_TW": "紅色列車\\n差不多快到了吧？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-229",
+    "source_line": 229,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "せんろをとりかえる\\nおおしごとだぞ",
+    "zh_TW": "更換鐵軌，\\n可是大工程！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-230",
+    "source_line": 230,
+    "character": "G1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "おおきなこうじは\\nまよなかにはじめるよ",
+    "zh_TW": "大型工程\\n會在半夜開始喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-231",
+    "source_line": 231,
+    "character": "G2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あさ4じから\\nしごとしています",
+    "zh_TW": "我從早上四點\\n就開始工作了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-232",
+    "source_line": 232,
+    "character": "G2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "ほせんいんはせんろの\\nおいしゃさんなんだよ",
+    "zh_TW": "保線員就是\\n鐵軌的醫生喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-233",
+    "source_line": 233,
+    "character": "G2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "せんろをまもるのが\\nぼくたちのしごとさ",
+    "zh_TW": "保護鐵軌\\n就是我們的工作。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-234",
+    "source_line": 234,
+    "character": "G2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "まいにちせんろを\\nてんけんするよ",
+    "zh_TW": "每天都要\\n檢查鐵軌喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-235",
+    "source_line": 235,
+    "character": "G2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "しゃこからしゃりょう\\nがでてくるじかんだ",
+    "zh_TW": "列車差不多\\n該開出車庫了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-236",
+    "source_line": 236,
+    "character": "G2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "あつさ、さむさには\\nまけません",
+    "zh_TW": "不管炎熱或寒冷，\\n我們都不怕！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-237",
+    "source_line": 237,
+    "character": "G2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "ひるやすみにしよう\\nごはんはどうする？",
+    "zh_TW": "來休息吃午餐吧，\\n要吃什麼呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-238",
+    "source_line": 238,
+    "character": "G2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "きょうはべんとうだ\\nあいさいべんとうさ",
+    "zh_TW": "今天帶了便當，\\n是太太的愛心便當！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-239",
+    "source_line": 239,
+    "character": "G2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おつかれさま\\nおさきにしつれい",
+    "zh_TW": "辛苦了，\\n我先走囉！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-240",
+    "source_line": 240,
+    "character": "G2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "たいりょくには\\nじしんあるよ",
+    "zh_TW": "我對自己的體力\\n很有信心喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-241",
+    "source_line": 241,
+    "character": "G2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるがこうじの\\nほんばんなんだ",
+    "zh_TW": "到了晚上，\\n施工才正式開始。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-242",
+    "source_line": 242,
+    "character": "G2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "こうじもあんぜんが\\nさいゆうせんなんだ",
+    "zh_TW": "施工也是\\n安全第一！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-243",
+    "source_line": 243,
+    "character": "G2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるにおしごとをして\\nあさかえるひもあるよ",
+    "zh_TW": "有時候晚上上班，\\n早上才回家喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-244",
+    "source_line": 244,
+    "character": "G2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "そろそろしゃりょうが\\nしゃこにもどるぞ",
+    "zh_TW": "列車差不多\\n該回車庫了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-245",
+    "source_line": 245,
+    "character": "G2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "せんろにおかしな\\nところはないかな？",
+    "zh_TW": "鐵軌有沒有\\n異常的地方呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-246",
+    "source_line": 246,
+    "character": "G2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きのうのばんに\\nせんろをなおしたんだ",
+    "zh_TW": "昨天晚上\\n我修好了鐵軌。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-247",
+    "source_line": 247,
+    "character": "G2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "せんろのゆがみを\\nはっけんしたぞ！",
+    "zh_TW": "發現鐵軌\\n歪掉了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-248",
+    "source_line": 248,
+    "character": "G2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "あんぜんだいいち！\\nぼくらのきほん！",
+    "zh_TW": "安全第一！\\n這是我們的基本原則！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-249",
+    "source_line": 249,
+    "character": "G2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "おおきなこうじは\\nまよなかにはじめるよ",
+    "zh_TW": "大型工程\\n會在半夜開始喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-250",
+    "source_line": 250,
+    "character": "G2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "あさまでになおして\\nでんしゃがはしるんだ",
+    "zh_TW": "天亮前修好，\\n列車就能開了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-251",
+    "source_line": 251,
+    "character": "H1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "グッドモーニング～！",
+    "zh_TW": "早安～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-252",
+    "source_line": 252,
+    "character": "H1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "サンドイッチください\\nＩＣカードで！",
+    "zh_TW": "請給我三明治，\\n用電子票證付款！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-253",
+    "source_line": 253,
+    "character": "H1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "ともだちからメールだ\\nすぐへんじしよーっと",
+    "zh_TW": "朋友傳訊息來了，\\n馬上回覆吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-254",
+    "source_line": 254,
+    "character": "H1",
+    "state": "通常",
+    "time": "朝",
+    "ja": "そろそろがっこうに\\nいかないと",
+    "zh_TW": "差不多\\n該去學校了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-255",
+    "source_line": 255,
+    "character": "H1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "グッド\\nアフタヌーン～！",
+    "zh_TW": "午安～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-256",
+    "source_line": 256,
+    "character": "H1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "メールのへんじが\\nこないなぁ",
+    "zh_TW": "怎麼還沒\\n回我訊息呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-257",
+    "source_line": 257,
+    "character": "H1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "がっこうたのしかった\\nあっ、メールきてる",
+    "zh_TW": "今天在學校好開心，\\n啊，有新訊息！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-258",
+    "source_line": 258,
+    "character": "H1",
+    "state": "通常",
+    "time": "昼",
+    "ja": "しゅうがくりょこうよ\\nのりかえがふあんだな",
+    "zh_TW": "要去校外旅行，\\n有點擔心轉車呢。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-259",
+    "source_line": 259,
+    "character": "H1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "グッドイブニング～！",
+    "zh_TW": "晚安～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-260",
+    "source_line": 260,
+    "character": "H1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "がっこうたのしかった\\nあっ、メールきてる",
+    "zh_TW": "今天在學校好開心，\\n啊，有新訊息！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-261",
+    "source_line": 261,
+    "character": "H1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "メールのへんじが\\nやっときたよ",
+    "zh_TW": "終於收到\\n回覆了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-262",
+    "source_line": 262,
+    "character": "H1",
+    "state": "通常",
+    "time": "晩",
+    "ja": "メールしたらともだち\\nからへんじきたわ",
+    "zh_TW": "傳訊息過去，\\n朋友就回覆我了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-263",
+    "source_line": 263,
+    "character": "H1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "きょうもラッシュよ\\nつうがくラッシュ",
+    "zh_TW": "今天也好擠，\\n又是上學尖峰時間！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-264",
+    "source_line": 264,
+    "character": "H1",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "いっぽんまって\\nかいそくにのるわよ",
+    "zh_TW": "再等一班，\\n我要搭快速列車。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-265",
+    "source_line": 265,
+    "character": "H1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "きょうはテストだから\\nおひるでかえれるの",
+    "zh_TW": "今天考試，\\n中午就能回家了。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-266",
+    "source_line": 266,
+    "character": "H1",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "おやすみだけど\\nせいふくのわたし",
+    "zh_TW": "明明放假，\\n我還是穿著制服。",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-267",
+    "source_line": 267,
+    "character": "H1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ともだちとカラオケ\\nたのしーなあ",
+    "zh_TW": "和朋友一起唱歌，\\n真開心！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-268",
+    "source_line": 268,
+    "character": "H1",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "おねえちゃんから\\nメールがきたわ",
+    "zh_TW": "姊姊傳訊息\\n給我了！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-269",
+    "source_line": 269,
+    "character": "H2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あさですよ～！",
+    "zh_TW": "早上囉～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-270",
+    "source_line": 270,
+    "character": "H2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "きょうはえきで\\nショッピングするの",
+    "zh_TW": "今天要在車站\\n逛街購物！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-271",
+    "source_line": 271,
+    "character": "H2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "とてもおおきなえき\\nびっくり～！",
+    "zh_TW": "好大的車站，\\n嚇我一跳！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-272",
+    "source_line": 272,
+    "character": "H2",
+    "state": "通常",
+    "time": "朝",
+    "ja": "あさからおみせが\\nひらいているね",
+    "zh_TW": "一大早\\n商店就開門了耶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-273",
+    "source_line": 273,
+    "character": "H2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おひるだよ～！",
+    "zh_TW": "中午囉～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-274",
+    "source_line": 274,
+    "character": "H2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "おなかがすいたわ\\nえきなかレストラン",
+    "zh_TW": "肚子餓了，\\n去車站裡的餐廳吧！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-275",
+    "source_line": 275,
+    "character": "H2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "まいごじゃないのよ\\nひとりでおつかいよ",
+    "zh_TW": "我才沒有迷路，\\n是自己出來跑腿的！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-276",
+    "source_line": 276,
+    "character": "H2",
+    "state": "通常",
+    "time": "昼",
+    "ja": "すまほにメールきたわ\\nおへんじぽちぽち",
+    "zh_TW": "手機收到訊息，\\n點點按按來回覆！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-277",
+    "source_line": 277,
+    "character": "H2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "よるですよ～！",
+    "zh_TW": "晚上囉～！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-278",
+    "source_line": 278,
+    "character": "H2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "そろそろかえろう\\nじゃあばいばい",
+    "zh_TW": "差不多該回家了，\\n掰掰！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-279",
+    "source_line": 279,
+    "character": "H2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "えきのなかなのに\\nおみせがたくさん",
+    "zh_TW": "明明在車站裡，\\n卻有好多商店！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-280",
+    "source_line": 280,
+    "character": "H2",
+    "state": "通常",
+    "time": "晩",
+    "ja": "おむかえにきたよ\\nおとうさんまだかなー",
+    "zh_TW": "我來接爸爸，\\n他怎麼還沒來呀？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-281",
+    "source_line": 281,
+    "character": "H2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "でんしゃだー\\nすごーいたっのしー",
+    "zh_TW": "是火車耶！\\n好厲害，真好玩！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-282",
+    "source_line": 282,
+    "character": "H2",
+    "state": "電車待ち",
+    "time": "朝",
+    "ja": "おとなはたいへん\\nこどもはらくちん",
+    "zh_TW": "大人好辛苦，\\n小孩好輕鬆！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-283",
+    "source_line": 283,
+    "character": "H2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "でんしゃってみんな\\nおなじにみえるわ",
+    "zh_TW": "每一班火車\\n看起來都一樣耶！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-284",
+    "source_line": 284,
+    "character": "H2",
+    "state": "電車待ち",
+    "time": "昼",
+    "ja": "かめらででんしゃを\\nとるのはどうして？",
+    "zh_TW": "為什麼要用相機\\n拍火車呢？",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-285",
+    "source_line": 285,
+    "character": "H2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "こどもがよるひとりで\\nあるいちゃだめなのよ",
+    "zh_TW": "小朋友晚上\\n不能一個人亂走喔！",
+    "translation_status": "translated"
+  },
+  {
+    "id": "dialog-286",
+    "source_line": 286,
+    "character": "H2",
+    "state": "電車待ち",
+    "time": "晩",
+    "ja": "ねむいわ、おかあさん\\nはやくむかえにきて",
+    "zh_TW": "好睏喔，媽媽，\\n快點來接我吧！",
+    "translation_status": "translated"
+  }
+]

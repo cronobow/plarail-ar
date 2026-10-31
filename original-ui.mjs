@@ -1,6 +1,7 @@
+import {localizedImage,imageKey,IMAGE_LABELS,IMAGE_BOUNDS} from './localization.mjs?v=1.1.0';
 import {sampleComponent} from './animation.mjs?v=1.0.0';
 // 直接使用 APK RectTransform、Sprite、active flag 與 Button event。
-const labels={OnClickControlModeButton:'AR 車站',OnClickMortormanModeButton:'拍照換臉',OnClickHowtoButton:'玩法說明',OnClickAppOptionButton:'設定',OnClickNewInfoButton:'最新消息',OnClickPreRideButton:'排隊',OnClickRideButton:'上車',OnClickVoiceButton:'月台語音',OnClickSEButton:'車站廣播',OnClickNext:'下一頁',OnClickPrev:'上一頁',OnClickShootingButton:'拍照',OnClickCameraChangeButton:'切換相機',OnClickNextFaceCamera:'製作角色臉孔'};
+const labels={OnClickControlModeButton:'AR 車站',OnClickMortormanModeButton:'拍照換臉',OnClickHowtoButton:'玩法說明',OnClickAppOptionButton:'設定',OnClickNewInfoButton:'最新消息',OnClickPreRideButton:'排隊',OnClickRideButton:'上車',OnClickVoiceButton:'月台語音',OnClickSEButton:'車站廣播',OnClickNext:'下一頁',OnClickPrev:'上一頁',OnClickShootingButton:'拍照',OnClickCameraChangeButton:'切換相機',OnClickNextFaceCamera:'製作角色臉孔',OnClickYesButton:'開始',OnClickCancel:'取消',OnClickOk:'確認',OnClickAgreement:'使用規約',OnClickPrivasy:'隱私說明',OnClickDownloadURL:'下載辨識圖',OnClickSupportApp:'應用程式支援',OnClickSupportToy:'玩具支援'};
 export class OriginalUI {
  constructor(host,data,dispatch,clips={}){this.host=host;this.data=data;this.dispatch=dispatch;this.clips=clips;this.elements=new Map();this.layout=new Map();this.groups=[];}
  show(scene){
@@ -19,7 +20,10 @@ export class OriginalUI {
    Object.assign(el.style,{width:Math.max(0,w)+'px',height:Math.max(0,h)+'px'});
    this.layout.set(n.id,{node:n,left:parseFloat(el.style.left),bottom:parseFloat(el.style.bottom),scale:[n.scale.x,n.scale.y],rotation:0});
    if(n.image&&(!n.mask||n.maskGraphic)){
-    if(n.image.url){const border=n.image.border,sliced=n.image.type===1&&border&&Object.values(border).some(v=>v>0);const img=sliced?document.createElement('div'):new Image();if(sliced){img.classList.add('sliced');img.style.borderStyle='solid';img.style.borderWidth=`${border.w}px ${border.z}px ${border.y}px ${border.x}px`;img.style.borderImageSource=`url('${n.image.url}')`;img.style.borderImageSlice=`${border.w} ${border.z} ${border.y} ${border.x} fill`;}else img.src=n.image.url;img.draggable=false;img.alt='';img.classList.add('unity-sprite');img.style.objectFit=n.image.preserveAspect?'contain':'fill';img.style.opacity=n.image.color.a;el.append(img);}
+    if(n.image.url){const url=localizedImage(n.image.url);const border=n.image.border,sliced=n.image.type===1&&border&&Object.values(border).some(v=>v>0);const img=sliced?document.createElement('div'):new Image();if(sliced){img.classList.add('sliced');img.style.borderStyle='solid';img.style.borderWidth=`${border.w}px ${border.z}px ${border.y}px ${border.x}px`;img.style.borderImageSource=`url('${url}')`;img.style.borderImageSlice=`${border.w} ${border.z} ${border.y} ${border.x} fill`;}else img.src=url;img.draggable=false;img.alt=n.button?'':(IMAGE_LABELS[imageKey(n.image.url)]||'');img.classList.add('unity-sprite');img.style.objectFit=n.image.preserveAspect?'contain':'fill';img.style.opacity=n.image.color.a;
+    const bounds=IMAGE_BOUNDS[imageKey(n.image.url)];
+    if(bounds&&!sliced){const [iw,ih,x,y,cw,ch]=bounds,scale=Math.min(w/cw,h/ch);Object.assign(img.style,{inset:'auto',width:iw*scale+'px',height:ih*scale+'px',left:((w-cw*scale)/2-x*scale)+'px',top:((h-ch*scale)/2-y*scale)+'px',objectFit:'fill'});}
+    el.append(img);}
     else{const c=n.image.color;el.style.background=`rgba(${c.r*255},${c.g*255},${c.b*255},${c.a})`;}
    }
    if(n.text){const text=document.createElement('span');text.className='unity-text';text.textContent=n.text.value;text.style.fontSize=n.text.size+'px';const c=n.text.color;text.style.color=`rgba(${c.r*255},${c.g*255},${c.b*255},${c.a})`;text.style.textAlign=['left','center','right'][n.text.align%3];el.append(text);}
@@ -46,7 +50,7 @@ export class OriginalUI {
  }}
  resize(){if(!this.reference)return;const [w,h]=this.reference;const scale=Math.min(innerWidth/w,innerHeight/h);this.host.style.transform=`translate(-50%,-50%) scale(${scale})`;}
  visible(id,show){const el=this.elements.get(id);if(el&&el.hidden===show){el.hidden=!show;this.reflow();}}
- image(id,url){const img=this.elements.get(id)?.querySelector(':scope > .unity-sprite');if(img){if(img.tagName==='IMG')img.src=url;else img.style.borderImageSource=`url('${url}')`;}}
+ image(id,url){url=localizedImage(url);const img=this.elements.get(id)?.querySelector(':scope > .unity-sprite');if(img){if(img.tagName==='IMG')img.src=url;else img.style.borderImageSource=`url('${url}')`;}}
  animate(now,lineup=false){
   const seconds=(now-this.started)/1000;
   for(const [name,clip]of Object.entries(this.clips)){
