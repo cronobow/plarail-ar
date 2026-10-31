@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.4',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.5',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
@@ -130,8 +130,8 @@ function updateViews(dt,camera){
 function refreshARUI(){
  if(state.scene!=='4'||!engine)return;
  ui.visible(9,!state.placed);ui.visible(61,state.placed&&!clickedCharacter);
- $('tracking-note').hidden=!state.placed||state.tracking;
- $('tracking-note').textContent=state.worldTracking==='NORMAL'?'周遭場景追蹤中，可移動鏡頭觀看車站':'定位不穩，請緩慢移動鏡頭並重新對準辨識圖';
+ $('tracking-note').hidden=!state.placed||state.tracking||state.worldTracking==='NORMAL';
+ $('tracking-note').textContent='定位不穩，請緩慢移動鏡頭並重新對準辨識圖';
  ui.visible(82,state.placed&&engine.mode==='Normal');ui.visible(40,state.placed&&engine.mode==='Ready');
  ui.visible(3,state.placed&&engine.mode==='PreRide');const speech=ui.elements.get(3);if(speech)speech.style.transform='scale(1)';
 }

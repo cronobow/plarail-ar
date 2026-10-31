@@ -51,3 +51,10 @@ body:has(.ar-ui) #audio-caption{left:var(--ar-left);right:var(--ar-right);top:ca
 
 body:has(.ar-ui) #ar-messages{position:fixed;top:calc(var(--ar-top) + 56px);right:var(--ar-right);left:var(--ar-left);display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none;z-index:3}
 body:has(.ar-ui) #ar-messages>*{position:static;transform:none;margin:0;max-width:min(560px,100%)}
+
+/* 保留原本的繁中大字圖片；辨識提示置中，移動提醒靠右上。 */
+.ar-image-hint{position:relative;overflow:hidden;pointer-events:none}
+.ar-image-hint img{position:absolute;max-width:none;pointer-events:none}
+.ar-caution-image{width:min(334px,calc(100% - 64px));margin-left:auto;flex-shrink:0}
+.ar-scan-image{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(590px,calc(100% - var(--ar-left) - var(--ar-right)))}
+body:has(.ar-ui) #ar-messages{top:calc(var(--ar-top) + 60px)}
