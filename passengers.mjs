@@ -47,7 +47,7 @@ export class Passengers {
  }
  message(p){
   const list=this.dialogs.filter(d=>d.character.toLowerCase()===p.character&&d.state===(this.mode==='Normal'?'通常':'電車待ち')&&d.time===timeOfDay(this.hour()));
-  return this.pick(list)?.ja.replace(/\\n/g,'\n')||'';
+  return this.pick(list)?.zh_TW?.replace(/\\n/g,'\n')||'';
  }
  touch(id){
   const p=this.people.find(p=>p.id===id);

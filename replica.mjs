@@ -1,17 +1,19 @@
+import {localizeUI,audioCaption} from './localization.mjs?v=1.1.0';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MindARThree} from './vendor/mindar-image-three.prod.js';
-import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.0.2';
-import {OriginalUI} from './original-ui.mjs?v=1.0.2';
-import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.0.2';
+import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
+import {OriginalUI} from './original-ui.mjs?v=1.1.0';
+import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.0.2'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.1.0'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
-const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null;
+const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
 const LINE_VOICE=['audio/se/no19','audio/voice/no17','audio/voice/no18','audio/voice/no2-2','audio/voice/no19','audio/se/no19','audio/voice/no20-1','audio/voice/no20-2'];
 const BROADCAST=['audio/se/no14','audio/se/no15','audio/se/no16'].flatMap(first=>[first,'audio/voice/no14','audio/voice/no15','audio/se/no17','audio/voice/no16']);
-function playEffect(key){if(effectAudio){effectAudio.pause();audioPlayers.delete(effectAudio);}effectAudio=play(key);}
+function clearCaption(audio){if(!audio||captionAudio===audio){captionAudio=null;$('audio-caption').textContent='';$('audio-caption').hidden=true;}}
+function playEffect(key){if(effectAudio){effectAudio.pause();audioPlayers.delete(effectAudio);clearCaption(effectAudio);}effectAudio=play(key);}
 const sprite=name=>{const paths=Object.values(data.ui).flatMap(s=>s.nodes).map(n=>n.image?.url).filter(Boolean);return paths.find(p=>p.endsWith('__'+name+'.png'))||'./original/sprites/'+name;};
 function modal(title,body,buttons=[['關閉',()=>{}]]){
  $('dialog-title').textContent=title;$('dialog-body').replaceChildren();
@@ -23,9 +25,12 @@ function fail(error){state.error=error.message||String(error);$('loading').hidde
 function play(key,loop=false){
  const url=data.audio[key.toLowerCase()];if(!url)return;
  const audio=new Audio(url);audio.loop=loop;audio.volume=loop?.35:.8;audioPlayers.add(audio);
- audio.onended=()=>audioPlayers.delete(audio);audio.play().catch(()=>audioPlayers.delete(audio));return audio;
+ const caption=audioCaption(key);
+ audio.onplaying=()=>{if(caption&&audioPlayers.has(audio)&&!audio.paused){captionAudio=audio;$('audio-caption').textContent=caption;$('audio-caption').hidden=false;}};
+ const finish=()=>{audioPlayers.delete(audio);clearCaption(audio);};
+ audio.onended=finish;audio.onerror=finish;audio.onpause=()=>clearCaption(audio);audio.play().catch(finish);return audio;
 }
-function stopAudio(){for(const a of audioPlayers){a.pause();a.src='';}audioPlayers.clear();}
+function stopAudio(){clearCaption();effectAudio=null;for(const a of audioPlayers){a.pause();a.src='';}audioPlayers.clear();}
 function readFace(name){try{return localStorage.getItem('plarail-face-'+name);}catch{return null;}}
 function stopCamera(){
  run++;state.tracking=false;state.placed=false;$('tracking-note').hidden=true;engine?.setTracking(false);
@@ -70,7 +75,7 @@ async function dispatch(event,node){
  if(m==='OnClickCameraChangeButton'){photoFacing=photoFacing==='user'?'environment':'user';await startPhoto();return;}
  if(m==='OnClickShootingButton'){captureFace();return;}
  if(m==='OnClickNewInfoButton'){modal('最新消息','原版此按鈕連往外部消息服務。離線復刻版保留入口，未連線至已停服的服務。');return;}
- if(m==='OnClickAgreement'||m==='OnClickPrivasy'){modal(m==='OnClickAgreement'?'使用說明':'隱私說明','這是非官方原版 APK 復刻。角色、圖片與音效沿用原始素材。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色拍照頁刪除。');return;}
+ if(m==='OnClickAgreement'||m==='OnClickPrivasy'){modal(m==='OnClickAgreement'?'使用說明':'隱私說明','這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色拍照頁刪除。');return;}
  if(m==='OnClickDownloadURL'){const link=document.createElement('a');link.href='./marker.png';link.download='action-station-marker.png';link.textContent='下載原版辨識圖';modal('辨識圖下載',link);return;}
  if(['OnClickSupportApp','OnClickSupportToy'].includes(m)){modal('原版外部服務','此入口原本通往官方支援或下載服務，復刻版未重建外部伺服器。');return;}
  if(['OnClickCancel','OnClickOk'].includes(m)){show(8);return;}
@@ -178,8 +183,9 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&['4','6'].
 try{
  const fetchJSON=async path=>{const r=await fetch(path);if(!r.ok)throw new Error('素材讀取失敗：'+path);return r.json();};
  const [uiData,audio,dialogs,transforms,routes,animations,models,station,uiClips]=await Promise.all([
-  fetchJSON('./original/ui.json'),fetchJSON('./original/audio.json'),fetchJSON('./original/dialogs.json'),fetchJSON('./original/transforms.json'),fetchJSON('./station.json'),loadAnimations(),
+  fetchJSON('./original/ui.json'),fetchJSON('./original/audio.json'),fetchJSON('./zh-TW/dialogs.json?v=1.1.0'),fetchJSON('./original/transforms.json'),fetchJSON('./station.json'),loadAnimations(),
   Promise.all(CHARACTERS.map(async c=>[c,await loader.loadAsync(`./characters/plakids_${c}.glb`)])),loader.loadAsync('./original/station.glb'),fetchJSON('./original/ui-animations.json')]);
+ localizeUI(uiData);
  data={ui:uiData,audio,dialogs,transforms,routes};clips=animations;templates=new Map(models);occluder=station;
  faceMask=new Image();faceMask.src='./original/textures/resources.assets__60__cut_face.png';await faceMask.decode();
  ui=new OriginalUI($('original-ui'),uiData,(event,node)=>dispatch(event,node).catch(fail),uiClips);state.ready=true;show(3);
