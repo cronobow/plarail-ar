@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.8',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.9',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const cameraPosition=new THREE.Vector3();

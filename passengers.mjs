@@ -1,6 +1,6 @@
 // 參數取自 PlakidsInfo 與 goPlakids／PlakidsManager 的 ARM64 實作。
 // 世界座標沿 X 鏡射；速度和時間保留原值，標記換算由 renderer 處理。
-export const RULES=Object.freeze({spawnSeconds:10,populationThreshold:10,walkSpeed:2,rideSpeed:1,rideEndZ:13,arrivalEpsilon:.05,neutral:[1,8],talk:[2,5],attention:[2,4],preRideWait:1,fadeSeconds:1,queue:[[16,15,5],[17,6],[18,7]],riding:[5,6,7,15,16,17,18],drivers:[4,8,11],linemen:[0,1],backyard:[13,14],facePositions:[2,3,9,10,12]});
+export const RULES=Object.freeze({spawnSeconds:10,populationThreshold:10,walkSpeed:2,rideSpeed:1,rideEndZ:13,arrivalEpsilon:.05,neutral:[1,8],talk:[2,5],talkCooldown:10,attention:[2,4],preRideWait:1,fadeSeconds:1,queue:[[16,15,5],[17,6],[18,7]],riding:[5,6,7,15,16,17,18],drivers:[4,8,11],linemen:[0,1],backyard:[13,14],facePositions:[2,3,9,10,12]});
 export const CHARACTERS=['a1','a2','a3','b1','b2','b3','c1','d1','h1','h2','e1','e2','f1','g1','g2'];
 export function timeOfDay(hour){return hour>=5&&hour<11?'朝':hour>=11&&hour<18?'昼':'晩';}
 const distance=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));
@@ -16,7 +16,7 @@ export class Passengers {
   if(!character||slot===undefined||this.people.some(p=>p.slot===slot||p.character===character))return null;
   const path=this.routes[slot];if(!path?.length)return null;
   const point=Math.floor(this.random()*path.length);
-  const p={id:++this.serial,character,slot,path,position:[...path[point]],state:'Neutral',time:0,wait:this.range(RULES.neutral),alpha:0,permanent,point,target:point,angle:0,dialog:null,talkCooldown:0};
+  const p={id:++this.serial,character,slot,path,position:[...path[point]],state:'Neutral',time:0,wait:this.range(RULES.neutral),alpha:0,permanent,point,target:point,angle:0,dialog:null,talkCooldown:0,talkPartnerId:null};
   this.people.push(p);this.events.push({type:'create',person:p});return p;
  }
  initialize(){
@@ -33,7 +33,32 @@ export class Passengers {
   const slots=id>=10&&id<=12?RULES.drivers:id>=13?RULES.linemen:[2,3,5,6,7,9,10,12,13,14];
   return this.create(c,this.pick(this.availableSlots(slots)),id>=10&&id<=12);
  }
- state(p,state){p.state=state;p.time=0;p.dialog=null;if(state==='Neutral')p.wait=this.range(RULES.neutral);if(state==='Looking')p.wait=1.9666667+this.range([0,2]);this.events.push({type:'state',person:p});}
+ state(p,state){
+  if(p.talkPartnerId!==null&&!['Talk','Spoken'].includes(state)){
+   const partner=this.people.find(q=>q.id===p.talkPartnerId);
+   if(partner?.talkPartnerId===p.id)partner.talkPartnerId=null;
+   p.talkPartnerId=null;
+  }
+  p.state=state;p.time=0;p.dialog=null;if(state==='Neutral')p.wait=this.range(RULES.neutral);if(state==='Looking')p.wait=1.9666667+this.range([0,2]);this.events.push({type:'state',person:p});
+ }
+ turnToward(p,target,dt){
+  const dx=target[0]-p.position[0],dz=target[2]-p.position[2];if(Math.hypot(dx,dz)<=1e-6)return;
+  const angle=Math.atan2(dx,dz),delta=Math.atan2(Math.sin(angle-p.angle),Math.cos(angle-p.angle));
+  // 原版 met_Talk／met_Spoken 每個 frame 以 Quaternion.Slerp 0.1 朝向對方。
+  p.angle+=delta*(1-Math.pow(.9,dt*60));
+ }
+ checkTalk(p){
+  if(this.mode!=='Normal'||!['Neutral','Walk','Looking'].includes(p.state)||p.talkCooldown>0||p.time<=3)return;
+  // SearchTalkPlakids 挑距離最近、3 單位內且尚未進入 Talk 以上狀態的角色；對方不必已等待滿 3 秒。
+  let other=null,nearest=3;
+  for(const q of this.people){
+   if(q===p||!['Neutral','Walk','Looking'].includes(q.state))continue;
+   const d=distance(q.position,p.position);if(d<nearest){nearest=d;other=q;}
+  }
+  if(!other)return;
+  this.state(p,'Talk');this.state(other,'Spoken');p.talkPartnerId=other.id;other.talkPartnerId=p.id;
+  p.wait=other.wait=this.range(RULES.talk);p.dialog=this.message(p);
+ }
  setTracking(value){
   this.tracking=value;
   if(!value){for(const p of this.people){p.dialog=null;}this.events.push({type:'lost'});}
@@ -97,19 +122,22 @@ export class Passengers {
   this.elapsed+=dt;
   for(const p of [...this.people]){
    p.time+=dt;p.talkCooldown=Math.max(0,p.talkCooldown-dt);p.alpha=Math.min(1,p.alpha+dt/RULES.fadeSeconds);
+   this.checkTalk(p);
    switch(p.state){
     case 'Neutral':if(p.time>=p.wait)this.action(p);break;
     case 'Walk':if(this.move(p,dt))this.state(p,'Neutral');break;
     case 'Looking':if(p.time>=p.wait)this.state(p,'Neutral');break;
-    case 'Talk':case 'Spoken':if(p.time>=p.wait){p.talkCooldown=3;this.state(p,'Neutral');}break;
+    case 'Talk':case 'Spoken':{
+     const partner=this.people.find(q=>q.id===p.talkPartnerId);
+     if(partner&&['Talk','Spoken'].includes(partner.state))this.turnToward(p,partner.position,dt);
+     if(p.time>=p.wait){p.talkCooldown=RULES.talkCooldown;this.state(p,'Neutral');}
+     break;
+    }
     case 'Attention':if(p.time>=p.wait)this.state(p,'Neutral');break;
     case 'Guide':
      // 原版 met_Guide 0x99e9b0–0x99eb08：朝相機水平轉身，Slerp 係數 0.1。
      // 以 60 fps 換算，讓不同螢幕更新率保有一致的轉身速度。
-     if(cameraPosition?.every(Number.isFinite)){
-      const dx=cameraPosition[0]-p.position[0],dz=cameraPosition[2]-p.position[2];
-      if(Math.hypot(dx,dz)>1e-6){const target=Math.atan2(dx,dz),delta=Math.atan2(Math.sin(target-p.angle),Math.cos(target-p.angle));p.angle+=delta*(1-Math.pow(.9,dt*60));}
-     }
+     if(cameraPosition?.every(Number.isFinite))this.turnToward(p,cameraPosition,dt);
      if(p.time>=p.wait)this.state(p,'Neutral');break;
     case 'PreRide':if(!p.ready){if(this.move(p,dt)){p.ready=true;p.time=0;p.angle=0;}}break;
     case 'Ride':p.position[2]+=RULES.rideSpeed*dt;p.angle=0;if(p.position[2]>=RULES.rideEndZ)this.remove(p);break;
@@ -122,11 +150,6 @@ export class Passengers {
    this.spawnClock+=dt;
    if(this.spawnClock>=RULES.spawnSeconds){this.spawnClock=0;this.spawn();}
    if(this.people.length<RULES.populationThreshold)this.spawnClock=RULES.spawnSeconds;
-   // 原版 CheckTalk 搜尋近距離乘客；兩人分別進入 Talk／Spoken。
-   for(const p of this.people.filter(p=>p.state==='Neutral'&&p.talkCooldown===0&&p.time>3)){
-    const other=this.people.find(q=>q!==p&&q.state==='Neutral'&&q.talkCooldown===0&&distance(q.position,p.position)<3);
-    if(other){this.state(p,'Talk');this.state(other,'Spoken');p.wait=other.wait=this.range(RULES.talk);p.dialog=this.message(p);p.angle=Math.atan2(other.position[0]-p.position[0],other.position[2]-p.position[2]);other.angle=p.angle+Math.PI;}
-   }
   }
  }
  drain(){return this.events.splice(0);}
