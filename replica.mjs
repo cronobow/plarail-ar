@@ -1,19 +1,49 @@
 import {loadWorldTracking,requestMotionPermission,WorldTracking} from './world-tracking.mjs';
-import {localizeUI,audioCaption} from './localization.mjs?v=1.1.0';
+import {localizeUI,audioCaption,matchSpeechCaptions} from './localization.mjs?v=1.1.0';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.2.9',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.3.0',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const cameraPosition=new THREE.Vector3();
-const views=new Map(),audioPlayers=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null;
+const views=new Map(),audioPlayers=new Set(),speechPausedMusic=new Set();let voiceIndex=0,broadcastIndex=0,effectAudio=null,captionAudio=null,speechCaption='',speechCaptionTimer=null,speechRecognition=null,speechListening=false,speechRestartTimer=null;
 const LINE_VOICE=['audio/se/no19','audio/voice/no17','audio/voice/no18','audio/voice/no2-2','audio/voice/no19','audio/se/no19','audio/voice/no20-1','audio/voice/no20-2'];
 const BROADCAST=['audio/se/no14','audio/se/no15','audio/se/no16'].flatMap(first=>[first,'audio/voice/no14','audio/voice/no15','audio/se/no17','audio/voice/no16']);
-function clearCaption(audio){if(!audio||captionAudio===audio){captionAudio=null;$('audio-caption').textContent='';$('audio-caption').hidden=true;}}
+function refreshCaption(){const caption=captionAudio&&audioPlayers.has(captionAudio)?captionAudio.captionText:speechCaption,element=$('audio-caption');element.textContent=caption||'';element.hidden=!caption;}
+function clearCaption(audio){if(!audio||captionAudio===audio){captionAudio=null;refreshCaption();}}
+function setSpeechButton(listening){const button=ui?.elements.get('speechToggle');if(!button)return;button.textContent=listening?'停止收音':'收音';button.setAttribute('aria-label',listening?'停止日語語音辨識':'開啟日語語音辨識');button.setAttribute('aria-pressed',String(listening));}
+function resumeSpeechMusic(){for(const audio of speechPausedMusic){if(audioPlayers.has(audio)){audio.speechPausedForRecognition=false;audio.play().catch(()=>{});}}speechPausedMusic.clear();}
+function pauseSpeechMusic(){for(const audio of audioPlayers){if(audio.replicaKey==='clip/armodebgm00'&&!audio.paused){audio.speechPausedForRecognition=true;speechPausedMusic.add(audio);audio.pause();}}}
+function stopSpeechRecognition(resumeMusic=true){speechListening=false;clearTimeout(speechRestartTimer);speechRestartTimer=null;const active=speechRecognition;speechRecognition=null;if(active)try{active.stop();}catch{}setSpeechButton(false);clearTimeout(speechCaptionTimer);speechCaptionTimer=null;speechCaption='';refreshCaption();if(resumeMusic)resumeSpeechMusic();}
+function beginSpeechRecognition(){
+ if(!speechListening)return;
+ const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Recognition){stopSpeechRecognition();modal('此瀏覽器不支援日語收音','這個瀏覽器沒有提供 Web Speech API 語音辨識。請使用支援 SpeechRecognition 的 Safari 或 Chrome。');return;}
+ let recognition;
+ try{recognition=new Recognition();speechRecognition=recognition;}catch(error){stopSpeechRecognition();modal('無法啟動日語收音',error.message||'請確認麥克風權限後再試。');return;}
+ recognition.lang='ja-JP';recognition.continuous=true;recognition.interimResults=false;recognition.maxAlternatives=5;
+ recognition.onresult=event=>{
+  if(!speechListening||captionAudio)return;
+  const transcripts=[];for(let i=event.resultIndex;i<event.results.length;i++)for(let j=0;j<event.results[i].length;j++)transcripts.push(event.results[i][j].transcript);
+  const captions=matchSpeechCaptions(transcripts);if(!captions.length)return;
+  speechCaption=captions.join('\n');refreshCaption();clearTimeout(speechCaptionTimer);speechCaptionTimer=setTimeout(()=>{speechCaption='';speechCaptionTimer=null;refreshCaption();},7000);
+ };
+ recognition.onerror=event=>{
+  if(!speechListening||['no-speech','aborted'].includes(event.error))return;
+  const messages={'not-allowed':'麥克風權限遭拒絕。請允許此網站使用麥克風後再試；Safari 也需要啟用 Siri。','service-not-allowed':'裝置未允許語音辨識服務，請檢查瀏覽器權限與 Siri 設定。','audio-capture':'找不到可用的麥克風。','network':'語音辨識服務無法連線，請檢查網路後再試。','language-not-supported':'此裝置的語音辨識服務不支援日語（ja-JP）。'};
+  stopSpeechRecognition();modal('日語收音已停止',messages[event.error]||'語音辨識發生錯誤，請稍後再試。');
+ };
+ recognition.onend=()=>{if(speechRecognition===recognition)speechRecognition=null;if(!speechListening)return;speechRestartTimer=setTimeout(()=>{speechRestartTimer=null;beginSpeechRecognition();},350);};
+ try{recognition.start();}catch(error){if(speechRecognition===recognition)speechRecognition=null;stopSpeechRecognition();modal('無法啟動日語收音',error.message||'請確認麥克風權限後再試。');}
+}
+function toggleSpeechRecognition(){
+ if(speechListening){stopSpeechRecognition();return;}
+ if(!(window.SpeechRecognition||window.webkitSpeechRecognition)){modal('此瀏覽器不支援日語收音','這個瀏覽器沒有提供 Web Speech API 語音辨識。請使用支援 SpeechRecognition 的 Safari 或 Chrome。');return;}
+ speechListening=true;setSpeechButton(true);pauseSpeechMusic();beginSpeechRecognition();
+}
 function playEffect(key){if(effectAudio){effectAudio.pause();audioPlayers.delete(effectAudio);clearCaption(effectAudio);}effectAudio=play(key);}
 const sprite=name=>{const paths=Object.values(data.ui).flatMap(s=>s.nodes).map(n=>n.image?.url).filter(Boolean);return paths.find(p=>p.endsWith('__'+name+'.png'))||'./original/sprites/'+name;};
 function modal(title,body,buttons=[['關閉',()=>{}]]){
@@ -25,15 +55,16 @@ function modal(title,body,buttons=[['關閉',()=>{}]]){
 function fail(error){state.error=error.message||String(error);$('loading').hidden=true;modal('無法完成操作',state.error,[['返回選單',()=>show(3)]]);}
 function play(key,loop=false){
  const url=data.audio[key.toLowerCase()];if(!url)return;
- const audio=new Audio(url);audio.loop=loop;audio.volume=loop?.35:.8;audioPlayers.add(audio);
+ const audio=new Audio(url);audio.loop=loop;audio.volume=loop?.35:.8;audio.replicaKey=key.toLowerCase();audioPlayers.add(audio);
  const caption=audioCaption(key);
- audio.onplaying=()=>{if(caption&&audioPlayers.has(audio)&&!audio.paused){captionAudio=audio;$('audio-caption').textContent=caption;$('audio-caption').hidden=false;}};
+ audio.captionText=caption;audio.onplaying=()=>{if(caption&&audioPlayers.has(audio)&&!audio.paused){captionAudio=audio;refreshCaption();}};
  const finish=()=>{audioPlayers.delete(audio);clearCaption(audio);};
  audio.onended=finish;audio.onerror=finish;audio.onpause=()=>clearCaption(audio);audio.play().catch(finish);return audio;
 }
 function stopAudio(){clearCaption();effectAudio=null;for(const a of audioPlayers){a.pause();a.src='';}audioPlayers.clear();}
 function readFace(name){try{return localStorage.getItem('plarail-face-'+name);}catch{return null;}}
 function stopCamera(){
+ stopSpeechRecognition(false);
  run++;state.tracking=false;state.placed=false;$('tracking-note').hidden=true;engine?.setTracking(false);
  if(ar){ar.stop();ar=null;}state.worldTracking='LIMITED';
  state.occluder?.traverse(o=>{if(o.isMesh)o.material.dispose();});state.occluder=null;
@@ -73,6 +104,7 @@ async function dispatch(event,node){
  if(m==='OnClickRideButton'){engine?.board();refreshARUI();return;}
  if(m==='OnClickVoiceButton'){playEffect(LINE_VOICE[voiceIndex++%LINE_VOICE.length]);return;}
  if(m==='OnClickSEButton'){playEffect(BROADCAST[broadcastIndex++%BROADCAST.length]);return;}
+ if(m==='OnClickSpeechButton'){toggleSpeechRecognition();return;}
  if(m==='OnClickNextFaceCamera'){
   const target=data.ui['10'].nodes.find(n=>n.id===event.object);faceCharacter=target.name.replace('CharaFaceFlame','').toLowerCase();
   if(readFace(faceCharacter)){localStorage.removeItem('plarail-face-'+faceCharacter);show(10);return;}
@@ -83,7 +115,7 @@ async function dispatch(event,node){
  if(m==='OnClickNewInfoButton'){modal('最新消息','原版此按鈕連往外部消息服務。離線復刻版保留入口，未連線至已停服的服務。');return;}
  if(m==='OnClickAgreement'||m==='OnClickPrivasy'){
   const body=document.createElement('div'),description=document.createElement('p'),credit=document.createElement('p'),license=document.createElement('a');
-  description.textContent='這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色選擇頁按「恢復」清除。';
+  description.textContent='這是非官方原版 APK 復刻。角色與音效沿用原始素材；介面圖片與文字已製作繁體中文版本。相機影像只在裝置上處理；製作的臉孔只儲存在此瀏覽器，可在角色選擇頁按「恢復」清除。日語收音只有在 AR 畫面按下「收音」後啟動，網頁不保存錄音；辨識由瀏覽器／系統提供，可能使用外部服務或網路。';
   credit.textContent='空間追蹤使用 Niantic Spatial, Inc. 製作的 8th Wall Engine，© 2026 Niantic Spatial, Inc.。依 XR Engine License Agreement 授權；軟體依現狀提供，不附任何保證。';
   license.href='./vendor/xr8/LICENSE';license.target='_blank';license.rel='noopener';license.textContent='查看完整授權與免責聲明';
   body.append(description,credit,license);modal(m==='OnClickAgreement'?'使用說明':'隱私說明',body);return;

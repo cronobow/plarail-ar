@@ -48,7 +48,7 @@ export class OriginalUI {
   this.reference=null;this.host.removeAttribute('style');document.body.style.backgroundImage='none';
   const nodes=this.data['4'].nodes;
   const region=name=>{const el=document.createElement('div');el.className=name;this.host.append(el);return el;};
-  const top=region('ar-top'),hints=region('ar-hints'),bottom=region('ar-bottom');
+  const top=region('ar-top'),hints=region('ar-hints'),bottom=region('ar-bottom'),controls=document.createElement('div');controls.className='ar-controls';top.append(controls);
   const add=(id,parent,text=null)=>{
    const n=nodes.find(n=>n.id===id),event=n.button?.find(e=>e.method!=='OnShow');
    const el=document.createElement(event?'button':'div');el.dataset.go=id;el.dataset.name=n.name;el.hidden=!n.active;
@@ -69,7 +69,9 @@ export class OriginalUI {
    el.style.aspectRatio=`${cw}/${ch}`;
    Object.assign(img.style,{width:iw/cw*100+'%',height:ih/ch*100+'%',left:-x/cw*100+'%',top:-y/ch*100+'%'});el.append(img);
   };
-  add(96,top).classList.add('ar-back');imageHint(83,83,top,'ar-caution-image');
+  add(96,controls).classList.add('ar-back');
+  const speechToggle=document.createElement('button');speechToggle.type='button';speechToggle.className='ar-speech-toggle';speechToggle.textContent='收音';speechToggle.setAttribute('aria-label','開啟日語語音辨識');speechToggle.setAttribute('aria-pressed','false');speechToggle.onclick=e=>{e.stopPropagation();this.dispatch({method:'OnClickSpeechButton'},{id:'speechToggle'});};this.elements.set('speechToggle',speechToggle);controls.append(speechToggle);
+  imageHint(83,83,top,'ar-caution-image');
   const scan=region('ar-scan-group');scan.dataset.go='9';scan.hidden=true;this.elements.set(9,scan);
   const stationmaster=new Image();stationmaster.className='ar-stationmaster';stationmaster.src=nodes.find(n=>n.id===92).image.url;stationmaster.alt='站長';stationmaster.draggable=false;scan.append(stationmaster);
   imageHint(67,67,scan,'ar-scan-image');add(61,hints);add(3,hints);
