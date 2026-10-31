@@ -5,3 +5,5 @@
 #audio-caption{position:fixed;left:50%;top:max(70px,12vh);transform:translateX(-50%);max-width:90vw;width:max-content;white-space:pre-line;text-align:center;background:#102b49ed;border:2px solid #fff;border-radius:12px;padding:10px 18px;color:#fff;font-size:clamp(16px,2.5vw,26px);font-weight:600;line-height:1.45;pointer-events:none;z-index:3}
 /* 為綠色素材提供不透明底色，避免去背處理造成局部透出背景。 */
 .unity-node[data-action="OnClickMortormanModeButton"]::before{content:'';position:absolute;inset:8px;border-radius:24px;background:#3bc629}
+/* 教學箭頭保留原點擊範圍，縮小圖示以避開中文內文。 */
+.unity-node[data-action="OnClickPrev"]>.unity-sprite,.unity-node[data-action="OnClickNext"]>.unity-sprite{transform:scale(.6)}
