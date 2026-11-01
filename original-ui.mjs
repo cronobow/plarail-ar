@@ -1,7 +1,8 @@
-import {localizedImage,imageKey,IMAGE_LABELS,IMAGE_BOUNDS} from './localization.mjs?v=1.1.0';
+import {localizedImage,localizedButtonImage,imageKey,IMAGE_LABELS,IMAGE_BOUNDS} from './localization.mjs?v=1.1.0';
 import {sampleComponent} from './animation.mjs?v=1.0.0';
 // 直接使用 APK RectTransform、Sprite、active flag 與 Button event。
-const labels={OnClickControlModeButton:'AR 車站',OnClickMortormanModeButton:'拍照換臉',OnClickHowtoButton:'玩法說明',OnClickAppOptionButton:'設定',OnClickNewInfoButton:'最新消息',OnClickPreRideButton:'排隊',OnClickRideButton:'上車',OnClickVoiceButton:'月台語音',OnClickSEButton:'車站廣播',OnClickNext:'下一頁',OnClickPrev:'上一頁',OnClickShootingButton:'拍照',OnClickCameraChangeButton:'切換相機',OnClickNextFaceCamera:'製作角色臉孔',OnClickYesButton:'開始',OnClickCancel:'取消',OnClickOk:'確認',OnClickAgreement:'使用規約',OnClickPrivasy:'隱私說明',OnClickDownloadURL:'下載辨識圖',OnClickSupportApp:'應用程式支援',OnClickSupportToy:'玩具支援'};
+const labels={OnClickControlModeButton:'AR 車站',OnClickMortormanModeButton:'拍照換臉',OnClickHowtoButton:'玩法說明',OnClickAppOptionButton:'設定',OnClickNewInfoButton:'最新消息',OnClickPreRideButton:'排隊',OnClickRideButton:'上車',OnClickVoiceButton:'月台語音',OnClickSEButton:'車站廣播',OnClickNext:'下一頁',OnClickPrev:'上一頁',OnClickShootingButton:'拍照',OnClickCameraChangeButton:'切換相機',OnClickNextFaceCamera:'製作角色臉孔',OnClickYesButton:'開始',OnClickCancel:'取消',OnClickOk:'確認',OnClickAgreement:'使用規約',OnClickPrivasy:'隱私說明',OnClickPrivasyPolicy:'隱私說明',OnClickDownloadURL:'下載辨識圖',OnClickSupportApp:'應用程式支援',OnClickSupportToy:'玩具支援'};
+const buttonText={OnClickHowtoButton:'玩法\n說明',OnClickNewInfoButton:'最新\n消息',OnClickAppOptionButton:'設定',OnClickAgreement:'使用規約',OnClickPrivasy:'隱私說明',OnClickPrivasyPolicy:'隱私說明',OnClickSupportApp:'應用程式\n支援',OnClickSupportToy:'玩具支援'};
 export class OriginalUI {
  constructor(host,data,dispatch,clips={}){this.host=host;this.data=data;this.dispatch=dispatch;this.clips=clips;this.elements=new Map();this.layout=new Map();this.groups=[];}
  show(scene){
@@ -13,6 +14,7 @@ export class OriginalUI {
   const build=(id,parent,pw,ph,isRoot=false,cell=null)=>{
    const n=byId.get(id);if(!n)return;
    const el=document.createElement(n.button?'button':'div');el.className='unity-node';el.dataset.go=n.id;el.dataset.name=n.name;
+   const event=n.button?.find(e=>e.method!=='OnShow');
    this.elements.set(n.id,el);el.hidden=!n.active;
    let w=(n.anchorMax.x-n.anchorMin.x)*pw+n.size.x,h=(n.anchorMax.y-n.anchorMin.y)*ph+n.size.y;
    if(isRoot){w=pw;h=ph;Object.assign(el.style,{left:'0px',bottom:'0px'});}
@@ -21,7 +23,7 @@ export class OriginalUI {
    Object.assign(el.style,{width:Math.max(0,w)+'px',height:Math.max(0,h)+'px'});
    this.layout.set(n.id,{node:n,left:parseFloat(el.style.left),bottom:parseFloat(el.style.bottom),scale:[n.scale.x,n.scale.y],rotation:0});
    if(n.image&&(!n.mask||n.maskGraphic)){
-    if(n.image.url){const url=localizedImage(n.image.url);const border=n.image.border,sliced=n.image.type===1&&border&&Object.values(border).some(v=>v>0);const img=sliced?document.createElement('div'):new Image();if(sliced){img.classList.add('sliced');img.style.borderStyle='solid';img.style.borderWidth=`${border.w}px ${border.z}px ${border.y}px ${border.x}px`;img.style.borderImageSource=`url('${url}')`;img.style.borderImageSlice=`${border.w} ${border.z} ${border.y} ${border.x} fill`;}else img.src=url;img.draggable=false;img.alt=n.button?'':(IMAGE_LABELS[imageKey(n.image.url)]||'');img.classList.add('unity-sprite');img.style.objectFit=n.image.preserveAspect?'contain':'fill';img.style.opacity=n.image.color.a;
+    if(n.image.url){const url=n.button?localizedButtonImage(n.image.url,event?.method):localizedImage(n.image.url);const border=n.image.border,sliced=n.image.type===1&&border&&Object.values(border).some(v=>v>0);const img=sliced?document.createElement('div'):new Image();if(sliced){img.classList.add('sliced');img.style.borderStyle='solid';img.style.borderWidth=`${border.w}px ${border.z}px ${border.y}px ${border.x}px`;img.style.borderImageSource=`url('${url}')`;img.style.borderImageSlice=`${border.w} ${border.z} ${border.y} ${border.x} fill`;}else img.src=url;img.draggable=false;img.alt=n.button?'':(IMAGE_LABELS[imageKey(n.image.url)]||'');img.classList.add('unity-sprite');img.style.objectFit=n.image.preserveAspect?'contain':'fill';img.style.opacity=n.image.color.a;
     const bounds=IMAGE_BOUNDS[imageKey(n.image.url)];
     if(bounds&&!sliced){const [iw,ih,x,y,cw,ch]=bounds,scale=Math.min(w/cw,h/ch);Object.assign(img.style,{inset:'auto',width:iw*scale+'px',height:ih*scale+'px',left:((w-cw*scale)/2-x*scale)+'px',top:((h-ch*scale)/2-y*scale)+'px',objectFit:'fill'});}
     el.append(img);}
@@ -30,7 +32,6 @@ export class OriginalUI {
    if(n.text){const text=document.createElement('span');text.className='unity-text';text.textContent=n.text.value;text.style.fontSize=n.text.size+'px';const c=n.text.color;text.style.color=`rgba(${c.r*255},${c.g*255},${c.b*255},${c.a})`;text.style.textAlign=['left','center','right'][n.text.align%3];el.append(text);}
    if(n.mask)el.style.overflow='hidden';
    if(n.button){
-    const event=n.button.find(e=>e.method!=='OnShow');
     el.dataset.action=event?.method||'dialog';el.setAttribute('aria-label',labels[event?.method]||(n.name.includes('Back')?'返回':n.name));
     el.onclick=e=>{e.stopPropagation();if(event)this.dispatch(event,n);};
    }
@@ -39,6 +40,7 @@ export class OriginalUI {
    if(n.grid){const g=n.grid,cw=g.m_CellSize.x,ch=g.m_CellSize.y,gx=g.m_Spacing.x,gy=g.m_Spacing.y;const cols=Math.max(1,Math.floor((w+gx)/(cw+gx))),rows=Math.ceil(children.length/cols),x=(w-Math.min(cols,children.length)*(cw+gx)+gx)/2,y=(h-rows*(ch+gy)+gy)/2;
     children.forEach((child,i)=>build(child,el,w,h,false,{w:cw,h:ch,x:x+(i%cols)*(cw+gx),y:h-y-ch-Math.floor(i/cols)*(ch+gy)}));
    }else {for(const child of children)build(child,el,w,h);if(n.horizontal)this.groups.push({node:n,children:children.map(id=>byId.get(id).id),width:w,height:h});}
+   if(event&&buttonText[event.method]){const label=document.createElement('span');label.className='localized-button-label';label.textContent=buttonText[event.method];label.setAttribute('aria-hidden','true');el.append(label);}
   };
   for(const id of d.roots)build(id,this.host,...d.reference,true);
   this.reflow();this.resize();

@@ -65,6 +65,14 @@ body:has(.ar-ui) #ar-messages>*{position:static;transform:none;margin:0;max-widt
 body:has(.ar-ui) #ar-messages #audio-caption{align-self:center;text-align:center}
 body:has(.ar-ui) #ar-messages{top:calc(var(--ar-top) + 60px)}
 
+/* 主選單與設定頁按鈕共用可縮放文字，避免點陣標籤大小不一或隨素材變形。 */
+.localized-button-label{position:absolute;z-index:10;display:flex;align-items:center;justify-content:center;pointer-events:none;white-space:pre-line;text-align:center;font-family:inherit;font-weight:900;letter-spacing:-.06em;line-height:1.02}
+.unity-node[data-action="OnClickHowtoButton"]>.localized-button-label,.unity-node[data-action="OnClickNewInfoButton"]>.localized-button-label,.unity-node[data-action="OnClickAppOptionButton"]>.localized-button-label{left:8%;top:8%;width:42%;height:84%;font-size:50px;color:#fff;-webkit-text-stroke:4px var(--label-outline);paint-order:stroke fill;text-shadow:0 2px 2px #0005}
+.unity-node[data-action="OnClickHowtoButton"]>.localized-button-label{--label-outline:#34383d}
+.unity-node[data-action="OnClickNewInfoButton"]>.localized-button-label{--label-outline:#990b27}
+.unity-node[data-action="OnClickAppOptionButton"]>.localized-button-label{--label-outline:#754518}
+.unity-node[data-action="OnClickAgreement"]>.localized-button-label,.unity-node[data-action="OnClickPrivasy"]>.localized-button-label,.unity-node[data-action="OnClickPrivasyPolicy"]>.localized-button-label,.unity-node[data-action="OnClickSupportApp"]>.localized-button-label,.unity-node[data-action="OnClickSupportToy"]>.localized-button-label{inset:10% 4%;font-size:28px;line-height:1.04;color:#fff;text-shadow:0 2px 2px #0006}
+
 /* 常駐版本靠安全區下緣，不攔截操作；AR 按鈕留出版本文字高度。 */
 #app-version{position:fixed;right:calc(env(safe-area-inset-right,0px) + 4px);bottom:calc(env(safe-area-inset-bottom,0px) + 2px);z-index:11;font:10px/12px sans-serif;color:#fff;text-shadow:0 1px 2px #000,0 0 2px #000;pointer-events:none;user-select:none}
 body:has(.ar-ui){--ar-bottom:calc(env(safe-area-inset-bottom,0px) + 18px)}

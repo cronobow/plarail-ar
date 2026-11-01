@@ -16,6 +16,12 @@ export const IMAGE_LABELS={
 };
 export function imageKey(url){return url?.split('/').pop().replace(/^.*__/,'').replace(/\.png(?:\?.*)?$/,'').replace(/_push$/,'');}
 export function localizedImage(url){const key=imageKey(url);return IMAGE_LABELS[key]?`./zh-TW/${key}.webp?v=1.1.5`:url;}
+const BUTTON_BACKGROUNDS={
+ OnClickHowtoButton:'btn_howto_bg',OnClickNewInfoButton:'btn_news_bg',OnClickAppOptionButton:'btn_option_bg',
+ OnClickAgreement:'btn_terms_of_use_bg',OnClickPrivasy:'btn_privacy_policy_bg',OnClickPrivasyPolicy:'btn_privacy_policy_bg',
+ OnClickSupportApp:'btn_contact_about_app_bg',OnClickSupportToy:'btn_contact_about_toy_bg'
+};
+export function localizedButtonImage(url,action){const key=BUTTON_BACKGROUNDS[action];return key?`./zh-TW/${key}.webp?v=1.3.2`:localizedImage(url);}
 const TEXT={
  '0:2':'請先閱讀使用規約與隱私說明，\n同意後再開始使用。',
  '4:12':'按鈕',

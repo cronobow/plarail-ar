@@ -1,6 +1,6 @@
 # 繁體中文素材（1.1.0）
 
-43 張中文 PNG 使用內建 imagegen 逐張重製；原始參考圖保留在 `../original/sprites/`，沒有覆蓋。圖片字體沿用原圖的圓角粗黑體、白色描邊或棕色外框風格；動態文字使用 PingFang TC／Noto Sans TC／Microsoft JhengHei。
+43 張含繁中文案的 PNG 使用內建 imagegen 逐張重製；另新增 7 張去除點陣標籤的按鈕背景圖，供網頁以共用樣式繪製可縮放文字。原始參考圖保留在 `../original/sprites/`，沒有覆蓋。圖片字體沿用原圖的圓角粗黑體、白色描邊或棕色外框風格；動態文字使用 PingFang TC／Noto Sans TC／Microsoft JhengHei。
 
 `dialogs.json` 包含 286 筆角色對話，保留日文來源、ID、角色、時段及狀態。18 筆純顏文字沿用原樣。廣播保留原音，14 段中文翻譯定義在 `../localization.mjs`，依音檔播放／結束／中斷顯示或清除，採整段字幕，並非逐字時間軸。
 
