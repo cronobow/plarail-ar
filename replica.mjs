@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.3.2',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.3.3',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const cameraPosition=new THREE.Vector3();
@@ -120,7 +120,7 @@ async function dispatch(event,node){
   license.href='./vendor/xr8/LICENSE';license.target='_blank';license.rel='noopener';license.textContent='查看完整授權與免責聲明';
   body.append(description,credit,license);modal(m==='OnClickAgreement'?'使用說明':'隱私說明',body);return;
  }
- if(m==='OnClickDownloadURL'){const link=document.createElement('a');link.href='./marker.png';link.download='action-station-marker.png';link.textContent='下載原版辨識圖';modal('辨識圖下載',link);return;}
+ if(m==='OnClickDownloadURL'){const link=document.createElement('a');link.href='./ar_170331_ol.pdf';link.download='ar_170331_ol.pdf';link.textContent='下載原版 AR 辨識圖（PDF）';modal('辨識圖下載',link);return;}
  if(['OnClickSupportApp','OnClickSupportToy'].includes(m)){modal('原版外部服務','此入口原本通往官方支援或下載服務，復刻版未重建外部伺服器。');return;}
  if(['OnClickCancel','OnClickOk'].includes(m)){show(8);return;}
  modal('操作尚未接上',m);
