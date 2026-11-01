@@ -71,10 +71,19 @@ function normalizeJapaneseSpeech(value){
 }
 const NORMALIZED_SPEECH_PHRASES=Object.entries(SPEECH_PHRASES).flatMap(([key,phrases])=>phrases.map(phrase=>({key,phrase:normalizeJapaneseSpeech(phrase)}))).sort((a,b)=>b.phrase.length-a.phrase.length);
 export function matchSpeechCaptions(transcripts){
- const hits=new Map();
+ const exactHits=new Map(),prefixHits=new Map();
  for(const transcript of transcripts||[]){
   const text=normalizeJapaneseSpeech(transcript);
-  for(const {key,phrase} of NORMALIZED_SPEECH_PHRASES){const index=text.indexOf(phrase);if(index>=0&&(!hits.has(key)||index<hits.get(key)))hits.set(key,index);}
+  if(text.length<2)continue;
+  for(const {key,phrase} of NORMALIZED_SPEECH_PHRASES){
+   const index=text.indexOf(phrase);
+   if(index>=0){if(!exactHits.has(key)||index<exactHits.get(key))exactHits.set(key,index);continue;}
+   let shared=0;while(shared<text.length&&shared<phrase.length&&text[shared]===phrase[shared])shared++;
+   if(shared>=2&&shared>(prefixHits.get(key)||0))prefixHits.set(key,shared);
+  }
  }
- return [...hits].sort((a,b)=>a[1]-b[1]).map(([key])=>AUDIO_CAPTIONS[`audio/voice/${key}`]).filter(Boolean);
+ if(exactHits.size)return [...exactHits].sort((a,b)=>a[1]-b[1]).map(([key])=>AUDIO_CAPTIONS[`audio/voice/${key}`]).filter(Boolean);
+ if(!prefixHits.size)return [];
+ const longest=Math.max(...prefixHits.values()),best=[...prefixHits].filter(([,length])=>length===longest);
+ return best.length===1?[AUDIO_CAPTIONS[`audio/voice/${best[0][0]}`]].filter(Boolean):[];
 }

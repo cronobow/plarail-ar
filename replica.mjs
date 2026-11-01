@@ -6,7 +6,7 @@ import {CharacterAnimation,loadAnimations} from './animation.mjs?v=1.1.0';
 import {OriginalUI} from './original-ui.mjs?v=1.1.0';
 import {Passengers,CHARACTERS,RULES} from './passengers.mjs?v=1.1.0';
 const $=id=>document.getElementById(id), loader=new GLTFLoader();
-const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.3.0',worldTracking:'LIMITED'};
+const state=window.replica={ready:false,scene:'loading',tracking:false,placed:false,engine:null,error:null,version:'1.3.1',worldTracking:'LIMITED'};
 let data,ui,clips,templates,occluder,ar=null,world=null,engine=null,run=0,photoStream=null,photoFacing='user',faceCharacter='a1',tutorial=0,clickedCharacter=false;
 let faceMask;
 const cameraPosition=new THREE.Vector3();
@@ -24,10 +24,10 @@ function beginSpeechRecognition(){
  const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Recognition){stopSpeechRecognition();modal('此瀏覽器不支援日語收音','這個瀏覽器沒有提供 Web Speech API 語音辨識。請使用支援 SpeechRecognition 的 Safari 或 Chrome。');return;}
  let recognition;
  try{recognition=new Recognition();speechRecognition=recognition;}catch(error){stopSpeechRecognition();modal('無法啟動日語收音',error.message||'請確認麥克風權限後再試。');return;}
- recognition.lang='ja-JP';recognition.continuous=true;recognition.interimResults=false;recognition.maxAlternatives=5;
+ recognition.lang='ja-JP';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=5;
  recognition.onresult=event=>{
   if(!speechListening||captionAudio)return;
-  const transcripts=[];for(let i=event.resultIndex;i<event.results.length;i++)for(let j=0;j<event.results[i].length;j++)transcripts.push(event.results[i][j].transcript);
+  const transcripts=[];for(let i=event.resultIndex;i<event.results.length;i++)if(event.results[i].length)transcripts.push(event.results[i][0].transcript);
   const captions=matchSpeechCaptions(transcripts);if(!captions.length)return;
   speechCaption=captions.join('\n');refreshCaption();clearTimeout(speechCaptionTimer);speechCaptionTimer=setTimeout(()=>{speechCaption='';speechCaptionTimer=null;refreshCaption();},7000);
  };
